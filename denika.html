@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<title>Interview Prep · Mighty Networks · Michael Littig</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1B2A4A;
+    --secondary: #C4873B;
+    --accent: #D4A853;
+    --cream: #FBF9F6;
+    --warm: #F5F0E8;
+    --text: #1A1A1A;
+    --text-muted: #6B6B6B;
+    --border: rgba(27, 42, 74, 0.06);
+    --border-strong: rgba(27, 42, 74, 0.15);
+    --font-sans: "Inter", -apple-system, system-ui, sans-serif;
+    --font-serif: "Playfair Display", Georgia, serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: var(--font-sans);
+    color: var(--text);
+    background: var(--cream);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  ::selection { background: var(--secondary); color: #fff; }
+
+  a { color: var(--secondary); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Section / page */
+  .page {
+    min-height: 100vh;
+    padding: 6rem 1.5rem 5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .page-inner { max-width: 960px; width: 100%; margin: 0 auto; }
+  .page-inner--narrow { max-width: 760px; }
+  .page--cream { background: var(--cream); }
+  .page--warm { background: var(--warm); }
+  .page--navy { background: var(--primary); color: #fff; }
+
+  .page-counter {
+    position: absolute;
+    bottom: 2rem;
+    right: 2.5rem;
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  .page--navy .page-counter { color: rgba(255,255,255,0.5); }
+
+  .section-kicker {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    margin-bottom: 1.25rem;
+  }
+  .page--navy .section-kicker { color: var(--accent); }
+
+  h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; color: var(--primary); line-height: 1.2; }
+  .page--navy h1, .page--navy h2, .page--navy h3, .page--navy h4,
+  .cover h1, .cover h2, .cover h3, .cover h4 { color: #fff; }
+
+  h1 { font-size: clamp(2.25rem, 5vw, 3.75rem); letter-spacing: -0.01em; }
+  h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); letter-spacing: -0.005em; margin-bottom: 1.25rem; }
+  h3 { font-size: 1.35rem; margin-bottom: 0.75rem; }
+  h4 { font-size: 1.05rem; font-family: var(--font-sans); font-weight: 600; color: var(--primary); margin-bottom: 0.5rem; }
+
+  p { margin-bottom: 0.85rem; }
+  p:last-child { margin-bottom: 0; }
+
+  ul, ol { padding-left: 1.25rem; margin-bottom: 0.85rem; }
+  li { margin-bottom: 0.35rem; }
+
+  /* Sidebar navigation */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: 260px;
+    background: #fff;
+    border-right: 1px solid var(--border);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-size: 0.88rem;
+  }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+
+  .sidebar-brand {
+    padding: 1.75rem 1.5rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .sidebar-kicker {
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    font-weight: 600;
+    margin-bottom: 0.55rem;
+  }
+  .sidebar-title {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--primary);
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+  }
+  .sidebar-subtitle {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+
+  .sidebar-nav { padding: 0.75rem 0.65rem; flex: 1; }
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0.75rem;
+    border-radius: 0.55rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border: none;
+    background: none;
+    text-align: left;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    position: relative;
+  }
+  .sidebar-item:hover {
+    background: var(--cream);
+    color: var(--primary);
+  }
+  .sidebar-item.active {
+    background: var(--warm);
+    color: var(--primary);
+    font-weight: 600;
+  }
+  .sidebar-item.active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10%;
+    bottom: 10%;
+    width: 3px;
+    background: var(--secondary);
+    border-radius: 0 3px 3px 0;
+  }
+  .sidebar-num {
+    font-family: var(--font-serif);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    width: 1.6rem;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .sidebar-item.active .sidebar-num { color: var(--secondary); }
+  .sidebar-label { flex: 1; line-height: 1.3; }
+
+  .sidebar-footer {
+    padding: 1rem 1.25rem 1.25rem;
+    border-top: 1px solid var(--border);
+    background: var(--cream);
+  }
+  .sidebar-footer-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+  .sidebar-footer-value {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.01em;
+  }
+
+  /* Mobile: hide sidebar, show compact top bar */
+  .mobile-bar {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .mobile-bar-current {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-width: 0;
+  }
+  .mobile-bar-num {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    color: var(--secondary);
+    font-size: 0.95rem;
+  }
+  .mobile-bar-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .mobile-bar-counter {
+    font-family: var(--font-serif);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .page { padding-left: calc(260px + 2.5rem); padding-right: 2.5rem; }
+  }
+  @media (max-width: 1023px) {
+    .sidebar { display: none; }
+    .mobile-bar { display: flex; }
+    .page { padding-top: 5rem; }
+  }
+
+  /* Cards */
+  .card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(27,42,74,0.03);
+  }
+  .card + .card { margin-top: 0.75rem; }
+  .card h3 { margin-bottom: 0.5rem; }
+  .card h4 { margin-bottom: 0.4rem; }
+  .card p:last-child, .card ul:last-child { margin-bottom: 0; }
+
+  .card--quote {
+    background: var(--warm);
+    border-left: 3px solid var(--secondary);
+    border-radius: 0 1rem 1rem 0;
+    font-style: italic;
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--primary);
+  }
+  .page--warm .card--quote { background: var(--cream); }
+
+  .card--dark {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+  }
+  .card--dark h3, .card--dark h4 { color: #fff; }
+  .card--dark p { color: rgba(255,255,255,0.85); }
+
+  /* Badges */
+  .badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+  }
+  .badge--done     { background: rgba(22, 163, 74, 0.1);   color: #16a34a; }
+  .badge--active   { background: rgba(196, 135, 59, 0.15); color: var(--secondary); }
+  .badge--upcoming { background: rgba(27, 42, 74, 0.08);   color: var(--primary); }
+  .badge--flag     { background: rgba(220, 38, 38, 0.1);   color: #dc2626; }
+  .badge--caution  { background: rgba(234, 179, 8, 0.15);  color: #a16207; }
+  .badge--good     { background: rgba(22, 163, 74, 0.1);   color: #16a34a; }
+  .badge--neutral  { background: rgba(107, 107, 107, 0.1); color: var(--text-muted); }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--border-strong);
+    background: #fff;
+    color: var(--primary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    letter-spacing: 0.01em;
+  }
+  .btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .btn--gold { background: var(--secondary); color: #fff; border-color: var(--secondary); }
+  .btn--gold:hover { background: var(--primary); }
+  .btn.copied { background: #16a34a; color: #fff; border-color: #16a34a; }
+
+  /* Details / accordion */
+  details {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 0.85rem;
+    margin-bottom: 0.6rem;
+    overflow: hidden;
+  }
+  details[open] { box-shadow: 0 2px 8px rgba(27,42,74,0.05); }
+  summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 1rem 1.25rem;
+    font-weight: 500;
+    color: var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.95rem;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .chev {
+    width: 1.1rem; height: 1.1rem; flex-shrink: 0;
+    transition: transform 0.2s ease;
+    color: var(--secondary);
+  }
+  details[open] summary .chev { transform: rotate(180deg); }
+  .details-body { padding: 0 1.25rem 1.25rem; font-size: 0.92rem; line-height: 1.7; color: var(--text); }
+  .details-body p { margin-bottom: 0.75rem; }
+
+  .script {
+    background: var(--warm);
+    border-radius: 0.65rem;
+    padding: 1rem 1.1rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: var(--primary);
+    margin: 0.75rem 0;
+    position: relative;
+  }
+  .script::before {
+    content: '\201C';
+    position: absolute;
+    top: -0.2rem;
+    left: 0.6rem;
+    font-size: 2.5rem;
+    color: var(--secondary);
+    font-family: var(--font-serif);
+    line-height: 1;
+    opacity: 0.5;
+  }
+  .copy-row { display: flex; justify-content: flex-end; margin-top: 0.5rem; }
+
+  /* Grid utilities */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.85rem; }
+  @media (max-width: 720px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  }
+
+  /* Cover page */
+  .cover {
+    background: var(--primary);
+    color: #fff;
+    text-align: center;
+    min-height: 100vh;
+    justify-content: center;
+  }
+  .cover-frame {
+    border: 1px solid rgba(212, 168, 83, 0.3);
+    padding: 3.5rem 2rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .cover-hair { width: 60px; height: 1px; background: var(--accent); margin: 1.5rem auto; }
+  .cover-label { font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); }
+  .cover-title { font-family: var(--font-serif); font-size: clamp(2.75rem, 6vw, 4.5rem); font-weight: 600; line-height: 1.05; letter-spacing: -0.015em; }
+  .cover-subtitle { font-family: var(--font-serif); font-style: italic; font-size: clamp(1.15rem, 2.2vw, 1.45rem); color: rgba(255,255,255,0.82); margin-top: 1rem; }
+  .cover-interviewer { font-size: 0.95rem; color: rgba(255,255,255,0.75); margin-top: 2rem; line-height: 1.8; }
+  .cover-interviewer strong { font-family: var(--font-serif); font-size: 1.45rem; font-weight: 600; color: #fff; display: block; margin-bottom: 0.25rem; }
+  .countdown-box {
+    display: inline-block;
+    margin-top: 2.25rem;
+    padding: 1rem 1.75rem;
+    border: 1px solid rgba(212, 168, 83, 0.35);
+    border-radius: 0.6rem;
+    background: rgba(212, 168, 83, 0.06);
+  }
+  .countdown-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+  .countdown-value { font-family: var(--font-serif); font-size: 1.7rem; font-weight: 600; color: #fff; letter-spacing: 0.02em; }
+  .cover-meta { margin-top: 2rem; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+
+  /* Funnel */
+  .funnel { display: flex; flex-direction: column; gap: 0.85rem; }
+  .funnel-round {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.35rem 1.5rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.25rem;
+    align-items: center;
+    position: relative;
+  }
+  .funnel-round--active { border-color: var(--secondary); border-width: 2px; background: linear-gradient(90deg, rgba(196,135,59,0.05), #fff 40%); }
+  .funnel-num {
+    font-family: var(--font-serif); font-size: 1.65rem; font-weight: 600;
+    color: var(--primary); width: 2.25rem; text-align: center;
+  }
+  .funnel-round--done .funnel-num { color: var(--text-muted); }
+  .funnel-body h4 { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--primary); }
+  .funnel-body .muted { font-size: 0.85rem; color: var(--text-muted); }
+  .funnel-body .probe { font-size: 0.82rem; color: var(--primary); margin-top: 0.35rem; }
+
+  /* Four-criteria table */
+  .criteria {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  .criteria-row {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1fr;
+    gap: 1.25rem;
+    padding: 1.3rem 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .criteria-row:first-child { border-top: none; }
+  .criteria-row--head {
+    background: var(--primary);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 0.85rem 1.5rem;
+  }
+  .criteria-criterion { font-family: var(--font-serif); font-style: italic; font-size: 1.02rem; color: var(--primary); line-height: 1.4; }
+  .criteria-proof { font-size: 0.88rem; color: var(--text); }
+  .criteria-story { font-size: 0.88rem; color: var(--text-muted); }
+  .criteria-story strong { color: var(--primary); font-style: italic; font-family: var(--font-serif); font-weight: 600; }
+  @media (max-width: 720px) {
+    .criteria-row { grid-template-columns: 1fr; gap: 0.5rem; }
+    .criteria-row--head { display: none; }
+    .criteria-proof::before { content: "Proof \2014 "; font-weight: 600; color: var(--primary); }
+    .criteria-story::before { content: "Story \2014 "; font-weight: 600; color: var(--primary); }
+  }
+
+  /* Profile header */
+  .profile-header {
+    background: var(--primary);
+    color: #fff;
+    padding: 2rem;
+    border-radius: 1rem 1rem 0 0;
+    text-align: center;
+  }
+  .profile-role { font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); }
+  .profile-name { font-family: var(--font-serif); font-size: 2.25rem; font-weight: 600; margin: 0.5rem 0 0.35rem; }
+  .profile-tag { font-family: var(--font-serif); font-style: italic; color: rgba(255,255,255,0.8); font-size: 1.05rem; }
+  .profile-body {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 1rem 1rem;
+    padding: 1.75rem 2rem;
+  }
+  .profile-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .profile-stat { text-align: center; }
+  .profile-stat strong { display: block; font-family: var(--font-serif); font-size: 1.25rem; color: var(--primary); margin-bottom: 0.15rem; }
+  .profile-stat span { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
+  @media (max-width: 720px) { .profile-stats { grid-template-columns: repeat(2, 1fr); } }
+
+  /* Roleplay moves */
+  .moves-list { display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin: 1rem 0 1.25rem; counter-reset: mv; }
+  .move {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem 1rem 3rem;
+    position: relative;
+    font-size: 0.92rem;
+  }
+  .move::before {
+    counter-increment: mv;
+    content: counter(mv);
+    position: absolute;
+    left: 1rem; top: 50%;
+    transform: translateY(-50%);
+    width: 1.5rem; height: 1.5rem;
+    background: var(--secondary);
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-serif);
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  /* Scenario card */
+  .scenario {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .page--cream .scenario { background: #fff; }
+  .scenario-label {
+    font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--secondary); font-weight: 600; margin-bottom: 0.4rem;
+  }
+  .scenario h4 { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .scenario-prompt { font-style: italic; color: var(--text-muted); margin-bottom: 0.85rem; font-size: 0.92rem; }
+
+  /* Red flag card */
+  .flag-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-left: 4px solid;
+    border-radius: 0.5rem 1rem 1rem 0.5rem;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .flag-card--red { border-left-color: #dc2626; }
+  .flag-card--amber { border-left-color: var(--secondary); }
+  .flag-card--green { border-left-color: #16a34a; }
+  .flag-card h4 { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
+
+  /* Question list (Ask Michael) */
+  .ask-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+  @media (max-width: 720px) { .ask-list { grid-template-columns: 1fr; } }
+  .ask {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 0.85rem;
+    padding: 1.2rem 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .ask-kicker { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--secondary); font-weight: 600; }
+  .ask-q { font-family: var(--font-serif); font-size: 1.02rem; color: var(--primary); line-height: 1.4; }
+  .ask-why { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+
+  /* Intro / story page */
+  .intro-story {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 2rem;
+    font-family: var(--font-serif);
+    font-size: 1.12rem;
+    line-height: 1.75;
+    color: var(--primary);
+  }
+  .intro-story p { margin-bottom: 1.1rem; }
+
+  /* Q-group label */
+  .q-group {
+    font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--secondary); font-weight: 600;
+    margin: 1.5rem 0 0.75rem;
+  }
+  .q-group:first-of-type { margin-top: 0; }
+
+  /* Reveal animation */
+  [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+  [data-reveal].revealed { opacity: 1; transform: translateY(0); }
+
+  /* Print styles */
+  @media print {
+    @page { size: A4; margin: 15mm; }
+    body { background: #fff; font-size: 11pt; }
+    .sidebar, .mobile-bar { display: none !important; }
+    .btn, .copy-row { display: none !important; }
+    .page {
+      min-height: auto;
+      padding: 1.5rem 0 2rem !important;
+      page-break-after: always;
+      break-after: page;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .page:last-child { page-break-after: auto; }
+    .page--navy, .cover, .profile-header, .card--dark, .criteria-row--head {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    .page-counter { bottom: 0.5rem; right: 0.5rem; }
+    details { break-inside: avoid; }
+    details[open] .details-body { display: block; }
+    details .details-body { display: block; }
+    summary .chev { display: none; }
+    .card, .scenario, .ask, .funnel-round, .flag-card { break-inside: avoid; }
+    h1, h2, h3, h4 { break-after: avoid; }
+    .cover { page-break-after: always; }
+  }
+
+  /* Page-set switcher (sidebar, desktop) */
+  .page-switcher {
+    padding: 0.65rem 0.85rem 0.4rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .page-switcher-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    padding: 0 0.5rem;
+  }
+  .ps-item {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 0.5rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: all 0.15s ease;
+  }
+  .ps-item:hover { background: var(--cream); color: var(--primary); text-decoration: none; }
+  .ps-item.active {
+    background: var(--primary);
+    color: #fff;
+    font-weight: 600;
+  }
+  .ps-item.active:hover { background: var(--primary); color: #fff; }
+  .ps-tag {
+    font-size: 0.62rem;
+    color: var(--text-muted);
+    margin-left: auto;
+    letter-spacing: 0.04em;
+  }
+  .ps-item.active .ps-tag { color: rgba(255,255,255,0.7); }
+
+  /* Page-set switcher (mobile, top of viewport) */
+  .mobile-page-switcher {
+    display: none;
+    position: fixed;
+    top: 3.25rem;
+    left: 0; right: 0;
+    z-index: 99;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.5rem 0.5rem;
+    gap: 0.25rem;
+    justify-content: space-between;
+  }
+  .mps-item {
+    flex: 1;
+    text-align: center;
+    padding: 0.45rem 0.4rem;
+    border-radius: 0.4rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 500;
+    background: transparent;
+    border: 1px solid transparent;
+  }
+  .mps-item:hover { text-decoration: none; }
+  .mps-item.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+  @media (max-width: 1023px) {
+    .mobile-page-switcher { display: flex; }
+    .page { padding-top: 7rem !important; }
+  }
+
+</style>
+</head>
+<body>
+
+
+<aside class="sidebar" aria-label="Section navigation">
+  <div class="sidebar-brand">
+    <div class="sidebar-kicker">Interview Prep</div>
+    <div class="sidebar-title">Mighty Networks</div>
+    <div class="sidebar-subtitle">Denika</div>
+  </div>
+
+  <div class="page-switcher">
+    <div class="page-switcher-label">Interviewer</div>
+    <a href="index.html" class="ps-item"><span>Main</span><span class="ps-tag">Overview + reference</span></a>
+    <a href="mary.html" class="ps-item"><span>Mary</span><span class="ps-tag">Round 3 · today</span></a>
+    <a href="denika.html" class="ps-item active"><span>Denika</span><span class="ps-tag">Round 4 · today</span></a>
+    <a href="michael.html" class="ps-item"><span>Michael</span><span class="ps-tag">Round 2 · done</span></a>
+  </div>
+
+  <nav class="sidebar-nav">
+    <button class="sidebar-item active" data-goto="denika"><span class="sidebar-num">01</span><span class="sidebar-label">Meet Denika</span></button>
+    <button class="sidebar-item" data-goto="denika-prep"><span class="sidebar-num">02</span><span class="sidebar-label">Denika Round Prep</span></button>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="sidebar-footer-label">Time to call</div>
+    <div class="sidebar-footer-value" id="sidebar-countdown">&middot; &middot; &middot;</div>
+  </div>
+</aside>
+
+<div class="mobile-bar" aria-label="Current section">
+  <div class="mobile-bar-current">
+    <span class="mobile-bar-num" id="mb-num">01</span>
+    <span class="mobile-bar-title" id="mb-title">Meet Denika</span>
+  </div>
+  <span class="mobile-bar-counter" id="mb-counter">01 / 02</span>
+</div>
+
+<div class="mobile-page-switcher">
+  <a href="index.html" class="mps-item">Main</a>
+  <a href="mary.html" class="mps-item">Mary</a>
+  <a href="denika.html" class="mps-item active">Denika</a>
+  <a href="michael.html" class="mps-item">Michael</a>
+</div>
+
+<section class="page page--cream" id="denika">
+  <div class="page-inner">
+    <div class="section-kicker">Know Your Room</div>
+    <h2>Meet Denika Spadafora.</h2>
+    <p style="color: var(--text-muted); max-width: 680px; margin-bottom: 2rem;">Customer Success at Mighty Networks &mdash; and a real Mighty Host herself. She runs a community-powered wellness business on the side. She is <em>both</em> a peer and a customer. The empathy round.</p>
+
+    <div style="margin-bottom: 1rem;">
+      <div class="profile-header">
+        <div class="profile-role">Customer Success &middot; Mighty Networks</div>
+        <div class="profile-name">Denika Spadafora</div>
+        <div class="profile-tag">Founder, Stand Unshaken &amp; Endless Sunday Retreats &middot; Certified yoga instructor &amp; life coach &middot; Richmond, VA</div>
+      </div>
+      <div class="profile-body">
+        <div class="profile-stats">
+          <div class="profile-stat"><strong>400+</strong><span>Free videos &middot; SU Collective</span></div>
+          <div class="profile-stat"><strong>100+</strong><span>Women retreated &middot; international</span></div>
+          <div class="profile-stat"><strong>140%</strong><span>SDR attainment &middot; OpenPhone</span></div>
+          <div class="profile-stat"><strong>Two</strong><span>Hats &middot; CSM &amp; Host</span></div>
+        </div>
+        <h4 style="margin-top: 0.5rem;">The arc</h4>
+        <ul>
+          <li><strong>OpenPhone (now Quo) &mdash; Sales Development:</strong> ran weekly trainings for the SDR team and hit <strong>140% average attainment over a full fiscal year</strong>. Most CSMs don't have a sales motor like that under the hood.</li>
+          <li><strong>Stand Unshaken</strong> &mdash; her own Christian yoga &amp; biblical-meditation community and app. <strong>400&ndash;600+ workout and meditation videos</strong>, live classes, courses. Membership is <em>completely free</em> &mdash; her stated belief is that holistic wellness shouldn't come with a price tag. She has her own podcast under the same brand.</li>
+          <li><strong>Endless Sunday Retreats</strong> &mdash; her domestic &amp; international retreats for women. 1:1 coaching, outdoor activity, healthy meals, alignment work. She has personally led 100+ women through retreats globally.</li>
+          <li><strong>Brand &amp; product design for entrepreneurs:</strong> she designs websites and brand guides (color palettes, fonts, imagery) for other founders. That is exactly the muscle a great CSM uses to help a Mighty Host package and launch &mdash; she will recognize it instantly when you describe how you work with your own clients.</li>
+          <li><strong>Two passions, one business:</strong> certified yoga teacher + certified life coach. Stand Unshaken was her merge point. Coaches wellness entrepreneurs on scaling through brand and intentional product suites.</li>
+          <li><strong>Mighty Networks &mdash; Customer Success</strong> (current). Based in Richmond, VA. She is one of Michael's CSMs and reports up through Mary.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 2rem;">How she'll read you</h3>
+    <div class="grid-2">
+      <div class="card">
+        <h4>She is a Host</h4>
+        <p style="color: var(--text); font-size: 0.92rem;">Denika runs Stand Unshaken &mdash; courses, memberships, live classes. She knows the loneliness of building a community-powered business firsthand. Speak about Hosts the way you'd speak about <em>her.</em> Treat them as full operators, not "users."</p>
+      </div>
+      <div class="card">
+        <h4>Coach-to-coach</h4>
+        <p style="color: var(--text); font-size: 0.92rem;">She's a certified life coach who teaches wellness entrepreneurs how to package and price their offers. You speak the same dialect. Talk about product suites, client transformation, daily rhythms &mdash; not just "engagement" or "activation."</p>
+      </div>
+      <div class="card">
+        <h4>Faith and integrity</h4>
+        <p style="color: var(--text); font-size: 0.92rem;">Her brand is explicitly Christian, holistic, alignment-oriented. She's not looking for a sermon &mdash; she's looking for someone whose <em>values show up in how they describe the work.</em> Lead with care for the human on the other end. Don't be transactional.</p>
+      </div>
+      <div class="card">
+        <h4>Sales literacy is a plus</h4>
+        <p style="color: var(--text); font-size: 0.92rem;">140% SDR attainment is not a CSM stat &mdash; it's a sales stat. She'll respect commercial fluency. You can talk about renewal conversations, expansion, knowing when to ask for the upgrade. That's a strength most CSMs underplay; don't.</p>
+      </div>
+    </div>
+
+    <div class="card card--quote" style="margin-top: 1.5rem;">
+      <p>&ldquo;Help women learn how to create daily rhythms of wellness so they can deeply connect with themselves and their calling.&rdquo;</p>
+      <p style="font-style: normal; font-family: var(--font-sans); font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">&mdash; Denika's mission, paraphrased from Endless Sunday. The pattern: <em>daily rhythms, alignment, calling.</em> Mirror that cadence when you talk about your coaching practice.</p>
+    </div>
+
+    <h3 style="margin-top: 2rem;">The story to bring her</h3>
+    <div class="card" style="background: var(--warm);">
+      <p style="color: var(--text); font-size: 0.95rem;">For Denika, lead with a story where <strong>you held the line on a client's identity, not just their goal</strong>. The one where you helped someone choose the role that fit who they were becoming, not the highest-paying one on the table. That story signals (1) you understand alignment over hustle, (2) you can sit with someone in a hard decision, (3) you'd treat her Hosts the way she treats her own community. End with: <em>"That's the work I want to do at scale, alongside Hosts who are already doing it."</em></p>
+    </div>
+
+    <div class="card card--quote" style="margin-top: 1.5rem; background: var(--primary); color: #fff;">
+      <p style="color: #fff;">Bridge note &mdash; if it comes up naturally: Denika and you are both solopreneurs running multi-revenue-stream coaching businesses. Don't force the parallel; let her find it. If she does, she'll feel met.</p>
+    </div>
+
+    <h3 style="margin-top: 2rem;">Common ground hooks (use sparingly, only if natural)</h3>
+    <div class="grid-2">
+      <div class="card">
+        <h4>The free tier as conviction</h4>
+        <p style="color: var(--text); font-size: 0.92rem;">Stand Unshaken's membership is completely free because Denika believes wellness shouldn't be paywalled. ClearCareer ships free job-search tools and free clarity audits for the same reason. If "lead magnet" gets close to the conversation, frame yours as <em>conviction</em>, not funnel hygiene.</p>
+      </div>
+      <div class="card">
+        <h4>You both build the website</h4>
+        <p style="color: var(--text); font-size: 0.92rem;">Denika designs websites and brand guides for entrepreneurs. You build full marketing sites and AI-powered tools for ClearCareer. When you describe helping a Mighty Host package and launch, lean operational &mdash; she'll trust it because she's done it.</p>
+      </div>
+      <div class="card">
+        <h4>Sales-trained CS is a strength, not a flaw</h4>
+        <p style="color: var(--text); font-size: 0.92rem;">She came from SDR, hit 140% attainment, and led training for the team. You've sold and closed your own coaching offers. CS leaders sometimes hide their sales chops; both of you should not. Talk about expansion, renewal conversations, asking for the upgrade.</p>
+      </div>
+      <div class="card">
+        <h4>Membership-as-product</h4>
+        <p style="color: var(--text); font-size: 0.92rem;">She runs a membership (Stand Unshaken) inside the very category she now supports at Mighty. You run a coaching program (JSIS) that maps onto the same Host archetype. When you describe Hosts' jobs-to-be-done, you're describing both of you.</p>
+      </div>
+    </div>
+  </div>
+  <div class="page-counter">01 / 02</div>
+</section>
+
+
+<section class="page page--warm" id="denika-prep">
+  <div class="page-inner">
+    <div class="section-kicker">The Peer Round</div>
+    <h2>Denika round &mdash; questions, intro, what to ask.</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1.75rem; max-width: 660px;">After Mary, this round is a decompression. Different mode entirely. Loosen up. The peer round is about whether she'd want to share a Slack channel with you, not whether you can hit a number.</p>
+
+    <h3>Likely questions from Denika</h3>
+    <div class="ask-list" style="margin-bottom: 2rem;">
+      <div class="ask">
+        <div class="ask-kicker">Walk me through</div>
+        <div class="ask-q">Can you walk me through your background &mdash; what's the short version?</div>
+        <div class="ask-why">Use the 60-second intro below, not the Mary 90-second one. Lighter. End on community/Host work, not commercials.</div>
+      </div>
+      <div class="ask">
+        <div class="ask-kicker">Day-to-day</div>
+        <div class="ask-q">What does a great working relationship with a CSM teammate look like to you? When have you been at your best collaborating?</div>
+        <div class="ask-why">Tell a story where someone else got the credit. Lighthouse, Dutchie team save, ClearCareer collaborator.</div>
+      </div>
+      <div class="ask">
+        <div class="ask-kicker">Difficult Host</div>
+        <div class="ask-q">Tell me about a time you had to work with a difficult Host or client. What did you do?</div>
+        <div class="ask-why">She's a Host herself. Don't talk about clients like they're problems. Talk about reading the human first, the situation second.</div>
+      </div>
+      <div class="ask">
+        <div class="ask-kicker">Conflict</div>
+        <div class="ask-q">How do you handle disagreement with a teammate or manager &mdash; especially when you think they're wrong?</div>
+        <div class="ask-why">She wants to know you can have the hard conversation without making the room weird. Specific story; one minute max.</div>
+      </div>
+      <div class="ask">
+        <div class="ask-kicker">Ramping</div>
+        <div class="ask-q">If you joined the team next month, how would you ramp? What do you want from the first 30 days?</div>
+        <div class="ask-why">Show you'd come in curious, not prescriptive. Ask before you advise. Mirror her own posture.</div>
+      </div>
+      <div class="ask">
+        <div class="ask-kicker">Why CSM</div>
+        <div class="ask-q">Why CS? What makes a great CSM, in your view?</div>
+        <div class="ask-why">Coach-to-coach answer: someone who can hold the Host's outcome as more important than their own ego. Show, don't tell &mdash; pick a moment from your own work.</div>
+      </div>
+    </div>
+
+    <h3>60-second intro for Denika</h3>
+    <div class="intro-story" id="denika-intro-script" style="background: var(--cream); padding: 1.5rem; border-radius: 8px;">
+      <p>I've been in the community-coaching-tech intersection for ten-plus years. Most recently building ClearCareer &mdash; coached over 200 people through career transitions, ran two top-5% Skool communities, ran live events for 650+ people a month at Lighthouse Labs in a past life.</p>
+      <p>The throughline is the same thing you do at Stand Unshaken &mdash; helping people figure out what they actually want, then giving them the tools to go get it. I've been a Host. I know what it costs to show up for your community every week, and I know how much a good CSM matters when you're trying to build something real.</p>
+      <p>That's why this seat. I want to do the work I love alongside Hosts who are already doing it.</p>
+    </div>
+    <div class="copy-row">
+      <button class="btn btn--gold" data-copy="denika-intro-script">Copy intro</button>
+    </div>
+
+    <h3 style="margin-top: 2.5rem;">Questions to ask Denika</h3>
+    <div class="ask-list">
+      <div class="ask">
+        <div class="ask-kicker">Real day</div>
+        <div class="ask-q">What's a typical day actually look like for you on the CS team? Where do you spend most of your time?</div>
+        <div class="ask-why">Practical. Reveals the real work, not the job-description version.</div>
+      </div>
+      <div class="ask">
+        <div class="ask-kicker">Surprise</div>
+        <div class="ask-q">What's something about working at Mighty that surprised you in a good way? In a hard way?</div>
+        <div class="ask-why">She'll be candid because she's a peer, not a hiring manager. Listen carefully to the &ldquo;hard&rdquo; part.</div>
+      </div>
+      <div class="ask">
+        <div class="ask-kicker">First 90 days</div>
+        <div class="ask-q">What tripped you up when you were ramping? What do you wish you'd known sooner?</div>
+        <div class="ask-why">Asks her to be helpful. Builds rapport. You'll get better intel here than from any executive.</div>
+      </div>
+      <div class="ask">
+        <div class="ask-kicker">Host-CSM dynamic</div>
+        <div class="ask-q">You're a Host yourself with Stand Unshaken. How does being a Host change the way you do CSM work for other Hosts?</div>
+        <div class="ask-why">Direct invitation to talk about what makes her unique. Listen to whether she connects it back to you &mdash; that's the moment of mutual recognition.</div>
+      </div>
+      <div class="ask">
+        <div class="ask-kicker">Team culture</div>
+        <div class="ask-q">If you described the CSM team's culture in three words to a friend &mdash; what are they? And which of those would you want more of?</div>
+        <div class="ask-why">Forces specificity. Reveals where the team is healthy and where it's not.</div>
+      </div>
+    </div>
+
+    <div class="card card--quote" style="margin-top: 1.75rem; background: var(--primary); color: #fff;">
+      <p style="color: #fff;">Tone reminder: Denika's brand is alignment, daily rhythms, calling. If &ldquo;why this work&rdquo; comes up, your answer should sound like it comes from the same family of language. Don't perform it &mdash; just don't talk like a sales rep.</p>
+    </div>
+  </div>
+  <div class="page-counter">02 / 02</div>
+</section>
+
+
+<script>
+  // Countdown to April 24, 2026 @ 2:00 PM EDT (18:00 UTC)
+  (function() {
+    const els = [document.getElementById('countdown'), document.getElementById('sidebar-countdown')].filter(Boolean);
+    if (!els.length) return;
+    const target = new Date('2026-04-24T18:00:00Z').getTime();
+    function tick() {
+      const delta = target - Date.now();
+      let text;
+      if (delta <= 0) { text = 'Live now'; }
+      else {
+        const d = Math.floor(delta / 86400000);
+        const h = Math.floor((delta % 86400000) / 3600000);
+        const m = Math.floor((delta % 3600000) / 60000);
+        const s = Math.floor((delta % 60000) / 1000);
+        text = (d ? d + 'd ' : '') + String(h).padStart(2,'0') + 'h ' + String(m).padStart(2,'0') + 'm ' + String(s).padStart(2,'0') + 's';
+      }
+      els.forEach(el => { el.textContent = text; });
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  // Copy-to-clipboard
+  document.querySelectorAll('[data-copy]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetEl = document.getElementById(btn.dataset.copy);
+      if (!targetEl) return;
+      const text = targetEl.innerText.trim();
+      navigator.clipboard.writeText(text).then(() => {
+        const original = btn.innerHTML;
+        btn.classList.add('copied');
+        btn.innerHTML = 'Copied';
+        setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = original; }, 1800);
+      });
+    });
+  });
+
+  // Sidebar item jump + active highlight
+  const navItems = document.querySelectorAll('.sidebar-item');
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const target = document.getElementById(item.dataset.goto);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Active section tracking (updates sidebar + mobile bar)
+  const sections = Array.from(document.querySelectorAll('.page'));
+  const navMap = new Map();
+  navItems.forEach(d => navMap.set(d.dataset.goto, d));
+  const mbNum = document.getElementById('mb-num');
+  const mbTitle = document.getElementById('mb-title');
+  const mbCounter = document.getElementById('mb-counter');
+  const total = sections.length;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navItems.forEach(d => d.classList.remove('active'));
+        const item = navMap.get(entry.target.id);
+        if (item) {
+          item.classList.add('active');
+          const num = item.querySelector('.sidebar-num').textContent;
+          const label = item.querySelector('.sidebar-label').textContent;
+          if (mbNum) mbNum.textContent = num;
+          if (mbTitle) mbTitle.textContent = label;
+          if (mbCounter) mbCounter.textContent = num + ' / ' + String(total).padStart(2,'0');
+        }
+      }
+    });
+  }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+  sections.forEach(s => observer.observe(s));
+
+  // Reveal on scroll
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('revealed');
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

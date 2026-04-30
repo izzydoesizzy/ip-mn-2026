@@ -641,60 +641,143 @@
     h1, h2, h3, h4 { break-after: avoid; }
     .cover { page-break-after: always; }
   }
+
+  /* Page-set switcher (sidebar, desktop) */
+  .page-switcher {
+    padding: 0.65rem 0.85rem 0.4rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .page-switcher-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    padding: 0 0.5rem;
+  }
+  .ps-item {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 0.5rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: all 0.15s ease;
+  }
+  .ps-item:hover { background: var(--cream); color: var(--primary); text-decoration: none; }
+  .ps-item.active {
+    background: var(--primary);
+    color: #fff;
+    font-weight: 600;
+  }
+  .ps-item.active:hover { background: var(--primary); color: #fff; }
+  .ps-tag {
+    font-size: 0.62rem;
+    color: var(--text-muted);
+    margin-left: auto;
+    letter-spacing: 0.04em;
+  }
+  .ps-item.active .ps-tag { color: rgba(255,255,255,0.7); }
+
+  /* Page-set switcher (mobile, top of viewport) */
+  .mobile-page-switcher {
+    display: none;
+    position: fixed;
+    top: 3.25rem;
+    left: 0; right: 0;
+    z-index: 99;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.5rem 0.5rem;
+    gap: 0.25rem;
+    justify-content: space-between;
+  }
+  .mps-item {
+    flex: 1;
+    text-align: center;
+    padding: 0.45rem 0.4rem;
+    border-radius: 0.4rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 500;
+    background: transparent;
+    border: 1px solid transparent;
+  }
+  .mps-item:hover { text-decoration: none; }
+  .mps-item.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+  @media (max-width: 1023px) {
+    .mobile-page-switcher { display: flex; }
+    .page { padding-top: 7rem !important; }
+  }
+
 </style>
 </head>
 <body>
 
-<!-- Sidebar navigation -->
+
 <aside class="sidebar" aria-label="Section navigation">
   <div class="sidebar-brand">
     <div class="sidebar-kicker">Interview Prep</div>
     <div class="sidebar-title">Mighty Networks</div>
-    <div class="sidebar-subtitle">CSM &middot; Michael Littig</div>
+    <div class="sidebar-subtitle">Main</div>
   </div>
+
+  <div class="page-switcher">
+    <div class="page-switcher-label">Interviewer</div>
+    <a href="index.html" class="ps-item active"><span>Main</span><span class="ps-tag">Overview + reference</span></a>
+    <a href="mary.html" class="ps-item"><span>Mary</span><span class="ps-tag">Round 3 · today</span></a>
+    <a href="denika.html" class="ps-item"><span>Denika</span><span class="ps-tag">Round 4 · today</span></a>
+    <a href="michael.html" class="ps-item"><span>Michael</span><span class="ps-tag">Round 2 · done</span></a>
+  </div>
+
   <nav class="sidebar-nav">
     <button class="sidebar-item active" data-goto="cover"><span class="sidebar-num">01</span><span class="sidebar-label">Cover</span></button>
-    <button class="sidebar-item" data-goto="tomorrow"><span class="sidebar-num">02</span><span class="sidebar-label">Tomorrow at a Glance</span></button>
+    <button class="sidebar-item" data-goto="tomorrow"><span class="sidebar-num">02</span><span class="sidebar-label">Today at a Glance</span></button>
     <button class="sidebar-item" data-goto="funnel"><span class="sidebar-num">03</span><span class="sidebar-label">Funnel Map</span></button>
-    <button class="sidebar-item" data-goto="mary"><span class="sidebar-num">04</span><span class="sidebar-label">Meet Mary</span></button>
-    <button class="sidebar-item" data-goto="mary-questions"><span class="sidebar-num">05</span><span class="sidebar-label">Mary's Questions</span></button>
-    <button class="sidebar-item" data-goto="mary-criteria"><span class="sidebar-num">06</span><span class="sidebar-label">Mary's Four Criteria</span></button>
-    <button class="sidebar-item" data-goto="mary-intro"><span class="sidebar-num">07</span><span class="sidebar-label">Intro for Mary</span></button>
-    <button class="sidebar-item" data-goto="ask-mary"><span class="sidebar-num">08</span><span class="sidebar-label">Ask Mary</span></button>
-    <button class="sidebar-item" data-goto="mary-stories"><span class="sidebar-num">09</span><span class="sidebar-label">Mary Story Bank</span></button>
-    <button class="sidebar-item" data-goto="mary-decoder"><span class="sidebar-num">10</span><span class="sidebar-label">Question Decoder</span></button>
-    <button class="sidebar-item" data-goto="mary-roleplays"><span class="sidebar-num">11</span><span class="sidebar-label">Mary Roleplays</span></button>
-    <button class="sidebar-item" data-goto="mary-fears"><span class="sidebar-num">12</span><span class="sidebar-label">What Mary Fears</span></button>
-    <button class="sidebar-item" data-goto="mary-erickson"><span class="sidebar-num">13</span><span class="sidebar-label">Erickson Cheat-Sheet</span></button>
-    <button class="sidebar-item" data-goto="mary-asks-strategic"><span class="sidebar-num">14</span><span class="sidebar-label">Strategic Asks</span></button>
-    <button class="sidebar-item" data-goto="denika"><span class="sidebar-num">15</span><span class="sidebar-label">Meet Denika</span></button>
-    <button class="sidebar-item" data-goto="denika-prep"><span class="sidebar-num">16</span><span class="sidebar-label">Denika Round Prep</span></button>
-    <button class="sidebar-item" data-goto="roleplay"><span class="sidebar-num">17</span><span class="sidebar-label">Roleplay Frameworks</span></button>
-    <button class="sidebar-item" data-goto="ai"><span class="sidebar-num">18</span><span class="sidebar-label">AI Transparency</span></button>
-    <button class="sidebar-item" data-goto="company"><span class="sidebar-num">19</span><span class="sidebar-label">Company Intel</span></button>
-    <button class="sidebar-item" data-goto="customer-reviews"><span class="sidebar-num">20</span><span class="sidebar-label">Customer Reviews</span></button>
-    <button class="sidebar-item" data-goto="employee-reviews"><span class="sidebar-num">21</span><span class="sidebar-label">Employee Reviews</span></button>
-    <button class="sidebar-item" data-goto="flags"><span class="sidebar-num">22</span><span class="sidebar-label">Red Flags &amp; Probes</span></button>
-    <button class="sidebar-item" data-goto="glossary"><span class="sidebar-num">23</span><span class="sidebar-label">CSM Glossary</span></button>
-    <button class="sidebar-item" data-goto="next"><span class="sidebar-num">24</span><span class="sidebar-label">Next: Ryan</span></button>
-    <button class="sidebar-item" data-goto="appendix"><span class="sidebar-num">25</span><span class="sidebar-label">Appendix · Michael</span></button>
+    <button class="sidebar-item" data-goto="company"><span class="sidebar-num">04</span><span class="sidebar-label">Company Intel</span></button>
+    <button class="sidebar-item" data-goto="customer-reviews"><span class="sidebar-num">05</span><span class="sidebar-label">Customer Reviews</span></button>
+    <button class="sidebar-item" data-goto="employee-reviews"><span class="sidebar-num">06</span><span class="sidebar-label">Employee Reviews</span></button>
+    <button class="sidebar-item" data-goto="glossary"><span class="sidebar-num">07</span><span class="sidebar-label">CSM Glossary</span></button>
+    <button class="sidebar-item" data-goto="roleplay"><span class="sidebar-num">08</span><span class="sidebar-label">Roleplay Frameworks</span></button>
+    <button class="sidebar-item" data-goto="ai"><span class="sidebar-num">09</span><span class="sidebar-label">AI Transparency</span></button>
+    <button class="sidebar-item" data-goto="flags"><span class="sidebar-num">10</span><span class="sidebar-label">Red Flags & Probes</span></button>
+    <button class="sidebar-item" data-goto="next"><span class="sidebar-num">11</span><span class="sidebar-label">Next: Ryan</span></button>
   </nav>
+
   <div class="sidebar-footer">
     <div class="sidebar-footer-label">Time to call</div>
     <div class="sidebar-footer-value" id="sidebar-countdown">&middot; &middot; &middot;</div>
   </div>
 </aside>
 
-<!-- Mobile top bar -->
 <div class="mobile-bar" aria-label="Current section">
   <div class="mobile-bar-current">
     <span class="mobile-bar-num" id="mb-num">01</span>
     <span class="mobile-bar-title" id="mb-title">Cover</span>
   </div>
-  <span class="mobile-bar-counter" id="mb-counter">01 / 25</span>
+  <span class="mobile-bar-counter" id="mb-counter">01 / 11</span>
 </div>
 
-<!-- ================= 01 · COVER ================= -->
+<div class="mobile-page-switcher">
+  <a href="index.html" class="mps-item active">Main</a>
+  <a href="mary.html" class="mps-item">Mary</a>
+  <a href="denika.html" class="mps-item">Denika</a>
+  <a href="michael.html" class="mps-item">Michael</a>
+</div>
+
 <section class="page cover" id="cover">
   <div class="cover-frame">
     <div class="cover-label">Interview Preparation</div>
@@ -703,7 +786,7 @@
     <div class="cover-subtitle">Customer Success Manager &middot; Mighty Pro</div>
     <div class="cover-hair"></div>
     <div class="cover-interviewer">
-      Tomorrow &mdash;
+      Today &mdash;
       <strong>Mary Fox Bouygues</strong>
       VP Customer Success<br>
       Then peer round with Denika Spadafora
@@ -714,14 +797,14 @@
     </div>
     <div class="cover-meta">Prepared for Izzy &middot; April 2026 &middot; Round 3</div>
   </div>
-  <div class="page-counter">01 / 25</div>
+  <div class="page-counter">01 / 11</div>
 </section>
 
-<!-- ================= 02 · TOMORROW AT A GLANCE ================= -->
+
 <section class="page page--warm" id="tomorrow">
   <div class="page-inner">
     <div class="section-kicker">The Two Rounds That Matter</div>
-    <h2>Tomorrow at a glance.</h2>
+    <h2>Today at a glance.</h2>
     <p style="color: var(--text-muted); max-width: 680px; margin-bottom: 1.75rem;">Two rounds, back-to-back. Mary first &mdash; this is the round that matters. Then Denika as the peer fit check. Read this before anything else.</p>
 
     <div class="grid-2">
@@ -756,7 +839,7 @@
         <li style="margin-bottom: 0.5rem;"><strong style="color: var(--accent);">5 minutes:</strong> reread the Mary 4-criteria scorecard. That's the rubric.</li>
         <li style="margin-bottom: 0.5rem;"><strong style="color: var(--accent);">5 minutes:</strong> read your Mary 90-second intro out loud, twice.</li>
         <li style="margin-bottom: 0.5rem;"><strong style="color: var(--accent);">3 minutes:</strong> pick which renewal/expansion story you're leading with. Decide the number you're going to land on.</li>
-        <li style="margin-bottom: 0.5rem;"><strong style="color: var(--accent);">3 minutes:</strong> skim the Red Flags &amp; Probes page. The five Mary probes are tomorrow's homework.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color: var(--accent);">3 minutes:</strong> skim the Red Flags &amp; Probes page. The five Mary probes are today's homework.</li>
         <li><strong style="color: var(--accent);">2 minutes:</strong> if Mary references Michael, the Round 2 appendix is at the bottom of this page.</li>
       </ul>
     </div>
@@ -766,15 +849,15 @@
       <p style="font-style: normal; font-family: var(--font-sans); font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">She wound down a coaching-platform startup 12 months ago and joined Mighty. You are mid-stride on yours. She'll respect that you know what that decision feels like.</p>
     </div>
   </div>
-  <div class="page-counter">02 / 25</div>
+  <div class="page-counter">02 / 11</div>
 </section>
 
-<!-- ================= 03 · FUNNEL MAP ================= -->
+
 <section class="page page--cream" id="funnel">
   <div class="page-inner">
     <div class="section-kicker">Where You Are</div>
     <h2>The five rounds, mapped.</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.75rem; max-width: 620px;">You're past Jocelyn and Michael. Mary and Denika are tomorrow. Ryan is the only round left after that.</p>
+    <p style="color: var(--text-muted); margin-bottom: 1.75rem; max-width: 620px;">You're past Jocelyn and Michael. Mary and Denika are today. Ryan is the only round left after that.</p>
 
     <div class="funnel">
       <div class="funnel-round funnel-round--done">
@@ -801,20 +884,20 @@
         <div class="funnel-num">03</div>
         <div class="funnel-body">
           <h4>VP Customer Success &middot; Mary Fox Bouygues</h4>
-          <div class="muted">Tomorrow &middot; ~45 min &middot; Zoom</div>
+          <div class="muted">Today &middot; ~45 min &middot; Zoom</div>
           <div class="probe">Screens for: commercial instinct, renewal strategy, coaching philosophy, how you read portfolio-level risk.</div>
         </div>
-        <span class="badge badge--active">Tomorrow</span>
+        <span class="badge badge--active">Today</span>
       </div>
 
       <div class="funnel-round funnel-round--active">
         <div class="funnel-num">04</div>
         <div class="funnel-body">
           <h4>Peer CSM &middot; Denika Spadafora</h4>
-          <div class="muted">Tomorrow &middot; ~45 min &middot; Zoom</div>
+          <div class="muted">Today &middot; ~45 min &middot; Zoom</div>
           <div class="probe">Screens for: day-to-day collaboration, how you talk about customers when leadership isn't in the room.</div>
         </div>
-        <span class="badge badge--active">Tomorrow</span>
+        <span class="badge badge--active">Today</span>
       </div>
 
       <div class="funnel-round">
@@ -828,1147 +911,10 @@
       </div>
     </div>
   </div>
-  <div class="page-counter">03 / 25</div>
+  <div class="page-counter">03 / 11</div>
 </section>
 
-<!-- ================= 04 · MEET MARY ================= -->
-<section class="page page--warm" id="mary">
-  <div class="page-inner">
-    <div class="section-kicker">Know Your Room</div>
-    <h2>Meet Mary Fox Bouygues.</h2>
-    <p style="color: var(--text-muted); max-width: 680px; margin-bottom: 2rem;">VP of Customer Success. Michael's boss. She built and ran a career&ndash;coaching company before this. She is the most directly relevant interviewer in your entire pipeline &mdash; do not waste this round.</p>
 
-    <div style="margin-bottom: 1rem;">
-      <div class="profile-header">
-        <div class="profile-role">VP, Customer Success &middot; Mighty Networks</div>
-        <div class="profile-name">Mary Fox Bouygues</div>
-        <div class="profile-tag">Ex-CEO &amp; Co-Founder, Marlow &middot; Career-coaching-via-chat platform &middot; Erickson-certified coach</div>
-      </div>
-      <div class="profile-body">
-        <div class="profile-stats">
-          <div class="profile-stat"><strong>7 yrs</strong><span>CEO &middot; Marlow (2017&ndash;2024)</span></div>
-          <div class="profile-stat"><strong>LSE</strong><span>Graduate studies</span></div>
-          <div class="profile-stat"><strong>Brookings</strong><span>Foreign Policy &middot; 2011&ndash;13</span></div>
-          <div class="profile-stat"><strong>Erickson</strong><span>Certified coach &middot; 2023</span></div>
-        </div>
-        <h4 style="margin-top: 0.5rem;">The arc</h4>
-        <ul>
-          <li><strong>Roots:</strong> grew up watching her father struggle to keep his stonemasonry business afloat &mdash; her early lens on entrepreneurship was risk, not glamour. Kansas State (BA Political Science &amp; French, 2004&ndash;09).</li>
-          <li><strong>Brookings Institution (2011&ndash;13):</strong> Special Assistant in the Foreign Policy program in DC. The pivot moment was a 2011 NYC dinner where friends were talking about SF startups; a mentor told her to get startup experience before founding her own.</li>
-          <li><strong>LSE graduate program (2013&ndash;14):</strong> her stated lesson was &ldquo;the importance of making decisions and taking action when indecision and inaction seem far more appealing.&rdquo; Drop that line and she will recognize it.</li>
-          <li><strong>Massdrop / DROP (2015&ndash;16):</strong> joined in operations, transitioned to Talent Acquisition after the Series B closed &mdash; used data to optimize recruiting. <strong>FR8Star (2016&ndash;17):</strong> Head of Product Marketing.</li>
-          <li><strong>Marlow (2017&ndash;2024):</strong> co-founded with Chelsea Seid. SF / NYC. Career coaching via chat for the entry-to-mid level. Raised <strong>$1.9M seed</strong>. Built the MVP on Bubble in three weeks, paying users in six weeks. Coaching model: Socratic questioning + IDEO-style design thinking, hiring subject-matter experts and training them in the method rather than insisting on certifications. <strong>Wound down May 1, 2024</strong> &mdash; existing customer contracts transitioned to Sounding Board.</li>
-          <li><strong>Erickson Coaching International (2022&ndash;23):</strong> got her own coaching certification mid-Marlow.</li>
-          <li><strong>Mighty Networks (Apr 2024&ndash;present):</strong> joined as Director, Mighty Pro Customer Success right after Marlow wound down. <strong>Promoted to VP Customer Success in 2025.</strong> Based in Miami; surname is from her French husband.</li>
-        </ul>
-      </div>
-    </div>
-
-    <h3 style="margin-top: 2rem;">How she'll read you</h3>
-    <div class="grid-2">
-      <div class="card">
-        <h4>She has run your business</h4>
-        <p style="color: var(--text); font-size: 0.92rem;">Mary co-founded a coaching-platform startup serving career-changers. ClearCareer maps onto Marlow almost perfectly. She'll <em>get</em> the Host empathy story without you having to translate &mdash; but she'll also smell BS in the coaching world from a mile away. Be specific. Be operational. Avoid hype language.</p>
-      </div>
-      <div class="card">
-        <h4>Founder &rarr; CS leader is her own arc</h4>
-        <p style="color: var(--text); font-size: 0.92rem;">She left being a CEO to lead Customer Success at a bigger company. That is <em>your move too.</em> When she asks "why CS, why now," your answer should rhyme with her decision &mdash; the leverage of a great platform, the pull of working alongside other Hosts, the maturity of choosing scope over title.</p>
-      </div>
-      <div class="card">
-        <h4>She is a certified coach</h4>
-        <p style="color: var(--text); font-size: 0.92rem;">Erickson Coaching International, 2022&ndash;2023. She knows the difference between coaching and consulting, between asking and telling. If you describe your client work, use coach-grade language: powerful questions, agency, ownership. Don't say "I told her to&hellip;"</p>
-      </div>
-      <div class="card">
-        <h4>Hiring for her own team</h4>
-        <p style="color: var(--text); font-size: 0.92rem;">Michael reports to Mary. This round is about whether you'll make <em>her</em> team better &mdash; renewal motion, expansion, Host outcomes at scale. Show you understand CS as a P&amp;L function, not just a support function. NRR, GRR, time-to-value. She'll appreciate the literacy.</p>
-      </div>
-    </div>
-
-    <div class="card card--quote" style="margin-top: 1.5rem;">
-      <p>&ldquo;We are not saying &lsquo;here is what you need to do&rsquo; &mdash; instead we ask &lsquo;what is it you want to accomplish?&rsquo;&rdquo;</p>
-      <p style="font-style: normal; font-family: var(--font-sans); font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">&mdash; Mary's own framing of the Marlow coaching model (Bubble interview). The exact dialect to mirror when you describe how you work with your own clients.</p>
-    </div>
-
-    <div class="card card--quote" style="margin-top: 1rem;">
-      <p>&ldquo;Make decisions and take action when indecision and inaction seem far more appealing.&rdquo;</p>
-      <p style="font-style: normal; font-family: var(--font-sans); font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">&mdash; Her stated lesson from LSE. Quote it back to her at your peril, but understand it: she values bias toward action, especially in moments where waiting feels safer.</p>
-    </div>
-
-    <div class="card card--quote" style="margin-top: 1rem; border-left-color: var(--accent);">
-      <p>&ldquo;I didn't start a business to have balance in my life. If balance is important to you, there are different things we can do &mdash; work for someone else, work a 9-to-5. For me my job is my passion. Where other people go and paint and do things, now I'm able to spend my time on how to grow our business, my clients. I believe in a blend. My four-month-old, my husband and my friends. Mental and physical health, and seeing the most important people in my life.&rdquo;</p>
-      <p style="font-style: normal; font-family: var(--font-sans); font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">&mdash; Mary, 2022 interview about Marlow. The most personal of the three quotes &mdash; <strong>this is the setup for your opening question on page 14.</strong> Two years later she joined Mighty. The fact that she said this and then made the move is the puzzle you're inviting her to walk you through.</p>
-    </div>
-
-    <h3 style="margin-top: 2rem;">The story to bring her</h3>
-    <div class="card" style="background: #fff;">
-      <p style="color: var(--text); font-size: 0.95rem;">If you only have time for one story with Mary, tell the one where you <strong>coached a client through a hard pivot</strong> &mdash; the moment when telling them what to do would have been faster, but coaching them through the decision created a stronger outcome. That story signals: (1) you've done the work she's done, (2) you can articulate the difference between coach and operator, (3) you choose ownership over speed. That is the whole frame.</p>
-    </div>
-
-    <h3 style="margin-top: 2rem;">Common ground hooks (use sparingly, only if natural)</h3>
-    <div class="grid-2">
-      <div class="card" style="background: #fff;">
-        <h4>Coaching-platform founder</h4>
-        <p style="color: var(--text); font-size: 0.92rem;">She ran Marlow for 7 years and wound it down 12 months ago. You are running ClearCareer right now. If she asks "why CS instead of staying a founder," your answer should rhyme with hers: leverage of a real platform, working alongside other Hosts, choosing scope.</p>
-      </div>
-      <div class="card" style="background: #fff;">
-        <h4>Democratizing coaching</h4>
-        <p style="color: var(--text); font-size: 0.92rem;">Marlow's whole thesis was making executive-grade coaching ($200&ndash;800/hr) accessible. ClearCareer's whole thesis is the same idea applied to job search. Don't position it as a coincidence &mdash; position it as conviction.</p>
-      </div>
-      <div class="card" style="background: #fff;">
-        <h4>No-code, AI-native builders</h4>
-        <p style="color: var(--text); font-size: 0.92rem;">She built her MVP on Bubble in 3 weeks. You build deliverables on Claude. Both moves are the same temperament &mdash; ship fast with the tools you have, beat the certified-coach gatekeeping, validate with paying users.</p>
-      </div>
-      <div class="card" style="background: #fff;">
-        <h4>Foreign policy &rarr; tech &rarr; coaching</h4>
-        <p style="color: var(--text); font-size: 0.92rem;">Brookings &rarr; Massdrop &rarr; Marlow is a non-linear arc. Yours is non-linear too. If she opens with "walk me through your background," don't apologize for the zigzag. She didn't.</p>
-      </div>
-    </div>
-  </div>
-  <div class="page-counter">04 / 25</div>
-</section>
-
-<!-- ================= 05 · MARY LIKELY QUESTIONS ================= -->
-<section class="page page--warm" id="mary-questions">
-  <div class="page-inner">
-    <div class="section-kicker">15 Questions, Four Categories</div>
-    <h2>Mary's likely questions.</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.75rem; max-width: 640px;">She'll ask differently than Michael. He went for storytelling and culture; she'll go for commercial instinct, coaching philosophy, and founder-to-IC self-awareness. Internalize the frame, then improvise.</p>
-
-    <div class="q-group">A &middot; Your story &amp; why CS, why now</div>
-
-    <details open>
-      <summary>Walk me through your background. What brings you to CS at this point?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p><strong>Intent:</strong> she wants the arc, with a coherent &ldquo;why CS, why now&rdquo; landing. She made the same move 12 months ago.</p>
-        <p><strong>Frame:</strong> 90-second intro from the next page. End on the move from founder/operator to CS, framed the way she'd frame her own move &mdash; choosing leverage, choosing scope, working alongside other Hosts at scale.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>You're running ClearCareer right now &mdash; why leave the founder seat?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p><strong>Intent:</strong> tests for self-awareness about commitment, energy, and whether you'll resent the IC seat after running the show.</p>
-        <p><strong>Frame:</strong> don't apologize. Don't say &ldquo;ClearCareer didn't work&rdquo; &mdash; she ran a coaching company too. Talk about the leverage of working <em>inside</em> a real platform with other Hosts who are already winning, vs. building one from zero. Mention you've had the founder seat and now want to bring everything you've learned to a great team.</p>
-        <p><strong>Quiet reference:</strong> her LSE quote on bias-to-action when indecision feels safer.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>Tell me about a Host transformation you'd be proud to share.<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p>Use the language she uses. Not &ldquo;client.&rdquo; <em>Host transformation.</em> Pick a ClearCareer client where you held the line on what they actually needed (not what they were asking for) and they got there. Lead with the client's outcome, not your tactic. Land a number.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>What attracted you to Mighty? Why this CSM role specifically?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p>Three specifics, not a list of features:</p>
-        <ol>
-          <li>Mighty Pro's Host roster &mdash; serious operators, not casual creators. The work matters.</li>
-          <li>Community Design&trade; as a real framework, not marketing copy. CSM is consultative.</li>
-          <li>The opportunity to bring AI fluency into the Host workflow at scale.</li>
-        </ol>
-      </div>
-    </details>
-
-    <div class="q-group">B &middot; CS as a P&amp;L function</div>
-
-    <details>
-      <summary>Walk me through how you'd approach a $30K Host's renewal at 6 months out. 3 months. 1 month.<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <ul>
-          <li><strong>6 months:</strong> value audit. ROI to date, where they're stuck, what the next-year case looks like. Stakeholder map updated.</li>
-          <li><strong>3 months:</strong> alignment meeting with the decision-maker. Success plan reviewed. Expansion conversation if signals are right.</li>
-          <li><strong>1 month:</strong> no surprises. Renewal terms aligned in writing. This is execution, not negotiation.</li>
-        </ul>
-        <p>Add: red flags &mdash; engagement drops, champion change, competitive chatter &mdash; never wait for the renewal window. Address the moment they surface.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>How would you spot an at-risk account before it's obvious?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p>Leading over lagging. Specific signals:</p>
-        <ul>
-          <li>Champion goes quiet or changes role.</li>
-          <li>Weekly active members, member-created content, event attendance trending down.</li>
-          <li>Host stops investing on their side &mdash; no new content, no programming.</li>
-          <li>Conversations shift from &ldquo;how do I grow this&rdquo; to &ldquo;how do I justify this.&rdquo;</li>
-          <li>Reschedules. Skipped QBRs. Silence.</li>
-        </ul>
-      </div>
-    </details>
-
-    <details>
-      <summary>How do you think about expansion vs. retention?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p>Retention is the floor; expansion is the ceiling. The CSM owns both, but expansion only happens when retention is real &mdash; you can't upsell a Host who isn't getting value. Lead with delivering the win, then surface the next problem the Host doesn't know they have. NRR &gt; GRR is the scoreboard. If she pushes: cite a specific Dutchie or ClearCareer instance where you saw the upgrade signal early and acted on it.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>How do you build a success plan for a brand-new Host? What goes in it?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p>Start with their goals, not your template. What does success look like in 12 months &mdash; member count, engagement, revenue, retention, content velocity? Who are the stakeholders, what does each care about? Then work backwards: 30/60/90, then quarterly. Build it <strong>with</strong> the Host, not <strong>for</strong> them, so they own it. The plan is a living doc, not a deliverable.</p>
-      </div>
-    </details>
-
-    <div class="q-group">C &middot; Coaching philosophy</div>
-
-    <details>
-      <summary>Walk me through how you'd handle a Host who is struggling but defensive.<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p><strong>This is her test for whether you can coach.</strong> Don't problem-solve at her. Walk through it:</p>
-        <ol>
-          <li>First call: stay curious, don't diagnose. Ask &ldquo;what does success look like for you here&rdquo; before &ldquo;here's what I'd change.&rdquo;</li>
-          <li>Name what you're seeing without judgement. (&ldquo;The data shows X. What's your read?&rdquo;)</li>
-          <li>Hand them ownership of the next move, not a prescription.</li>
-          <li>Schedule a check-in. Don't disappear.</li>
-        </ol>
-        <p>If you can quote her own dialect &mdash; &ldquo;what do you want to accomplish&rdquo; &mdash; do it naturally, not as performance.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>How do you balance giving advice vs. asking questions?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p>Advice when the stakes are technical or time-sensitive. Questions when the work is theirs to own. Most of the time, asking is faster than telling because they don't push back on a decision they made. The exception: if the Host is stuck and asking for a recommendation, give them one &mdash; coaching theatre when they need a guide is its own failure mode.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>Tell me about a hard conversation that became the win.<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p>Pick a Dutchie or ClearCareer story where the hard conversation <em>itself</em> was the value. Not where you avoided it gracefully. Structure: situation &rarr; what most CSMs would have done &rarr; what you did instead &rarr; outcome &rarr; the lesson about reading clients. End with a number.</p>
-      </div>
-    </details>
-
-    <div class="q-group">D &middot; Founder &rarr; IC self-awareness</div>
-
-    <details>
-      <summary>What will be hard about going from founder to IC on someone else's team?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p>Honest answer: not seeing the full strategic picture some days. Trusting decisions you didn't make. Resisting the urge to optimize beyond your scope.</p>
-        <p>Counter-balance: this is precisely what you're <em>signing up for</em> &mdash; the leverage of a real platform, the rhythm of working alongside teammates, the discipline of doing CS exceptionally vs. being the everywhere person.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>What's an area you're actively working on?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p>Pick something real, not disqualifying. Avoid clich&eacute;s. Strong options:</p>
-        <ul>
-          <li>Pushing back with executive stakeholders more directly &mdash; founder reflex is to absorb, not redirect.</li>
-          <li>Sharper commercial instincts on quoting and renewals.</li>
-          <li>Going deeper on a single domain rather than broad surface area.</li>
-        </ul>
-      </div>
-    </details>
-
-    <details>
-      <summary>What kind of manager gets the best work out of you?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p>Someone who gives context and trust. Direct feedback, not hand-holding &mdash; but available when you're stuck or when an escalation needs backing. Mary will hear this as &ldquo;you understand what a good manager-IC contract looks like.&rdquo; She knows; she's run a team.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>Where do you see yourself in 2&ndash;3 years?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p>The CSM others come to for the hardest accounts, on a path toward shaping CS at a portfolio level. Don't promise you want her job. Don't say &ldquo;I just want to keep learning&rdquo; &mdash; reads as unambitious. Calibrated, hungry, specific.</p>
-      </div>
-    </details>
-  </div>
-  <div class="page-counter">05 / 25</div>
-</section>
-
-<!-- ================= 06 · MARY FOUR CRITERIA ================= -->
-<section class="page page--cream" id="mary-criteria">
-  <div class="page-inner">
-    <div class="section-kicker">Her Own Words</div>
-    <h2>The four things Mary will judge you on.</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.75rem; max-width: 680px;">Inferred from Mary's published writing on Marlow, her LSE reflection, and the Bubble interview. Mirror these through your stories. This is the rubric.</p>
-
-    <div class="criteria">
-      <div class="criteria-row criteria-row--head">
-        <div>What she values</div>
-        <div>Your proof</div>
-        <div>The story you tell</div>
-      </div>
-
-      <div class="criteria-row">
-        <div class="criteria-criterion">&ldquo;What do you want to accomplish?&rdquo; &mdash; Socratic posture, not telling.</div>
-        <div class="criteria-proof">200+ ClearCareer clients coached through 21 deliverables each. The work isn't fix-it; it's draw-out. You don't tell people what their next role is &mdash; you ask them what they want.</div>
-        <div class="criteria-story">Pick the client where the right answer was <em>theirs</em>, not yours. The pivot story. Show your hand: the question you asked that opened it up.</div>
-      </div>
-
-      <div class="criteria-row">
-        <div class="criteria-criterion">Action over indecision &mdash; ship when waiting feels safer.</div>
-        <div class="criteria-proof">19 of 21 client deliverables automated on Claude. Built ClearCareer's tools and content engine yourself. You don't ask permission &mdash; you ship and iterate.</div>
-        <div class="criteria-story">Tell the moment you launched something imperfect because shipping it was the win. AI deliverables, the 3,500-registration webinar, the LinkedIn audit tool.</div>
-      </div>
-
-      <div class="criteria-row">
-        <div class="criteria-criterion">CS as commercial function &mdash; NRR, GRR, expansion literacy.</div>
-        <div class="criteria-proof">Dutchie disgruntled-client recovery work translated directly to renewal saves and expansions. You can quote a number on every story you tell.</div>
-        <div class="criteria-story">The renewal you saved. The account you expanded. Lead with the dollar number; back it with the relationship work that earned it.</div>
-      </div>
-
-      <div class="criteria-row">
-        <div class="criteria-criterion">Coach without certification cosplay &mdash; method beats credential.</div>
-        <div class="criteria-proof">You built ClearCareer's methodology on first principles, not a coach-certification mill. You hire and train operators (yourself included) on outcomes, not letters after a name.</div>
-        <div class="criteria-story">If she asks about your coaching credentials: don't apologize. Frame yours as <em>SME-trained-in-method</em>, the same model she used to scale Marlow's coaches.</div>
-      </div>
-    </div>
-
-    <div class="card card--quote" style="margin-top: 1.75rem;">
-      <p>&ldquo;Make decisions and take action when indecision and inaction seem far more appealing.&rdquo;</p>
-      <p style="font-style: normal; font-family: var(--font-sans); font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">&mdash; Mary's stated lesson from LSE. Her core operating principle. Bias to ship is her tonal read.</p>
-    </div>
-  </div>
-  <div class="page-counter">06 / 25</div>
-</section>
-
-<!-- ================= 07 · MARY 90-SECOND INTRO ================= -->
-<section class="page page--warm" id="mary-intro">
-  <div class="page-inner page-inner--narrow">
-    <div class="section-kicker">The Opener</div>
-    <h2>Your 90-second intro for Mary.</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Mary will open with &ldquo;walk me through your background&rdquo; or a close variant. Practice this out loud twice the morning of the call. End by tying into one of her four criteria &mdash; bias to action, ideally &mdash; not sucking up, reading the room.</p>
-
-    <div class="intro-story" id="mary-intro-script">
-      <p>I've spent the last ten-plus years at the intersection of community, coaching, and technology &mdash; and the throughline is always the same: helping people figure out what they actually want and giving them the leverage to get there.</p>
-      <p>Most recently I've been running ClearCareer. I coached over 200 professionals through career transitions &mdash; eight-week programs, 21 custom deliverables per client, 98% satisfaction rate, $5K to $30K salary increases. The whole business was an answer to a question I had: how do you make executive-grade coaching accessible to people who can't afford it the traditional way? That question is why I built it; it's also why your work at Marlow caught my attention.</p>
-      <p>Before ClearCareer, Dutchie &mdash; where they pulled me in for the disgruntled clients during the Canadian expansion. Thirty-plus retail locations, regulatory complexity, operators who'd been bounced around. That's where I learned that the renewal lives or dies on whether the Host trusts you to tell them the truth, not on the QBR slides.</p>
-      <p>What draws me to this CSM seat is leverage. I've built the platform from zero. Now I want to bring everything I've learned alongside a team that's already winning, with Hosts whose work matters to them. AI is the other half &mdash; 19 of 21 ClearCareer deliverables now run through a system I built on Claude. That's not a buzzword; that's how I keep my time on the parts of the work only a human can do.</p>
-      <p>This role jumped out because owning outcomes &mdash; renewal, expansion, the Host's actual transformation &mdash; is the job, not the exception. That's where I do my best work, and frankly, that's the kind of CS function I'd want to help build.</p>
-    </div>
-
-    <div class="copy-row">
-      <button class="btn btn--gold" data-copy="mary-intro-script">
-        <svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:0.9rem; height:0.9rem;"><rect x="6" y="6" width="10" height="10" rx="1"/><path d="M4 12V4a1 1 0 011-1h8"/></svg>
-        Copy intro to clipboard
-      </button>
-    </div>
-
-    <h3 style="margin-top: 2.25rem;">Three things she needs to remember</h3>
-    <div class="card card--dark">
-      <ul>
-        <li><strong style="color: var(--accent);">Founder who chose leverage.</strong> You ran a coaching company. You're not running away from it &mdash; you're applying it at greater scope. That's her own move.</li>
-        <li style="margin-top: 0.5rem;"><strong style="color: var(--accent);">Commercial CS, not support CS.</strong> Renewal saves, expansions, dollar numbers. NRR / GRR literacy.</li>
-        <li style="margin-top: 0.5rem;"><strong style="color: var(--accent);">AI is how you do the work, not a buzzword.</strong> Specific: Claude-built systems, 3,500-reg webinar, the deliverables pipeline.</li>
-      </ul>
-    </div>
-  </div>
-  <div class="page-counter">07 / 25</div>
-</section>
-
-<!-- ================= 08 · QUESTIONS TO ASK MARY ================= -->
-<section class="page page--cream" id="ask-mary">
-  <div class="page-inner">
-    <div class="section-kicker">Your Turn</div>
-    <h2>Questions to ask Mary.</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.75rem; max-width: 640px;">Aim for 4&ndash;6 across the call &mdash; not all at the end. Mary is the round where probes about CS maturity, team stability, and strategy belong. She has answers Michael couldn't give.</p>
-
-    <div class="q-group">About her CS org</div>
-    <div class="ask-list">
-      <div class="ask">
-        <div class="ask-kicker">Portfolio shape</div>
-        <div class="ask-q">How is the CSM portfolio sized today &mdash; how many Hosts per CSM, what's the segment mix, where's the ACV concentration?</div>
-        <div class="ask-why">Practical. Reveals whether the role is high-touch consulting or breadth coverage.</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">Renewal motion</div>
-        <div class="ask-q">Walk me through the renewal motion at Mighty Pro. Where does the CSM own it, where does sales pick up, where do you step in personally?</div>
-        <div class="ask-why">Tests for ops maturity. Also signals you understand renewal as a structured motion, not a vibe.</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">Health vs. account</div>
-        <div class="ask-q">How do you measure Host community health vs. account health? Where do those tell a different story, and how does the CSM reconcile them?</div>
-        <div class="ask-why">A surgical question. Reveals whether the team has tooling and language for the distinction or whether CSMs reinvent it weekly.</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">Day 90</div>
-        <div class="ask-q">What does a great first 90 days look like for a new CSM on your team? What signals tell you, three months in, that you made the right hire?</div>
-        <div class="ask-why">Sets expectations. Also signals you're calibrated to outcomes, not vibes.</div>
-      </div>
-    </div>
-
-    <div class="q-group">About Mary herself</div>
-    <div class="ask-list">
-      <div class="ask">
-        <div class="ask-kicker">Marlow &rarr; Mighty</div>
-        <div class="ask-q">You ran Marlow for seven years and joined Mighty as Director, then VP. What surprised you about Mighty's CS function in your first year?</div>
-        <div class="ask-why">Invites her on her home turf. Listen for what she's still working on &mdash; that's where the seat could matter.</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">Year-one proudest</div>
-        <div class="ask-q">As VP, what are you proudest of from your year so far? What's one thing you'd want to be known for shipping in the next year?</div>
-        <div class="ask-why">Frames her as a leader with a roadmap, not just a manager. Tells you what the team will be measured against.</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">Coaching method</div>
-        <div class="ask-q">At Marlow you scaled coaching by training SMEs in your method, not credentialing them. How does that conviction show up in how you've shaped Mighty's CS team?</div>
-        <div class="ask-why">Tells her you read her work. Invites her to talk about the method she actually believes in. Risk: only ask if you want a 5-minute answer; she will give one.</div>
-      </div>
-    </div>
-
-    <div class="q-group">Strategic / leadership</div>
-    <div class="ask-list">
-      <div class="ask">
-        <div class="ask-kicker">18-month picture</div>
-        <div class="ask-q">Where do you see Mighty Pro in 18 months &mdash; deeper in the existing Host segment, or new verticals? What does that mean for the CSM seat?</div>
-        <div class="ask-why">Signals you think about the role beyond next quarter.</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">AI in CS</div>
-        <div class="ask-q">How do you see AI showing up in the CSM workflow over the next year? Where do you want CSMs leaning into it, where do you want them protecting the human work?</div>
-        <div class="ask-why">Direct invitation for her view. Sets up your AI-transparency story if she wants to go there.</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">Year-1 success</div>
-        <div class="ask-q">If you and I are sitting here a year from now and this hire was a home run &mdash; what does that look like for you? Not for me, for you and the team.</div>
-        <div class="ask-why">Asks her to picture you in the role. Powerful late-call question.</div>
-      </div>
-    </div>
-
-    <div class="q-group">Closing question (always ask)</div>
-    <div class="card card--dark" style="margin-top: 0.25rem;">
-      <h4 style="color: var(--accent);">Surface the objections while you're still in the room</h4>
-      <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.1rem; color: #fff; line-height: 1.6; margin-top: 0.5rem;" id="mary-closer-script">&ldquo;Based on what you've heard so far, is there anything about my background &mdash; founder-to-IC, the coaching pivot, anything else &mdash; where you'd want more detail or have a concern I can address before we wrap?&rdquo;</p>
-      <p style="color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-top: 0.75rem;">Surfaces objections while you can handle them. The founder-to-IC line is the most likely concern; calling it out unprompted shows self-awareness.</p>
-      <div class="copy-row" style="margin-top: 0.5rem;">
-        <button class="btn btn--gold" data-copy="mary-closer-script">Copy closer</button>
-      </div>
-    </div>
-  </div>
-  <div class="page-counter">08 / 25</div>
-</section>
-
-<!-- ================= 09 · MARY STORY BANK ================= -->
-<section class="page page--warm" id="mary-stories">
-  <div class="page-inner">
-    <div class="section-kicker">The Stories You're Bringing</div>
-    <h2>Mary's story bank.</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.5rem; max-width: 680px;">Twelve STARs, grouped by her four criteria. Some are tight; some have placeholders in red brackets where you need to fill in the specifics before the call. Bracketed gaps are intentional &mdash; better a fillable seed than an invented number you can't defend.</p>
-
-    <div class="q-group">Criterion 01 &middot; Empathy &middot; Socratic posture</div>
-
-    <details open>
-      <summary><strong>Alison Gibbins &mdash; the pivot question.</strong><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p><strong>S.</strong> Alison came to ClearCareer convinced she wanted a director seat at a Big-Tech company. She'd been searching for six months, frustrated, asking me to optimize her resume for that target.</p>
-        <p><strong>T.</strong> The lazy version of my job: do the resume work she asked for. The actual job: find out if she was even chasing the right thing.</p>
-        <p><strong>A.</strong> Before we touched the resume I asked one question: <em>&ldquo;If money and status weren't the constraint, what does the job feel like at the end of a good day?&rdquo;</em> She talked for twenty minutes. None of the answer was Big Tech. It was mission-driven work, smaller teams, contact with the people she was helping.</p>
-        <p><strong>R.</strong> She redirected the search. Landed at a mid-size mission-driven org in eleven weeks at her target compensation band. Three months after the program ended she sent me a referral.</p>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;"><strong style="color: var(--secondary);">Use this when she asks:</strong> &ldquo;Tell me about a Host transformation.&rdquo; &middot; &ldquo;How do you balance giving advice vs. asking questions?&rdquo;</p>
-      </div>
-    </details>
-
-    <details>
-      <summary><strong>Septembre Anderson &mdash; the impostor reframe.</strong><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p><strong>S.</strong> Septembre is a developer with senior chops. She came in convinced she wasn't good enough for the senior roles she was applying to. Her search had stalled.</p>
-        <p><strong>T.</strong> She'd asked for resume help. The resume wasn't the problem.</p>
-        <p><strong>A.</strong> I named what I was hearing without diagnosing: <em>&ldquo;You're describing yourself the way a junior would. The work you're describing is senior. What's the gap for you?&rdquo;</em> That opened it. We spent the first half-hour on the disconnect between her work and how she talked about it &mdash; not on the resume.</p>
-        <p><strong>R.</strong> She rewrote her own About section that week with the right voltage. Landed a senior dev role at her target band inside the program window.</p>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;"><strong style="color: var(--secondary);">Use this when she asks:</strong> &ldquo;Walk me through how you'd handle a Host who is struggling but defensive.&rdquo; &middot; &ldquo;Tell me about a hard conversation that became the win.&rdquo;</p>
-      </div>
-    </details>
-
-    <details>
-      <summary><strong>Tasha Ellis &mdash; clarity before action.</strong><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p><strong>S.</strong> Tasha is a micro-school founder. She came in saying &ldquo;I need to get back into education work, but I don't know what to ask for.&rdquo; She'd been applying broadly without traction.</p>
-        <p><strong>T.</strong> She wanted me to fix her search. I needed to know if she was looking for the right thing.</p>
-        <p><strong>A.</strong> Instead of asking what role she wanted, I asked what she'd enjoyed most over the last six months. She mentioned a contract project at Mercor doing AI work &mdash; almost offhand, like it didn't count. We followed that thread.</p>
-        <p><strong>R.</strong> Reframed the search around adaptability and education-adjacent work. She landed a curriculum-design role at an AI training company inside the program. The role wasn't on her original target list.</p>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;"><strong style="color: var(--secondary);">Use this when she asks:</strong> &ldquo;What attracted you to Mighty?&rdquo; (the &ldquo;what gets you energized&rdquo; subtext) &middot; &ldquo;How do you build a success plan for a brand-new Host?&rdquo;</p>
-      </div>
-    </details>
-
-    <details>
-      <summary><em>Backup: 200+ ClearCareer clients &mdash; the surface-area frame.</em><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p>If she pushes for breadth instead of depth: <em>&ldquo;Two hundred clients. Eight-week structured programs. Average $5K to $30K compensation lift across the cohort. 98% satisfaction on post-program. That's the surface area of judgment I'd be bringing to a CSM seat &mdash; not theory, repetition.&rdquo;</em></p>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">Backup only. Don't lead with stats; lead with stories.</p>
-      </div>
-    </details>
-
-    <div class="q-group" style="margin-top: 1.75rem;">Criterion 02 &middot; Retention instinct &middot; commercial</div>
-
-    <div class="flag-card flag-card--red" style="background: rgba(220,38,38,0.04);">
-      <h4 style="color: #dc2626;">Heads up &mdash; this is your weakest criterion on paper. Excavate before the call.</h4>
-      <p style="font-size: 0.9rem; color: var(--text);">Mary will probe for a renewal save with a dollar number. Your strongest material is at Dutchie, but the specifics aren't in the existing prep doc. Spend 20 minutes before the call filling in the brackets below from memory or a quick search of old emails / Slack. If you can't recall, lean on the ClearCareer renewal proxy and Tamara story.</p>
-    </div>
-
-    <details>
-      <summary><strong>Dutchie renewal save.</strong> <span class="badge badge--flag" style="margin-left: 0.5rem;">Fill before call</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p><strong>S.</strong> <span style="background: rgba(220,38,38,0.08); color: #dc2626; padding: 0 0.25rem; border-radius: 0.2rem;">[Which Canadian retail location. Type of operator (multi-store group, single shop, MSO). Their setup &mdash; what was running on Dutchie, what was breaking down, what their renewal window looked like.]</span></p>
-        <p><strong>T.</strong> <span style="background: rgba(220,38,38,0.08); color: #dc2626; padding: 0 0.25rem; border-radius: 0.2rem;">[What was the renewal at risk. Were they downgrading, threatening to churn, demanding a refund, asking for credits? What was the contract value? What were they comparing you to?]</span></p>
-        <p><strong>A.</strong> <span style="background: rgba(220,38,38,0.08); color: #dc2626; padding: 0 0.25rem; border-radius: 0.2rem;">[The hard conversation. The diagnostic question that surfaced the real issue, not the stated complaint. The internal lever you pulled (engineering escalation, custom feature, a credit, a different account team handoff). Quote the actual phrase you used if you can recall it.]</span></p>
-        <p><strong>R.</strong> <span style="background: rgba(220,38,38,0.08); color: #dc2626; padding: 0 0.25rem; border-radius: 0.2rem;">[Outcome. Renewal value held, expanded, or lost. Specific dollar figure. Whether they later upgraded or referred others. The single most quotable number.]</span></p>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;"><strong style="color: var(--secondary);">Use this when she asks:</strong> &ldquo;Walk me through how you'd approach a $30K Host's renewal at 6 months out.&rdquo; &middot; &ldquo;How would you spot an at-risk account before it's obvious?&rdquo;</p>
-      </div>
-    </details>
-
-    <details>
-      <summary><strong>ClearCareer renewal or upgrade.</strong> <span class="badge badge--flag" style="margin-left: 0.5rem;">Fill before call</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p><strong>S.</strong> <span style="background: rgba(220,38,38,0.08); color: #dc2626; padding: 0 0.25rem; border-radius: 0.2rem;">[Which client. Their initial scope &mdash; package size, program length. The signal that there was more work to do.]</span></p>
-        <p><strong>T.</strong> <span style="background: rgba(220,38,38,0.08); color: #dc2626; padding: 0 0.25rem; border-radius: 0.2rem;">[What you saw before they did. What problem they didn't know they had yet.]</span></p>
-        <p><strong>A.</strong> <span style="background: rgba(220,38,38,0.08); color: #dc2626; padding: 0 0.25rem; border-radius: 0.2rem;">[How you surfaced the next problem. Whether you proposed an extension, a second program, a referral arrangement. The conversation, not the email.]</span></p>
-        <p><strong>R.</strong> <span style="background: rgba(220,38,38,0.08); color: #dc2626; padding: 0 0.25rem; border-radius: 0.2rem;">[Specific number &mdash; second-program revenue, package upgrade size, referrals generated, retention months extended.]</span></p>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;"><strong style="color: var(--secondary);">Use this when she asks:</strong> &ldquo;How do you think about expansion vs. retention?&rdquo;</p>
-      </div>
-    </details>
-
-    <details>
-      <summary><strong>Tamara &mdash; the referral engine.</strong><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p><strong>S.</strong> Tamara came through ClearCareer with a $20K+ comp lift goal. She hit it inside the program.</p>
-        <p><strong>T.</strong> Program ended. Technically my job was done.</p>
-        <p><strong>A.</strong> I kept the relationship warm. Six-week check-in. Twelve-week check-in. I asked what was working in the new role and what she wished she'd known earlier &mdash; without selling anything. She started referring colleagues unprompted.</p>
-        <p><strong>R.</strong> <span style="background: rgba(220,38,38,0.08); color: #dc2626; padding: 0 0.25rem; border-radius: 0.2rem;">[Fill: number of referrals from Tamara, conversion rate, total downstream revenue.]</span> The frame: <em>retention is the floor, advocacy is the ceiling, and post-program touch is the lever that converts one to the other.</em></p>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;"><strong style="color: var(--secondary);">Use this when she asks:</strong> &ldquo;How do you think about expansion vs. retention?&rdquo; &middot; &ldquo;How do you build a success plan for a brand-new Host?&rdquo;</p>
-      </div>
-    </details>
-
-    <div class="q-group" style="margin-top: 1.75rem;">Criterion 03 &middot; Action over indecision &middot; ship</div>
-
-    <details>
-      <summary><strong>21-deliverable automation on Claude.</strong><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p><strong>S.</strong> Mid-2025 ClearCareer had grown past the point where I could deliver every client artifact by hand. Quality was slipping at the seams.</p>
-        <p><strong>T.</strong> Two options: hire a team and triple the cost structure, or build a system. I chose system.</p>
-        <p><strong>A.</strong> Built it on Claude. Voice-first intake. Parallel deliverable generation. Structured output with placeholders for the parts that needed me. I shipped imperfect &mdash; the first cohort caught four things I'd gotten wrong, and I fixed them in the next week's run rather than waiting for a clean v1.</p>
-        <p><strong>R.</strong> 19 of 21 deliverables now run on the system. Human time per client cut from 24 hours to 6. Margin held while quality improved. The two deliverables still manual are the ones where AI would lie about specifics &mdash; that's the line I won't cross.</p>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;"><strong style="color: var(--secondary);">Use this when she asks:</strong> &ldquo;Tell me about a moment you launched something imperfect.&rdquo; &middot; &ldquo;How do you see AI showing up in the CSM workflow?&rdquo;</p>
-      </div>
-    </details>
-
-    <details>
-      <summary><strong>3,500-registration webinar.</strong> <span class="badge badge--flag" style="margin-left: 0.5rem;">Fill specifics</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p><strong>S.</strong> ClearCareer needed top-of-funnel and I didn't have a marketing team. Top-of-funnel had to come from me, fast.</p>
-        <p><strong>T.</strong> Run one webinar that could carry the lead-gen weight on its own.</p>
-        <p><strong>A.</strong> <span style="background: rgba(220,38,38,0.08); color: #dc2626; padding: 0 0.25rem; border-radius: 0.2rem;">[Topic. Build timeframe. Promotion channels. Hosting platform. The unsexy version of action-over-indecision &mdash; what scared you about pressing send and what told you to press it anyway.]</span></p>
-        <p><strong>R.</strong> 3,500 registrations. <span style="background: rgba(220,38,38,0.08); color: #dc2626; padding: 0 0.25rem; border-radius: 0.2rem;">[Live show-up rate. Qualified leads generated. Downstream revenue. The single most quotable number.]</span></p>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;"><strong style="color: var(--secondary);">Use this when she asks:</strong> &ldquo;Tell me about a moment you launched something imperfect.&rdquo; &middot; &ldquo;Why did you choose the founder seat in the first place?&rdquo;</p>
-      </div>
-    </details>
-
-    <details>
-      <summary><strong>Dutchie overnight migration.</strong> <span class="badge badge--flag" style="margin-left: 0.5rem;">Fill specifics</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p><strong>S.</strong> Cannabis retailers can't be down during business hours. Migrations had to happen at 2 AM, alone, on a deadline.</p>
-        <p><strong>T.</strong> I owned the Canadian migrations across <span style="background: rgba(220,38,38,0.08); color: #dc2626; padding: 0 0.25rem; border-radius: 0.2rem;">[N stores]</span>. No safety net. Break production and the store opens with broken inventory.</p>
-        <p><strong>A.</strong> Walk through the gnarliest one: <span style="background: rgba(220,38,38,0.08); color: #dc2626; padding: 0 0.25rem; border-radius: 0.2rem;">[Which store. What data class. What broke at 3 AM. How you diagnosed it on the fly. What you escalated, what you fixed yourself.]</span></p>
-        <p><strong>R.</strong> <span style="background: rgba(220,38,38,0.08); color: #dc2626; padding: 0 0.25rem; border-radius: 0.2rem;">[Stores migrated cleanly. Total downtime metric. The worst incident and how recovery happened.]</span> The frame: scrappy isn't a bumper sticker; it's the 3 AM call you take alone.</p>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;"><strong style="color: var(--secondary);">Use this when she asks:</strong> &ldquo;Tell me about a hard conversation that became the win.&rdquo; &middot; The trust-building section of the renewal walkthrough.</p>
-      </div>
-    </details>
-
-    <div class="q-group" style="margin-top: 1.75rem;">Criterion 04 &middot; Communication &middot; method beats credential</div>
-
-    <details>
-      <summary><strong>Lighthouse Labs &mdash; community as throughline.</strong><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p><strong>S.</strong> I joined Lighthouse Labs as community lead. Toronto's bootcamp scene was crowded and we needed to be the one alumni stayed connected to, the one hiring partners came to first.</p>
-        <p><strong>T.</strong> Job description said retention and reputation. The real job was being the first person every alum thought of when they had news to share.</p>
-        <p><strong>A.</strong> Showed up at every demo day, every grad night, every alumni meetup. Wrote weekly updates that didn't read like marketing. Made introductions across cohorts on instinct, not on a CRM trigger. Replied to every DM, even five years later.</p>
-        <p><strong>R.</strong> Inside eighteen months Lighthouse alumni were the most active alumni community in the Toronto tech scene. Hiring partners came to us specifically because the talent was warm. I was the face people associated with the program.</p>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;"><strong style="color: var(--secondary);">Use this when she asks:</strong> &ldquo;What kind of manager gets the best work out of you?&rdquo; (translate: I work best when relationships are the throughline) &middot; &ldquo;Tell me about a Host transformation.&rdquo;</p>
-      </div>
-    </details>
-
-    <details>
-      <summary><strong>Hacker Paradise &mdash; the cohort that almost broke.</strong> <span class="badge badge--flag" style="margin-left: 0.5rem;">Fill specifics</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p><strong>S.</strong> Facilitated trips for Hacker Paradise &mdash; 30 to 40 traveling devs, designers, and founders, a new cohort every few weeks. Each cohort needed to gel inside 48 hours or the whole trip suffered.</p>
-        <p><strong>T.</strong> <span style="background: rgba(220,38,38,0.08); color: #dc2626; padding: 0 0.25rem; border-radius: 0.2rem;">[Pick one specific cohort or moment. The conflict, the misalignment, the person who wasn't clicking, the trip that almost fell apart.]</span></p>
-        <p><strong>A.</strong> <span style="background: rgba(220,38,38,0.08); color: #dc2626; padding: 0 0.25rem; border-radius: 0.2rem;">[Walk through the conversation or intervention. Quote the exact thing you said if you can.]</span></p>
-        <p><strong>R.</strong> <span style="background: rgba(220,38,38,0.08); color: #dc2626; padding: 0 0.25rem; border-radius: 0.2rem;">[What changed. Whether the person stayed, whether the cohort gelled, whether you got the testimonial later.]</span></p>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;"><strong style="color: var(--secondary);">Use this when she asks:</strong> &ldquo;Walk me through how you'd handle a Host who is struggling but defensive.&rdquo; &middot; &ldquo;Tell me about a hard conversation.&rdquo;</p>
-      </div>
-    </details>
-
-    <details>
-      <summary><strong>The credential question &mdash; method as articulation.</strong><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body">
-        <p>This isn't a STAR &mdash; it's the answer when someone asks about your coaching credentials. Memorize the shape, not the exact words.</p>
-        <p><strong>The frame:</strong> <em>&ldquo;I'm not certified. I trained on outcomes &mdash; 200+ clients, 19 named testimonials, a structured eight-week curriculum I built from observing what actually moves people. The Erickson method is solution-focused, agenda-of-the-coachee, powerful-question driven. I do all of those things; I learned them by doing the work, not by paying for the letters. Mary &mdash; you scaled Marlow's coaches by training SMEs in your method, not by hiring credentialed people. The model I work in is the one you built.&rdquo;</em></p>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;"><strong style="color: var(--secondary);">Use this when she asks:</strong> the coaching credentials probe &middot; closing question &middot; any moment she leans on the dialect.</p>
-      </div>
-    </details>
-
-  </div>
-  <div class="page-counter">09 / 25</div>
-</section>
-
-<!-- ================= 10 · QUESTION DECODER ================= -->
-<section class="page page--cream" id="mary-decoder">
-  <div class="page-inner">
-    <div class="section-kicker">When She Asks This, Tell That</div>
-    <h2>Question &rarr; story decoder.</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.5rem; max-width: 680px;">Each of Mary's likely questions, mapped to the story (or pair) you'd deploy. When she asks something that maps to two, pick the one that fits the energy in the room. Designed to be scannable on phone the morning of.</p>
-
-    <div class="criteria">
-      <div class="criteria-row criteria-row--head" style="grid-template-columns: 1.2fr 1.4fr 0.6fr;">
-        <div>If she asks</div>
-        <div>Lead with</div>
-        <div>Bench</div>
-      </div>
-      <div class="criteria-row" style="grid-template-columns: 1.2fr 1.4fr 0.6fr;">
-        <div class="criteria-criterion">Walk me through your background.</div>
-        <div class="criteria-proof">90-second intro (page 07). End on bias-to-action, then pause for follow-up.</div>
-        <div class="criteria-story"><strong>Alison</strong></div>
-      </div>
-      <div class="criteria-row" style="grid-template-columns: 1.2fr 1.4fr 0.6fr;">
-        <div class="criteria-criterion">Why leave the founder seat?</div>
-        <div class="criteria-proof"><strong>21-deliverable automation</strong> &mdash; ClearCareer is steady-state on the system you built; the seat is leverage, not an exit.</div>
-        <div class="criteria-story"><strong>3,500 webinar</strong></div>
-      </div>
-      <div class="criteria-row" style="grid-template-columns: 1.2fr 1.4fr 0.6fr;">
-        <div class="criteria-criterion">Tell me about a Host transformation.</div>
-        <div class="criteria-proof"><strong>Alison</strong> if she's read the room as warm and curious. <strong>Septembre</strong> if she's pushed on hard conversations. <strong>Tasha</strong> if she's leaned on Community Design language.</div>
-        <div class="criteria-story"><strong>Lighthouse</strong></div>
-      </div>
-      <div class="criteria-row" style="grid-template-columns: 1.2fr 1.4fr 0.6fr;">
-        <div class="criteria-criterion">What attracted you to Mighty?</div>
-        <div class="criteria-proof"><strong>Tasha</strong> &mdash; clarity-before-action mirrors Mighty's Community Design. Three specifics: Hosts who run real businesses, Community Design as a real framework, AI fluency.</div>
-        <div class="criteria-story">&mdash;</div>
-      </div>
-      <div class="criteria-row" style="grid-template-columns: 1.2fr 1.4fr 0.6fr;">
-        <div class="criteria-criterion">Walk me through a $30K renewal at 6 / 3 / 1 month.</div>
-        <div class="criteria-proof"><strong>Dutchie renewal save</strong> on the diagnostic chunk. Quote the dollar number. End with the leading-indicator framework.</div>
-        <div class="criteria-story"><strong>Tamara</strong></div>
-      </div>
-      <div class="criteria-row" style="grid-template-columns: 1.2fr 1.4fr 0.6fr;">
-        <div class="criteria-criterion">How do you spot at-risk before it's obvious?</div>
-        <div class="criteria-proof"><strong>Dutchie renewal save</strong> &mdash; the early signal you caught before the renewal window. Then the 5-signal framework from page 05.</div>
-        <div class="criteria-story">&mdash;</div>
-      </div>
-      <div class="criteria-row" style="grid-template-columns: 1.2fr 1.4fr 0.6fr;">
-        <div class="criteria-criterion">Expansion vs. retention?</div>
-        <div class="criteria-proof"><strong>ClearCareer renewal/upgrade</strong> + <strong>Tamara</strong> &mdash; retention is the floor, advocacy is the ceiling, post-program touch is the lever.</div>
-        <div class="criteria-story"><strong>Dutchie save</strong></div>
-      </div>
-      <div class="criteria-row" style="grid-template-columns: 1.2fr 1.4fr 0.6fr;">
-        <div class="criteria-criterion">Build a success plan for a new Host.</div>
-        <div class="criteria-proof"><strong>Tasha</strong> &mdash; built the plan with her, not for her. Plan as living doc, not deliverable.</div>
-        <div class="criteria-story">&mdash;</div>
-      </div>
-      <div class="criteria-row" style="grid-template-columns: 1.2fr 1.4fr 0.6fr;">
-        <div class="criteria-criterion">Host who is struggling but defensive.</div>
-        <div class="criteria-proof"><strong>Septembre</strong> &mdash; named what you were hearing without diagnosing. Then the four-move framework from page 05.</div>
-        <div class="criteria-story"><strong>Hacker Paradise</strong></div>
-      </div>
-      <div class="criteria-row" style="grid-template-columns: 1.2fr 1.4fr 0.6fr;">
-        <div class="criteria-criterion">Advice vs. asking questions.</div>
-        <div class="criteria-proof"><strong>Credential question / method-as-articulation</strong> framing. Drop the Erickson dialect (next page) lightly.</div>
-        <div class="criteria-story"><strong>Alison</strong></div>
-      </div>
-      <div class="criteria-row" style="grid-template-columns: 1.2fr 1.4fr 0.6fr;">
-        <div class="criteria-criterion">Hard conversation that became the win.</div>
-        <div class="criteria-proof"><strong>Septembre</strong> if relational. <strong>Dutchie migration</strong> if she's pushed for grit. End with a number either way.</div>
-        <div class="criteria-story"><strong>Hacker Paradise</strong></div>
-      </div>
-      <div class="criteria-row" style="grid-template-columns: 1.2fr 1.4fr 0.6fr;">
-        <div class="criteria-criterion">Hard about founder &rarr; IC.</div>
-        <div class="criteria-proof"><strong>21-deliverable automation</strong> &mdash; not seeing the full strategic picture some days. Trusting decisions you didn't make. The leverage is the trade you're choosing.</div>
-        <div class="criteria-story">&mdash;</div>
-      </div>
-      <div class="criteria-row" style="grid-template-columns: 1.2fr 1.4fr 0.6fr;">
-        <div class="criteria-criterion">Area you're working on.</div>
-        <div class="criteria-proof">Pick one: sharper commercial instincts on quoting / pushing back with execs / depth over breadth. Don't apologize.</div>
-        <div class="criteria-story">&mdash;</div>
-      </div>
-      <div class="criteria-row" style="grid-template-columns: 1.2fr 1.4fr 0.6fr;">
-        <div class="criteria-criterion">Manager who gets the best work out of you.</div>
-        <div class="criteria-proof"><strong>Lighthouse</strong> &mdash; relational throughline. Frame the manager-IC contract: context and trust on the way in, direct feedback on the way back, escalation backing when needed.</div>
-        <div class="criteria-story">&mdash;</div>
-      </div>
-      <div class="criteria-row" style="grid-template-columns: 1.2fr 1.4fr 0.6fr;">
-        <div class="criteria-criterion">Where in 2&ndash;3 years?</div>
-        <div class="criteria-proof">CSM others come to for the hardest accounts, on a path toward shaping CS at portfolio level. Don't promise her job. Don't say &ldquo;just keep learning.&rdquo;</div>
-        <div class="criteria-story">&mdash;</div>
-      </div>
-    </div>
-
-  </div>
-  <div class="page-counter">10 / 25</div>
-</section>
-
-<!-- ================= 11 · MARY ROLEPLAYS ================= -->
-<section class="page page--warm" id="mary-roleplays">
-  <div class="page-inner">
-    <div class="section-kicker">If She Pushes You Live</div>
-    <h2>Three Mary-flavored roleplays.</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.5rem; max-width: 680px;">The generic frameworks on page 17 cover any interviewer. Mary will push you on Socratic posture, on the renewal motion in real time, and on whether founder muscle memory will get in the way. Rehearse these three out loud.</p>
-
-    <div class="scenario">
-      <div class="scenario-label">Mary Scenario 01 &middot; Socratic posture probe</div>
-      <h4>&ldquo;Tell me about a moment you wanted to give the answer but didn't.&rdquo;</h4>
-      <p class="scenario-prompt">She leans back. She is testing whether you can stay in inquiry when telling would feel safer. Likely follow-up: <em>&ldquo;What was the question you asked instead?&rdquo;</em></p>
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.5rem;"><strong style="color: var(--primary);">Three moves:</strong></p>
-      <div class="moves-list">
-        <div class="move"><strong>Pick a story where the right answer was the client's, not yours.</strong> Alison or Tasha. Don't pick a story where you eventually told the answer.</div>
-        <div class="move"><strong>Quote the actual question you asked.</strong> Not paraphrased. <em>&ldquo;If money and status weren't the constraint, what does the job feel like at the end of a good day?&rdquo;</em></div>
-        <div class="move"><strong>Land on: &ldquo;their answer was sharper than mine would have been.&rdquo;</strong> Acknowledge the trade you made &mdash; you were quieter; they got further.</div>
-      </div>
-      <p style="font-size: 0.85rem; color: var(--text-muted);"><strong style="color: #dc2626;">Trap:</strong> don't pick a story where you eventually circled back and gave the answer. She wants to know you can hold the silence.</p>
-    </div>
-
-    <div class="scenario">
-      <div class="scenario-label">Mary Scenario 02 &middot; Renewal at risk in real time</div>
-      <h4>&ldquo;A Host called my CSM Friday saying they're done. Walk me through Monday morning.&rdquo;</h4>
-      <p class="scenario-prompt">She is testing diagnostic-first thinking under commercial pressure. The reflex she wants you to resist: jumping straight to a save plan.</p>
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.5rem;"><strong style="color: var(--primary);">Three moves:</strong></p>
-      <div class="moves-list">
-        <div class="move"><strong>Diagnose before you plan.</strong> &ldquo;Before Monday I'd want to know what the Friday call surfaced. What did they say, and what did they mean? Where's the gap between expectation and what they're seeing?&rdquo;</div>
-        <div class="move"><strong>Reframe the win.</strong> &ldquo;The win isn't &lsquo;save the renewal.&rsquo; The win is: do they want to stay, do they want to go better than they came in, or is this genuinely a wrong fit. Each one has a different play.&rdquo;</div>
-        <div class="move"><strong>The 30-day plan.</strong> Three specific levers. Weekly check-ins. Owner on each side. Decision date before the renewal window. Bring Mighty's benchmarks if relevant: 59% weekly active, 80%+ revenue retention, 84% member-created content.</div>
-      </div>
-      <p style="font-size: 0.85rem; color: var(--text-muted);"><strong style="color: #dc2626;">Trap:</strong> don't promise to save it on Monday. Promise to diagnose it cleanly by end-of-week and make a call.</p>
-    </div>
-
-    <div class="scenario">
-      <div class="scenario-label">Mary Scenario 03 &middot; The founder objection</div>
-      <h4>&ldquo;I get a lot of founders pitching for IC seats. Why won't you flame out?&rdquo;</h4>
-      <p class="scenario-prompt">She might not phrase it this directly. The probe will be there regardless &mdash; usually disguised as the founder-to-IC self-awareness question. Don't wait for it; surface it on your terms.</p>
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.5rem;"><strong style="color: var(--primary);">Three moves:</strong></p>
-      <div class="moves-list">
-        <div class="move"><strong>Acknowledge the pattern is real.</strong> &ldquo;You should be skeptical. The pattern you're describing is real. Founders who treat IC seats as an interim fallback flame out, and they cost the team months.&rdquo;</div>
-        <div class="move"><strong>Mirror her own move.</strong> &ldquo;You ran Marlow for seven years before Mighty as Director. Year one was learning the seat. You earned the VP after. That's the move I want to make &mdash; same arc, different chapter.&rdquo;</div>
-        <div class="move"><strong>Concrete commitment.</strong> &ldquo;First 90 days I'm not optimizing your motion. I'm shadowing it, listening, learning what the team has earned. If I see something worth flagging at month twelve, it'll come through my manager as a question, not a manifesto.&rdquo;</div>
-      </div>
-      <p style="font-size: 0.85rem; color: var(--text-muted);"><strong style="color: #dc2626;">Trap:</strong> don't promise you'll never want a leadership role. Sounds dishonest and unambitious. Calibrated, hungry, specific.</p>
-    </div>
-
-  </div>
-  <div class="page-counter">11 / 25</div>
-</section>
-
-<!-- ================= 12 · WHAT MARY FEARS ================= -->
-<section class="page page--cream" id="mary-fears">
-  <div class="page-inner">
-    <div class="section-kicker">Surface Objections While You're In The Room</div>
-    <h2>What Mary fears &mdash; and how you neutralize.</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.5rem; max-width: 680px;">Three concerns she almost certainly has about hiring a founder into a CSM seat. Each paired with a one-line preemptive line you can drop unprompted. Don't wait for her to raise them &mdash; surface them on your terms.</p>
-
-    <div class="flag-card flag-card--red">
-      <h4 style="color: #dc2626;">Concern 01 &middot; &ldquo;He'll quit when ClearCareer takes off.&rdquo;</h4>
-      <p style="font-size: 0.92rem;"><strong>Probability she's thinking it:</strong> very high. Every founder hire has been bitten by this, and the pattern is rational.</p>
-      <div class="script">ClearCareer is steady-state. 200 clients in, runs on the system I built. I'm not at the chapter where I'd flip back and walk away from a CSM seat. The financial frame: a CSM with on-target earnings beats a coaching practice with 200 clients on revenue stability and on the trajectory of what I'm here to learn. This is the chapter; ClearCareer is the prologue.</div>
-      <p style="font-size: 0.85rem; color: var(--text-muted);"><strong style="color: var(--primary);">Drop unprompted:</strong> in the closing question, or earlier if she asks &ldquo;why leave the founder seat&rdquo; and you can land it cleanly.</p>
-    </div>
-
-    <div class="flag-card flag-card--amber">
-      <h4 style="color: var(--secondary);">Concern 02 &middot; &ldquo;He'll try to redesign my CS org.&rdquo;</h4>
-      <p style="font-size: 0.92rem;"><strong>Probability:</strong> high. She's an operator. She values seasoning. A founder who shows up week one with a Notion doc of suggestions is the cliche she's seen.</p>
-      <div class="script">First 90 days I'm not optimizing your motion. I'm shadowing it, listening, learning what the team has earned over the last two years. The mistake founders make is bringing their playbook into someone else's house. Twelve months in, if I see something worth flagging, it comes to my manager as a question, not a manifesto.</div>
-      <p style="font-size: 0.85rem; color: var(--text-muted);"><strong style="color: var(--primary);">Drop unprompted:</strong> when you ask the &ldquo;what does a great first 90 days look like for a new CSM&rdquo; question. Pair them.</p>
-    </div>
-
-    <div class="flag-card flag-card--amber">
-      <h4 style="color: var(--secondary);">Concern 03 &middot; &ldquo;He'll struggle reporting to a manager.&rdquo;</h4>
-      <p style="font-size: 0.92rem;"><strong>Probability:</strong> medium-high. She's reasonable about it &mdash; she made the move herself &mdash; but she'll want to hear you've thought about it.</p>
-      <div class="script">I've been the manager. I know exactly what a great IC looks like from the seat above. The contract I want with my manager: context and trust on the way in, direct feedback on the way back, escalation backing when I need it. Your move from Marlow founder to Mighty Director is the parallel I'm working from. You made it. The question I'm asking myself is whether I can.</div>
-      <p style="font-size: 0.85rem; color: var(--text-muted);"><strong style="color: var(--primary);">Drop unprompted:</strong> in response to &ldquo;what kind of manager gets the best work out of you?&rdquo; The Marlow callback lands hard if delivered without preamble.</p>
-    </div>
-
-    <div class="card card--dark" style="margin-top: 1.5rem;">
-      <h4 style="color: var(--accent);">The meta-move</h4>
-      <p>If she doesn't raise any of these &mdash; surface them in the closer. Naming the objections unprompted is itself the proof of self-awareness she's looking for. Page 08's closer already does this; on the day, lean on it harder if you've sensed any of the three sit unspoken.</p>
-    </div>
-
-  </div>
-  <div class="page-counter">12 / 25</div>
-</section>
-
-<!-- ================= 13 · ERICKSON CHEAT-SHEET ================= -->
-<section class="page page--navy" id="mary-erickson">
-  <div class="page-inner page-inner--narrow">
-    <div class="section-kicker" style="color: var(--accent);">Speak Her Language Without Faking Certification</div>
-    <h2 style="color: #fff;">Erickson dialect &mdash; four lines that land.</h2>
-    <p style="color: rgba(255,255,255,0.82); margin-bottom: 1.75rem;">Mary is Erickson-certified. Erickson coaching is solution-focused, agenda-of-the-coachee, and built around the &ldquo;powerful question.&rdquo; You can drop these phrases naturally because you already work this way &mdash; you just learned it by doing, not by paying for the letters. Use sparingly. One or two per call is plenty; four is performance.</p>
-
-    <div class="grid-2" style="gap: 1rem;">
-
-      <div class="card card--dark" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(212,168,83,0.25);">
-        <div style="font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 0.4rem;">Term 01</div>
-        <h4 style="color: #fff; font-family: var(--font-serif);">&ldquo;Powerful question.&rdquo;</h4>
-        <p style="color: rgba(255,255,255,0.85); font-size: 0.92rem;">Erickson term for an open, evocative question that surfaces the coachee's clarity. No yes/no answer. Makes them stop and think.</p>
-        <p style="color: rgba(255,255,255,0.75); font-size: 0.85rem; margin-top: 0.5rem;"><strong style="color: var(--accent);">Drop when:</strong> she asks about your coaching philosophy. <em>&ldquo;I think of those as powerful questions &mdash; the ones that make them stop and think, not the ones that get a quick answer.&rdquo;</em></p>
-      </div>
-
-      <div class="card card--dark" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(212,168,83,0.25);">
-        <div style="font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 0.4rem;">Term 02</div>
-        <h4 style="color: #fff; font-family: var(--font-serif);">&ldquo;Coachee's agenda.&rdquo;</h4>
-        <p style="color: rgba(255,255,255,0.85); font-size: 0.92rem;">Central Erickson distinction: the agenda belongs to the coachee, not the coach. Drift to the coach's agenda and the work degrades.</p>
-        <p style="color: rgba(255,255,255,0.75); font-size: 0.85rem; margin-top: 0.5rem;"><strong style="color: var(--accent);">Drop when:</strong> she asks about advice vs. questions. <em>&ldquo;Most of my work is staying on the coachee's agenda. The moment I drift to my agenda, the work degrades.&rdquo;</em></p>
-      </div>
-
-      <div class="card card--dark" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(212,168,83,0.25);">
-        <div style="font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 0.4rem;">Term 03</div>
-        <h4 style="color: #fff; font-family: var(--font-serif);">&ldquo;Solution-focused.&rdquo;</h4>
-        <p style="color: rgba(255,255,255,0.85); font-size: 0.92rem;">Erickson is solution-focused, not analytic. Doesn't excavate root causes endlessly. Builds forward from current strengths.</p>
-        <p style="color: rgba(255,255,255,0.75); font-size: 0.85rem; margin-top: 0.5rem;"><strong style="color: var(--accent);">Drop when:</strong> she asks how you handle a stuck Host. <em>&ldquo;I lean solution-focused. We don't litigate why they're stuck. We map what they want and where the next move is.&rdquo;</em></p>
-      </div>
-
-      <div class="card card--dark" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(212,168,83,0.25);">
-        <div style="font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 0.4rem;">Term 04</div>
-        <h4 style="color: #fff; font-family: var(--font-serif);">&ldquo;Acknowledgment vs. praise.&rdquo;</h4>
-        <p style="color: rgba(255,255,255,0.85); font-size: 0.92rem;">Erickson distinction. Acknowledgment is specific, evidence-based, named. Praise is generic, evaluative, hollow.</p>
-        <p style="color: rgba(255,255,255,0.75); font-size: 0.85rem; margin-top: 0.5rem;"><strong style="color: var(--accent);">Drop when:</strong> she asks how you build trust with a struggling Host. <em>&ldquo;I work in acknowledgment, not praise. I name what I see, evidence-based. Praise reads hollow; acknowledgment lands.&rdquo;</em></p>
-      </div>
-
-    </div>
-
-    <div class="card card--dark" style="background: rgba(212,168,83,0.08); border: 1px solid rgba(212,168,83,0.35); margin-top: 1.5rem;">
-      <h4 style="color: var(--accent);">The honest disclaimer if she pushes</h4>
-      <p style="color: rgba(255,255,255,0.92); font-style: italic; font-family: var(--font-serif); font-size: 1.02rem; line-height: 1.7;">&ldquo;I'm not certified Erickson. I read your published work because I wanted to understand the dialect on the team I'd be joining. The methods themselves &mdash; powerful questions, coachee's agenda, solution-focused &mdash; I learned doing the work, not by paying for the letters. The model you used to scale Marlow's coaches is the model I work in.&rdquo;</p>
-    </div>
-
-  </div>
-  <div class="page-counter">13 / 25</div>
-</section>
-
-<!-- ================= 14 · STRATEGIC ASKS ================= -->
-<section class="page page--cream" id="mary-asks-strategic">
-  <div class="page-inner">
-    <div class="section-kicker">Sequence Matters</div>
-    <h2>Five questions, sequenced for the call.</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.5rem; max-width: 680px;">Beyond the nine on page 08. These are sequenced for <em>when</em> in the call to deploy. Don't ask them all &mdash; pick the two or three that match the energy. The opener and closer are non-negotiable.</p>
-
-    <div class="ask-list">
-
-      <div class="ask" style="border: 2px solid var(--secondary); background: linear-gradient(180deg, rgba(196,135,59,0.04) 0%, #fff 100%);">
-        <div class="ask-kicker" style="color: var(--secondary);">01 &middot; Opener &middot; her own words back to her</div>
-        <div class="ask-q" style="font-style: italic; color: var(--primary);">&ldquo;Mary, in a 2022 interview about Marlow you said something that's stuck with me. You said you didn't start your business for balance &mdash; that the business was your passion, that you'd found your blend with a four-month-old at home. Two years later you joined Mighty as Director, then VP. <strong>What changed?</strong> What made working alongside someone else's platform the right move for you at that moment?&rdquo;</div>
-        <div class="ask-why"><strong style="color: var(--primary);">Why this lands:</strong> quotes her own words back to her, shows you've read her deeply (not just the public bio), mirrors the founder &rarr; IC arc you're making yourself. Invites her to walk you through her move &mdash; the parallel you'll need her to see when she asks why you're leaving the founder seat. Don't rush. Let her sit with it. The Marlow-to-Mighty story is hers to tell, and she'll tell it well if you give her room.</div>
-      </div>
-
-      <div class="ask">
-        <div class="ask-kicker">02 &middot; Mid-call &middot; two-axis thinking</div>
-        <div class="ask-q">How do you measure success for a Host vs. for a CSM? Where do those metrics agree, and where do they pull in different directions?</div>
-        <div class="ask-why">Proves you think in two axes &mdash; exactly the founder-to-IC thinking she's testing for. Reveals whether the team has language for the tension or improvises it.</div>
-      </div>
-
-      <div class="ask">
-        <div class="ask-kicker">03 &middot; Mid-call &middot; the dialect bridge</div>
-        <div class="ask-q">Erickson is solution-focused. In a commercial CS context where retention dollars matter, what's the hardest tradeoff you've had to make between coaching purity and commercial pressure?</div>
-        <div class="ask-why">Shows you understand her dialect AND the commercial pressure she navigates. High-trust signal. Risk: only ask if you're ready for a five-minute answer; she'll give one.</div>
-      </div>
-
-      <div class="ask">
-        <div class="ask-kicker">04 &middot; Late &middot; invite her to coach you</div>
-        <div class="ask-q">You've made the founder-to-IC move yourself. What's the part of it that took you longer than you expected?</div>
-        <div class="ask-why">Disarms her concern that you don't know what you're walking into. Asks her to coach you on her own move &mdash; flattering without sucking up. Strong rapport-builder near the end of the call.</div>
-      </div>
-
-      <div class="ask">
-        <div class="ask-kicker">05 &middot; Closer &middot; surface objections</div>
-        <div class="ask-q">Is there anything about my background &mdash; founder pivot, the coaching dialect, retention specifics &mdash; where you'd want more detail or have a concern I can address before we wrap?</div>
-        <div class="ask-why">Same as the page-08 closer, sharpened with the three specific concerns from page 12. Naming them unprompted is itself the proof of self-awareness. Always ask this. No exceptions.</div>
-      </div>
-
-    </div>
-
-    <div class="card card--dark" style="margin-top: 1.5rem;">
-      <h4 style="color: var(--accent);">The pacing rule</h4>
-      <p>Mary is a coach. She'll create silence. Don't fill it. After your 90-second intro, after each story, after each of these questions &mdash; pause. Two to three seconds of silence is a feature, not a bug. The pause is itself the proof you can hold inquiry.</p>
-    </div>
-
-  </div>
-  <div class="page-counter">14 / 25</div>
-</section>
-
-<!-- ================= 15 · MEET DENIKA ================= -->
-<section class="page page--cream" id="denika">
-  <div class="page-inner">
-    <div class="section-kicker">Know Your Room</div>
-    <h2>Meet Denika Spadafora.</h2>
-    <p style="color: var(--text-muted); max-width: 680px; margin-bottom: 2rem;">Customer Success at Mighty Networks &mdash; and a real Mighty Host herself. She runs a community-powered wellness business on the side. She is <em>both</em> a peer and a customer. The empathy round.</p>
-
-    <div style="margin-bottom: 1rem;">
-      <div class="profile-header">
-        <div class="profile-role">Customer Success &middot; Mighty Networks</div>
-        <div class="profile-name">Denika Spadafora</div>
-        <div class="profile-tag">Founder, Stand Unshaken &amp; Endless Sunday Retreats &middot; Certified yoga instructor &amp; life coach &middot; Richmond, VA</div>
-      </div>
-      <div class="profile-body">
-        <div class="profile-stats">
-          <div class="profile-stat"><strong>400+</strong><span>Free videos &middot; SU Collective</span></div>
-          <div class="profile-stat"><strong>100+</strong><span>Women retreated &middot; international</span></div>
-          <div class="profile-stat"><strong>140%</strong><span>SDR attainment &middot; OpenPhone</span></div>
-          <div class="profile-stat"><strong>Two</strong><span>Hats &middot; CSM &amp; Host</span></div>
-        </div>
-        <h4 style="margin-top: 0.5rem;">The arc</h4>
-        <ul>
-          <li><strong>OpenPhone (now Quo) &mdash; Sales Development:</strong> ran weekly trainings for the SDR team and hit <strong>140% average attainment over a full fiscal year</strong>. Most CSMs don't have a sales motor like that under the hood.</li>
-          <li><strong>Stand Unshaken</strong> &mdash; her own Christian yoga &amp; biblical-meditation community and app. <strong>400&ndash;600+ workout and meditation videos</strong>, live classes, courses. Membership is <em>completely free</em> &mdash; her stated belief is that holistic wellness shouldn't come with a price tag. She has her own podcast under the same brand.</li>
-          <li><strong>Endless Sunday Retreats</strong> &mdash; her domestic &amp; international retreats for women. 1:1 coaching, outdoor activity, healthy meals, alignment work. She has personally led 100+ women through retreats globally.</li>
-          <li><strong>Brand &amp; product design for entrepreneurs:</strong> she designs websites and brand guides (color palettes, fonts, imagery) for other founders. That is exactly the muscle a great CSM uses to help a Mighty Host package and launch &mdash; she will recognize it instantly when you describe how you work with your own clients.</li>
-          <li><strong>Two passions, one business:</strong> certified yoga teacher + certified life coach. Stand Unshaken was her merge point. Coaches wellness entrepreneurs on scaling through brand and intentional product suites.</li>
-          <li><strong>Mighty Networks &mdash; Customer Success</strong> (current). Based in Richmond, VA. She is one of Michael's CSMs and reports up through Mary.</li>
-        </ul>
-      </div>
-    </div>
-
-    <h3 style="margin-top: 2rem;">How she'll read you</h3>
-    <div class="grid-2">
-      <div class="card">
-        <h4>She is a Host</h4>
-        <p style="color: var(--text); font-size: 0.92rem;">Denika runs Stand Unshaken &mdash; courses, memberships, live classes. She knows the loneliness of building a community-powered business firsthand. Speak about Hosts the way you'd speak about <em>her.</em> Treat them as full operators, not "users."</p>
-      </div>
-      <div class="card">
-        <h4>Coach-to-coach</h4>
-        <p style="color: var(--text); font-size: 0.92rem;">She's a certified life coach who teaches wellness entrepreneurs how to package and price their offers. You speak the same dialect. Talk about product suites, client transformation, daily rhythms &mdash; not just "engagement" or "activation."</p>
-      </div>
-      <div class="card">
-        <h4>Faith and integrity</h4>
-        <p style="color: var(--text); font-size: 0.92rem;">Her brand is explicitly Christian, holistic, alignment-oriented. She's not looking for a sermon &mdash; she's looking for someone whose <em>values show up in how they describe the work.</em> Lead with care for the human on the other end. Don't be transactional.</p>
-      </div>
-      <div class="card">
-        <h4>Sales literacy is a plus</h4>
-        <p style="color: var(--text); font-size: 0.92rem;">140% SDR attainment is not a CSM stat &mdash; it's a sales stat. She'll respect commercial fluency. You can talk about renewal conversations, expansion, knowing when to ask for the upgrade. That's a strength most CSMs underplay; don't.</p>
-      </div>
-    </div>
-
-    <div class="card card--quote" style="margin-top: 1.5rem;">
-      <p>&ldquo;Help women learn how to create daily rhythms of wellness so they can deeply connect with themselves and their calling.&rdquo;</p>
-      <p style="font-style: normal; font-family: var(--font-sans); font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">&mdash; Denika's mission, paraphrased from Endless Sunday. The pattern: <em>daily rhythms, alignment, calling.</em> Mirror that cadence when you talk about your coaching practice.</p>
-    </div>
-
-    <h3 style="margin-top: 2rem;">The story to bring her</h3>
-    <div class="card" style="background: var(--warm);">
-      <p style="color: var(--text); font-size: 0.95rem;">For Denika, lead with a story where <strong>you held the line on a client's identity, not just their goal</strong>. The one where you helped someone choose the role that fit who they were becoming, not the highest-paying one on the table. That story signals (1) you understand alignment over hustle, (2) you can sit with someone in a hard decision, (3) you'd treat her Hosts the way she treats her own community. End with: <em>"That's the work I want to do at scale, alongside Hosts who are already doing it."</em></p>
-    </div>
-
-    <div class="card card--quote" style="margin-top: 1.5rem; background: var(--primary); color: #fff;">
-      <p style="color: #fff;">Bridge note &mdash; if it comes up naturally: Denika and you are both solopreneurs running multi-revenue-stream coaching businesses. Don't force the parallel; let her find it. If she does, she'll feel met.</p>
-    </div>
-
-    <h3 style="margin-top: 2rem;">Common ground hooks (use sparingly, only if natural)</h3>
-    <div class="grid-2">
-      <div class="card">
-        <h4>The free tier as conviction</h4>
-        <p style="color: var(--text); font-size: 0.92rem;">Stand Unshaken's membership is completely free because Denika believes wellness shouldn't be paywalled. ClearCareer ships free job-search tools and free clarity audits for the same reason. If "lead magnet" gets close to the conversation, frame yours as <em>conviction</em>, not funnel hygiene.</p>
-      </div>
-      <div class="card">
-        <h4>You both build the website</h4>
-        <p style="color: var(--text); font-size: 0.92rem;">Denika designs websites and brand guides for entrepreneurs. You build full marketing sites and AI-powered tools for ClearCareer. When you describe helping a Mighty Host package and launch, lean operational &mdash; she'll trust it because she's done it.</p>
-      </div>
-      <div class="card">
-        <h4>Sales-trained CS is a strength, not a flaw</h4>
-        <p style="color: var(--text); font-size: 0.92rem;">She came from SDR, hit 140% attainment, and led training for the team. You've sold and closed your own coaching offers. CS leaders sometimes hide their sales chops; both of you should not. Talk about expansion, renewal conversations, asking for the upgrade.</p>
-      </div>
-      <div class="card">
-        <h4>Membership-as-product</h4>
-        <p style="color: var(--text); font-size: 0.92rem;">She runs a membership (Stand Unshaken) inside the very category she now supports at Mighty. You run a coaching program (JSIS) that maps onto the same Host archetype. When you describe Hosts' jobs-to-be-done, you're describing both of you.</p>
-      </div>
-    </div>
-  </div>
-  <div class="page-counter">15 / 25</div>
-</section>
-
-<!-- ================= 10 · DENIKA ROUND PREP ================= -->
-<section class="page page--warm" id="denika-prep">
-  <div class="page-inner">
-    <div class="section-kicker">The Peer Round</div>
-    <h2>Denika round &mdash; questions, intro, what to ask.</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.75rem; max-width: 660px;">After Mary, this round is a decompression. Different mode entirely. Loosen up. The peer round is about whether she'd want to share a Slack channel with you, not whether you can hit a number.</p>
-
-    <h3>Likely questions from Denika</h3>
-    <div class="ask-list" style="margin-bottom: 2rem;">
-      <div class="ask">
-        <div class="ask-kicker">Walk me through</div>
-        <div class="ask-q">Can you walk me through your background &mdash; what's the short version?</div>
-        <div class="ask-why">Use the 60-second intro below, not the Mary 90-second one. Lighter. End on community/Host work, not commercials.</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">Day-to-day</div>
-        <div class="ask-q">What does a great working relationship with a CSM teammate look like to you? When have you been at your best collaborating?</div>
-        <div class="ask-why">Tell a story where someone else got the credit. Lighthouse, Dutchie team save, ClearCareer collaborator.</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">Difficult Host</div>
-        <div class="ask-q">Tell me about a time you had to work with a difficult Host or client. What did you do?</div>
-        <div class="ask-why">She's a Host herself. Don't talk about clients like they're problems. Talk about reading the human first, the situation second.</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">Conflict</div>
-        <div class="ask-q">How do you handle disagreement with a teammate or manager &mdash; especially when you think they're wrong?</div>
-        <div class="ask-why">She wants to know you can have the hard conversation without making the room weird. Specific story; one minute max.</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">Ramping</div>
-        <div class="ask-q">If you joined the team next month, how would you ramp? What do you want from the first 30 days?</div>
-        <div class="ask-why">Show you'd come in curious, not prescriptive. Ask before you advise. Mirror her own posture.</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">Why CSM</div>
-        <div class="ask-q">Why CS? What makes a great CSM, in your view?</div>
-        <div class="ask-why">Coach-to-coach answer: someone who can hold the Host's outcome as more important than their own ego. Show, don't tell &mdash; pick a moment from your own work.</div>
-      </div>
-    </div>
-
-    <h3>60-second intro for Denika</h3>
-    <div class="intro-story" id="denika-intro-script" style="background: var(--cream); padding: 1.5rem; border-radius: 8px;">
-      <p>I've been in the community-coaching-tech intersection for ten-plus years. Most recently building ClearCareer &mdash; coached over 200 people through career transitions, ran two top-5% Skool communities, ran live events for 650+ people a month at Lighthouse Labs in a past life.</p>
-      <p>The throughline is the same thing you do at Stand Unshaken &mdash; helping people figure out what they actually want, then giving them the tools to go get it. I've been a Host. I know what it costs to show up for your community every week, and I know how much a good CSM matters when you're trying to build something real.</p>
-      <p>That's why this seat. I want to do the work I love alongside Hosts who are already doing it.</p>
-    </div>
-    <div class="copy-row">
-      <button class="btn btn--gold" data-copy="denika-intro-script">Copy intro</button>
-    </div>
-
-    <h3 style="margin-top: 2.5rem;">Questions to ask Denika</h3>
-    <div class="ask-list">
-      <div class="ask">
-        <div class="ask-kicker">Real day</div>
-        <div class="ask-q">What's a typical day actually look like for you on the CS team? Where do you spend most of your time?</div>
-        <div class="ask-why">Practical. Reveals the real work, not the job-description version.</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">Surprise</div>
-        <div class="ask-q">What's something about working at Mighty that surprised you in a good way? In a hard way?</div>
-        <div class="ask-why">She'll be candid because she's a peer, not a hiring manager. Listen carefully to the &ldquo;hard&rdquo; part.</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">First 90 days</div>
-        <div class="ask-q">What tripped you up when you were ramping? What do you wish you'd known sooner?</div>
-        <div class="ask-why">Asks her to be helpful. Builds rapport. You'll get better intel here than from any executive.</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">Host-CSM dynamic</div>
-        <div class="ask-q">You're a Host yourself with Stand Unshaken. How does being a Host change the way you do CSM work for other Hosts?</div>
-        <div class="ask-why">Direct invitation to talk about what makes her unique. Listen to whether she connects it back to you &mdash; that's the moment of mutual recognition.</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">Team culture</div>
-        <div class="ask-q">If you described the CSM team's culture in three words to a friend &mdash; what are they? And which of those would you want more of?</div>
-        <div class="ask-why">Forces specificity. Reveals where the team is healthy and where it's not.</div>
-      </div>
-    </div>
-
-    <div class="card card--quote" style="margin-top: 1.75rem; background: var(--primary); color: #fff;">
-      <p style="color: #fff;">Tone reminder: Denika's brand is alignment, daily rhythms, calling. If &ldquo;why this work&rdquo; comes up, your answer should sound like it comes from the same family of language. Don't perform it &mdash; just don't talk like a sales rep.</p>
-    </div>
-  </div>
-  <div class="page-counter">16 / 25</div>
-</section>
-
-<!-- ================= 11 · ROLEPLAY FRAMEWORKS ================= -->
-<section class="page page--cream" id="roleplay">
-  <div class="page-inner">
-    <div class="section-kicker">Be Ready to Get Pushed Live</div>
-    <h2>The roleplay frameworks.</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.5rem; max-width: 640px;">You already did written scenarios for the assignment. Michael will very likely push you into the live version &mdash; he plays the Host, you play the CSM. Expect variants of the two you wrote plus one fresh one.</p>
-
-    <h3>Your five moves &mdash; use these on any roleplay</h3>
-    <div class="moves-list">
-      <div class="move"><strong>Ask a clarifying question before launching in.</strong> &ldquo;Before I respond, can I ask what's driving this for you?&rdquo; Shows diagnostic instinct.</div>
-      <div class="move"><strong>Name the emotion you're hearing.</strong> &ldquo;It sounds like you're frustrated, and honestly I'd be frustrated too.&rdquo; Don't skip this step.</div>
-      <div class="move"><strong>Don't rush to a solution.</strong> Rushing reads as defensive. Sit in the problem for a beat.</div>
-      <div class="move"><strong>Always end with a concrete next step.</strong> &ldquo;Here's what I'll do by Friday&rdquo; &gt;&gt;&gt; &ldquo;let me circle back.&rdquo;</div>
-      <div class="move"><strong>If you don't know, say so.</strong> &ldquo;I don't have that answer, but here's how I'd find out within 24 hours&rdquo; is a correct answer.</div>
-    </div>
-
-    <div class="scenario">
-      <div class="scenario-label">Scenario 01 &middot; Variant of assignment scenario</div>
-      <h4>The dependent, inherited Host</h4>
-      <p class="scenario-prompt">&ldquo;You've just taken over a Host account from another CSM who left. The Host is calling you now. They're anxious about the handoff and their renewal is in 60 days.&rdquo;</p>
-      <p style="font-size: 0.88rem; color: var(--text-muted);"><strong style="color: var(--primary);">What he's testing:</strong> build trust fast, handle emotional transitions, reset expectations without damaging the relationship.</p>
-      <ul style="font-size: 0.9rem; margin-top: 0.6rem;">
-        <li>Open by acknowledging the transition openly. Don't pretend it's business-as-usual.</li>
-        <li>Ask what was working well before, and what they wish had been different.</li>
-        <li>Commit to a specific short-term action: &ldquo;In the next week, I'll send you a fresh read on your account and my initial recommendations, then let's meet to align.&rdquo;</li>
-        <li>Separate the renewal from the trust-building. Don't let the renewal timeline pressure the first conversation.</li>
-      </ul>
-    </div>
-
-    <div class="scenario">
-      <div class="scenario-label">Scenario 02 &middot; Variant of assignment scenario</div>
-      <h4>The delayed app launch + refund request</h4>
-      <p class="scenario-prompt">&ldquo;A Host is on the phone. Their Mighty Pro app launch has been delayed three weeks past the date we gave them. They want a refund. Go.&rdquo;</p>
-      <p style="font-size: 0.88rem; color: var(--text-muted);"><strong style="color: var(--primary);">What he's testing:</strong> de-escalation, ownership, creative problem-solving under commercial pressure.</p>
-      <ul style="font-size: 0.9rem; margin-top: 0.6rem;">
-        <li>Own the delay. No excuses, no blaming other teams. &ldquo;We missed the date we committed to. That's on us.&rdquo;</li>
-        <li>Acknowledge the real cost to them &mdash; launch marketing, audience expectations, revenue timing.</li>
-        <li>Ask what they need to feel made whole. Sometimes it's not a refund: an extension, a credit, a white-glove launch, or an exec escalation they can see.</li>
-        <li>Be clear what you can commit to in the call, and commit to a decision timeline for the rest. &ldquo;I'll come back to you with an answer by end of day tomorrow.&rdquo;</li>
-        <li>Protect the long-term relationship even if a partial refund happens. The goal is that they stay and become advocates.</li>
-      </ul>
-    </div>
-
-    <div class="scenario">
-      <div class="scenario-label">Scenario 03 &middot; Likely fresh one</div>
-      <h4>Renewal at risk</h4>
-      <p class="scenario-prompt">&ldquo;A Host tells you they're not sure they're going to renew. They're not getting the engagement they expected. What do you say?&rdquo;</p>
-      <ul style="font-size: 0.9rem; margin-top: 0.6rem;">
-        <li>Don't defend. Ask questions first: what did they expect, what are they measuring, what would success have looked like by now.</li>
-        <li>Diagnose together: product issue, strategy issue, execution issue on their side, or misaligned expectation from the start? Each has a different fix.</li>
-        <li>Bring data. Mighty's benchmarks (59% weekly active return, 80%+ revenue retention, 84% member-created content) give reference points.</li>
-        <li>Offer a concrete re-engagement plan with a defined timeline before the renewal date. &ldquo;30-day plan &mdash; let's attack three specific levers and regroup in four weeks.&rdquo;</li>
-        <li>If the fit is genuinely wrong, say so. Trying to save a bad fit costs both sides more long-term.</li>
-      </ul>
-    </div>
-  </div>
-  <div class="page-counter">17 / 25</div>
-</section>
-
-<!-- ================= 12 · AI TRANSPARENCY ================= -->
-<section class="page page--navy" id="ai">
-  <div class="page-inner page-inner--narrow">
-    <div class="section-kicker">Lean In, Don't Hedge</div>
-    <h2 style="color: #fff;">The AI transparency story.</h2>
-    <p style="color: rgba(255,255,255,0.8); margin-bottom: 1.75rem;">Michael's fourth criterion was &ldquo;excitement to adopt AI-driven solutions and how they can make your work <em>sharper</em>.&rdquo; Your submission methodology is the proof. Lead with it.</p>
-
-    <div class="card card--dark" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(212, 168, 83, 0.3); padding: 1.75rem;">
-      <h4 style="color: var(--accent); font-family: var(--font-serif); font-size: 1.15rem; font-weight: 600; font-style: italic;">The workflow &mdash; as told to Jocelyn</h4>
-      <ol style="color: rgba(255,255,255,0.9); padding-left: 1.25rem; margin-top: 0.75rem;">
-        <li style="margin-bottom: 0.65rem;">Read through the assignment and recorded a long voice transcript, rambling through all my initial feedback on my own.</li>
-        <li style="margin-bottom: 0.65rem;">Used AI to clean up and organize what I'd said, fix grammar and flow, and structure it under the assignment's questions &mdash; without replacing my words or voice.</li>
-        <li style="margin-bottom: 0.65rem;">Used AI to fill in any gaps with feedback and ideas I hadn't considered. These show up as the &ldquo;Additional considerations&rdquo; sections, clearly labeled.</li>
-        <li>Everything in the main answers is my own words and thinking. The AI-suggested bullets are flagged, so you can see where my instincts end and the AI assist begins.</li>
-      </ol>
-    </div>
-
-    <h3 style="color: #fff; margin-top: 2rem;">Why this directly answers his criterion</h3>
-    <div class="grid-3" style="margin-top: 1rem;">
-      <div class="card card--dark" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
-        <h4 style="color: var(--accent);">Voice-first</h4>
-        <p style="color: rgba(255,255,255,0.85);">Your instincts come first. AI doesn't replace your thinking &mdash; it sharpens it.</p>
-      </div>
-      <div class="card card--dark" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
-        <h4 style="color: var(--accent);">Labeled</h4>
-        <p style="color: rgba(255,255,255,0.85);">You mark what's yours vs. what AI added. Honesty as a feature, not a risk.</p>
-      </div>
-      <div class="card card--dark" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
-        <h4 style="color: var(--accent);">Sharper, not faster</h4>
-        <p style="color: rgba(255,255,255,0.85);">Mirror his phrasing: AI as a <em>scalpel</em>, not a crutch.</p>
-      </div>
-    </div>
-
-    <h3 style="color: #fff; margin-top: 2rem;">How to bridge from AI to CS work</h3>
-    <div class="card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(212, 168, 83, 0.25); color: rgba(255,255,255,0.88);">
-      <p style="color: rgba(255,255,255,0.88);">&ldquo;What excites me about AI in CS isn't the speed &mdash; it's that it lets me spend more time on the parts of the job only a human can do. Reading the room on a renewal call. Sitting with a Host who's frustrated and figuring out what's really going on. Deciding when to push back and when to meet someone halfway. AI handles the note-taking, the drafting, the first pass at a success plan. I spend that reclaimed time on judgement.&rdquo;</p>
-    </div>
-
-    <div class="copy-row" style="margin-top: 0.75rem;">
-      <button class="btn btn--gold" data-copy="ai-script">Copy the AI answer</button>
-    </div>
-    <div id="ai-script" style="position: absolute; left: -9999px;">What excites me about AI in CS isn't the speed &mdash; it's that it lets me spend more time on the parts of the job only a human can do. Reading the room on a renewal call. Sitting with a Host who's frustrated and figuring out what's really going on. Deciding when to push back and when to meet someone halfway. AI handles the note-taking, the drafting, the first pass at a success plan. I spend that reclaimed time on judgement.</div>
-  </div>
-  <div class="page-counter">18 / 25</div>
-</section>
-
-<!-- ================= 13 · COMPANY INTEL ================= -->
 <section class="page page--cream" id="company">
   <div class="page-inner">
     <div class="section-kicker">The Homework, Refreshed</div>
@@ -2071,10 +1017,10 @@
       <p style="font-style: normal; font-family: var(--font-sans); font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">&mdash; Keep these in your back pocket. Drop one if Michael asks what stood out.</p>
     </div>
   </div>
-  <div class="page-counter">19 / 25</div>
+  <div class="page-counter">04 / 11</div>
 </section>
 
-<!-- ================= 14 · CUSTOMER REVIEWS ================= -->
+
 <section class="page page--warm" id="customer-reviews">
   <div class="page-inner">
     <div class="section-kicker">Voice of the Customer</div>
@@ -2506,10 +1452,10 @@
       </ul>
     </div>
   </div>
-  <div class="page-counter">20 / 25</div>
+  <div class="page-counter">05 / 11</div>
 </section>
 
-<!-- ================= 15 · EMPLOYEE REVIEWS ================= -->
+
 <section class="page page--cream" id="employee-reviews">
   <div class="page-inner">
     <div class="section-kicker">Voice of the Team</div>
@@ -2943,10 +1889,176 @@
       <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.75rem;">Scraped directly from Glassdoor (logged in) on 2026-04-24 using <code>data/interview-prep/glassdoor-scraper.js</code>. All dates and quotes are verbatim from those reviews. Where full quotes are trimmed for space, the ellipsis (&hellip;) is used and the source link preserves the full text.</p>
     </div>
   </div>
-  <div class="page-counter">21 / 25</div>
+  <div class="page-counter">06 / 11</div>
 </section>
 
-<!-- ================= 16 · RED FLAGS ================= -->
+
+<section class="page page--warm" id="glossary">
+  <div class="page-inner">
+    <div class="section-kicker">Quick Reference</div>
+    <h2>CSM & SaaS terms you'll hear.</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1.75rem; max-width: 640px;">Quick definitions so you can follow along and use the language naturally in conversations with Michael and the team.</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <h4>ACV</h4>
+        <p style="font-size: 0.88rem;">Annual Contract Value — the yearly revenue per customer. For Mighty Pro, roughly $28–30K per Host annually.</p>
+      </div>
+      <div class="card">
+        <h4>Churn / Churn rate</h4>
+        <p style="font-size: 0.88rem;">% of customers who cancel or downgrade in a given period. For CSMs, lowering churn = job security.</p>
+      </div>
+      <div class="card">
+        <h4>Community Health / Health Score</h4>
+        <p style="font-size: 0.88rem;">A metric (usually composite) measuring whether a community is thriving. Often includes engagement, retention, growth, activity.</p>
+      </div>
+      <div class="card">
+        <h4>Expansion / Expansion revenue</h4>
+        <p style="font-size: 0.88rem;">Revenue from existing customers who upgrade, add seats, or increase usage. Often higher margin than new customer revenue.</p>
+      </div>
+      <div class="card">
+        <h4>NRR (Net Revenue Retention)</h4>
+        <p style="font-size: 0.88rem;">Whether a customer base is growing or shrinking. NRR &gt; 100% means expansion outpaces churn. Good indicator of CS health.</p>
+      </div>
+      <div class="card">
+        <h4>Onboarding</h4>
+        <p style="font-size: 0.88rem;">The critical first 30–90 days helping a new Host get live, trained, and seeing value. Often determines renewal likelihood.</p>
+      </div>
+      <div class="card">
+        <h4>Playbook / SOP</h4>
+        <p style="font-size: 0.88rem;">A documented process. E.g., "onboarding playbook" = step-by-step for bringing a Host live. SOPs = Standard Operating Procedures.</p>
+      </div>
+      <div class="card">
+        <h4>Renewal</h4>
+        <p style="font-size: 0.88rem;">When a customer's contract ends and they re-sign (or don't). Renewals are the baseline CSM metric. Losing a renewal = churn.</p>
+      </div>
+      <div class="card">
+        <h4>Time to value (TTV)</h4>
+        <p style="font-size: 0.88rem;">How long it takes a new customer to see tangible benefit. Shorter = higher retention. For Mighty, getting a Host to first member signup fast.</p>
+      </div>
+      <div class="card">
+        <h4>Upsell / Cross-sell</h4>
+        <p style="font-size: 0.88rem;">Upsell = larger plan or tier. Cross-sell = different product/feature. Both = expansion revenue. CSMs often own these conversations.</p>
+      </div>
+      <div class="card">
+        <h4>Account Health / Risk flagging</h4>
+        <p style="font-size: 0.88rem;">Watching for warning signs (declining engagement, support tickets, inactivity). Catching at-risk accounts early prevents churn.</p>
+      </div>
+      <div class="card">
+        <h4>QBR (Quarterly Business Review)</h4>
+        <p style="font-size: 0.88rem;">Formal check-in with a customer to review performance, align on goals, and plan the next quarter. Often with executives.</p>
+      </div>
+    </div>
+  </div>
+  <div class="page-counter">07 / 11</div>
+</section>
+
+
+<section class="page page--cream" id="roleplay">
+  <div class="page-inner">
+    <div class="section-kicker">Be Ready to Get Pushed Live</div>
+    <h2>The roleplay frameworks.</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1.5rem; max-width: 640px;">You already did written scenarios for the assignment. Michael will very likely push you into the live version &mdash; he plays the Host, you play the CSM. Expect variants of the two you wrote plus one fresh one.</p>
+
+    <h3>Your five moves &mdash; use these on any roleplay</h3>
+    <div class="moves-list">
+      <div class="move"><strong>Ask a clarifying question before launching in.</strong> &ldquo;Before I respond, can I ask what's driving this for you?&rdquo; Shows diagnostic instinct.</div>
+      <div class="move"><strong>Name the emotion you're hearing.</strong> &ldquo;It sounds like you're frustrated, and honestly I'd be frustrated too.&rdquo; Don't skip this step.</div>
+      <div class="move"><strong>Don't rush to a solution.</strong> Rushing reads as defensive. Sit in the problem for a beat.</div>
+      <div class="move"><strong>Always end with a concrete next step.</strong> &ldquo;Here's what I'll do by Friday&rdquo; &gt;&gt;&gt; &ldquo;let me circle back.&rdquo;</div>
+      <div class="move"><strong>If you don't know, say so.</strong> &ldquo;I don't have that answer, but here's how I'd find out within 24 hours&rdquo; is a correct answer.</div>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-label">Scenario 01 &middot; Variant of assignment scenario</div>
+      <h4>The dependent, inherited Host</h4>
+      <p class="scenario-prompt">&ldquo;You've just taken over a Host account from another CSM who left. The Host is calling you now. They're anxious about the handoff and their renewal is in 60 days.&rdquo;</p>
+      <p style="font-size: 0.88rem; color: var(--text-muted);"><strong style="color: var(--primary);">What he's testing:</strong> build trust fast, handle emotional transitions, reset expectations without damaging the relationship.</p>
+      <ul style="font-size: 0.9rem; margin-top: 0.6rem;">
+        <li>Open by acknowledging the transition openly. Don't pretend it's business-as-usual.</li>
+        <li>Ask what was working well before, and what they wish had been different.</li>
+        <li>Commit to a specific short-term action: &ldquo;In the next week, I'll send you a fresh read on your account and my initial recommendations, then let's meet to align.&rdquo;</li>
+        <li>Separate the renewal from the trust-building. Don't let the renewal timeline pressure the first conversation.</li>
+      </ul>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-label">Scenario 02 &middot; Variant of assignment scenario</div>
+      <h4>The delayed app launch + refund request</h4>
+      <p class="scenario-prompt">&ldquo;A Host is on the phone. Their Mighty Pro app launch has been delayed three weeks past the date we gave them. They want a refund. Go.&rdquo;</p>
+      <p style="font-size: 0.88rem; color: var(--text-muted);"><strong style="color: var(--primary);">What he's testing:</strong> de-escalation, ownership, creative problem-solving under commercial pressure.</p>
+      <ul style="font-size: 0.9rem; margin-top: 0.6rem;">
+        <li>Own the delay. No excuses, no blaming other teams. &ldquo;We missed the date we committed to. That's on us.&rdquo;</li>
+        <li>Acknowledge the real cost to them &mdash; launch marketing, audience expectations, revenue timing.</li>
+        <li>Ask what they need to feel made whole. Sometimes it's not a refund: an extension, a credit, a white-glove launch, or an exec escalation they can see.</li>
+        <li>Be clear what you can commit to in the call, and commit to a decision timeline for the rest. &ldquo;I'll come back to you with an answer by end of day tomorrow.&rdquo;</li>
+        <li>Protect the long-term relationship even if a partial refund happens. The goal is that they stay and become advocates.</li>
+      </ul>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-label">Scenario 03 &middot; Likely fresh one</div>
+      <h4>Renewal at risk</h4>
+      <p class="scenario-prompt">&ldquo;A Host tells you they're not sure they're going to renew. They're not getting the engagement they expected. What do you say?&rdquo;</p>
+      <ul style="font-size: 0.9rem; margin-top: 0.6rem;">
+        <li>Don't defend. Ask questions first: what did they expect, what are they measuring, what would success have looked like by now.</li>
+        <li>Diagnose together: product issue, strategy issue, execution issue on their side, or misaligned expectation from the start? Each has a different fix.</li>
+        <li>Bring data. Mighty's benchmarks (59% weekly active return, 80%+ revenue retention, 84% member-created content) give reference points.</li>
+        <li>Offer a concrete re-engagement plan with a defined timeline before the renewal date. &ldquo;30-day plan &mdash; let's attack three specific levers and regroup in four weeks.&rdquo;</li>
+        <li>If the fit is genuinely wrong, say so. Trying to save a bad fit costs both sides more long-term.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="page-counter">08 / 11</div>
+</section>
+
+
+<section class="page page--navy" id="ai">
+  <div class="page-inner page-inner--narrow">
+    <div class="section-kicker">Lean In, Don't Hedge</div>
+    <h2 style="color: #fff;">The AI transparency story.</h2>
+    <p style="color: rgba(255,255,255,0.8); margin-bottom: 1.75rem;">Michael's fourth criterion was &ldquo;excitement to adopt AI-driven solutions and how they can make your work <em>sharper</em>.&rdquo; Your submission methodology is the proof. Lead with it.</p>
+
+    <div class="card card--dark" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(212, 168, 83, 0.3); padding: 1.75rem;">
+      <h4 style="color: var(--accent); font-family: var(--font-serif); font-size: 1.15rem; font-weight: 600; font-style: italic;">The workflow &mdash; as told to Jocelyn</h4>
+      <ol style="color: rgba(255,255,255,0.9); padding-left: 1.25rem; margin-top: 0.75rem;">
+        <li style="margin-bottom: 0.65rem;">Read through the assignment and recorded a long voice transcript, rambling through all my initial feedback on my own.</li>
+        <li style="margin-bottom: 0.65rem;">Used AI to clean up and organize what I'd said, fix grammar and flow, and structure it under the assignment's questions &mdash; without replacing my words or voice.</li>
+        <li style="margin-bottom: 0.65rem;">Used AI to fill in any gaps with feedback and ideas I hadn't considered. These show up as the &ldquo;Additional considerations&rdquo; sections, clearly labeled.</li>
+        <li>Everything in the main answers is my own words and thinking. The AI-suggested bullets are flagged, so you can see where my instincts end and the AI assist begins.</li>
+      </ol>
+    </div>
+
+    <h3 style="color: #fff; margin-top: 2rem;">Why this directly answers his criterion</h3>
+    <div class="grid-3" style="margin-top: 1rem;">
+      <div class="card card--dark" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
+        <h4 style="color: var(--accent);">Voice-first</h4>
+        <p style="color: rgba(255,255,255,0.85);">Your instincts come first. AI doesn't replace your thinking &mdash; it sharpens it.</p>
+      </div>
+      <div class="card card--dark" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
+        <h4 style="color: var(--accent);">Labeled</h4>
+        <p style="color: rgba(255,255,255,0.85);">You mark what's yours vs. what AI added. Honesty as a feature, not a risk.</p>
+      </div>
+      <div class="card card--dark" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
+        <h4 style="color: var(--accent);">Sharper, not faster</h4>
+        <p style="color: rgba(255,255,255,0.85);">Mirror his phrasing: AI as a <em>scalpel</em>, not a crutch.</p>
+      </div>
+    </div>
+
+    <h3 style="color: #fff; margin-top: 2rem;">How to bridge from AI to CS work</h3>
+    <div class="card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(212, 168, 83, 0.25); color: rgba(255,255,255,0.88);">
+      <p style="color: rgba(255,255,255,0.88);">&ldquo;What excites me about AI in CS isn't the speed &mdash; it's that it lets me spend more time on the parts of the job only a human can do. Reading the room on a renewal call. Sitting with a Host who's frustrated and figuring out what's really going on. Deciding when to push back and when to meet someone halfway. AI handles the note-taking, the drafting, the first pass at a success plan. I spend that reclaimed time on judgement.&rdquo;</p>
+    </div>
+
+    <div class="copy-row" style="margin-top: 0.75rem;">
+      <button class="btn btn--gold" data-copy="ai-script">Copy the AI answer</button>
+    </div>
+    <div id="ai-script" style="position: absolute; left: -9999px;">What excites me about AI in CS isn't the speed &mdash; it's that it lets me spend more time on the parts of the job only a human can do. Reading the room on a renewal call. Sitting with a Host who's frustrated and figuring out what's really going on. Deciding when to push back and when to meet someone halfway. AI handles the note-taking, the drafting, the first pass at a success plan. I spend that reclaimed time on judgement.</div>
+  </div>
+  <div class="page-counter">09 / 11</div>
+</section>
+
+
 <section class="page page--warm" id="flags">
   <div class="page-inner">
     <div class="section-kicker">Eyes Open</div>
@@ -3007,76 +2119,15 @@
       </div>
     </div>
   </div>
-  <div class="page-counter">22 / 25</div>
+  <div class="page-counter">10 / 11</div>
 </section>
 
-<!-- ================= 17 · CSM GLOSSARY ================= -->
-<section class="page page--warm" id="glossary">
-  <div class="page-inner">
-    <div class="section-kicker">Quick Reference</div>
-    <h2>CSM & SaaS terms you'll hear.</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.75rem; max-width: 640px;">Quick definitions so you can follow along and use the language naturally in conversations with Michael and the team.</p>
 
-    <div class="grid-2">
-      <div class="card">
-        <h4>ACV</h4>
-        <p style="font-size: 0.88rem;">Annual Contract Value — the yearly revenue per customer. For Mighty Pro, roughly $28–30K per Host annually.</p>
-      </div>
-      <div class="card">
-        <h4>Churn / Churn rate</h4>
-        <p style="font-size: 0.88rem;">% of customers who cancel or downgrade in a given period. For CSMs, lowering churn = job security.</p>
-      </div>
-      <div class="card">
-        <h4>Community Health / Health Score</h4>
-        <p style="font-size: 0.88rem;">A metric (usually composite) measuring whether a community is thriving. Often includes engagement, retention, growth, activity.</p>
-      </div>
-      <div class="card">
-        <h4>Expansion / Expansion revenue</h4>
-        <p style="font-size: 0.88rem;">Revenue from existing customers who upgrade, add seats, or increase usage. Often higher margin than new customer revenue.</p>
-      </div>
-      <div class="card">
-        <h4>NRR (Net Revenue Retention)</h4>
-        <p style="font-size: 0.88rem;">Whether a customer base is growing or shrinking. NRR &gt; 100% means expansion outpaces churn. Good indicator of CS health.</p>
-      </div>
-      <div class="card">
-        <h4>Onboarding</h4>
-        <p style="font-size: 0.88rem;">The critical first 30–90 days helping a new Host get live, trained, and seeing value. Often determines renewal likelihood.</p>
-      </div>
-      <div class="card">
-        <h4>Playbook / SOP</h4>
-        <p style="font-size: 0.88rem;">A documented process. E.g., "onboarding playbook" = step-by-step for bringing a Host live. SOPs = Standard Operating Procedures.</p>
-      </div>
-      <div class="card">
-        <h4>Renewal</h4>
-        <p style="font-size: 0.88rem;">When a customer's contract ends and they re-sign (or don't). Renewals are the baseline CSM metric. Losing a renewal = churn.</p>
-      </div>
-      <div class="card">
-        <h4>Time to value (TTV)</h4>
-        <p style="font-size: 0.88rem;">How long it takes a new customer to see tangible benefit. Shorter = higher retention. For Mighty, getting a Host to first member signup fast.</p>
-      </div>
-      <div class="card">
-        <h4>Upsell / Cross-sell</h4>
-        <p style="font-size: 0.88rem;">Upsell = larger plan or tier. Cross-sell = different product/feature. Both = expansion revenue. CSMs often own these conversations.</p>
-      </div>
-      <div class="card">
-        <h4>Account Health / Risk flagging</h4>
-        <p style="font-size: 0.88rem;">Watching for warning signs (declining engagement, support tickets, inactivity). Catching at-risk accounts early prevents churn.</p>
-      </div>
-      <div class="card">
-        <h4>QBR (Quarterly Business Review)</h4>
-        <p style="font-size: 0.88rem;">Formal check-in with a customer to review performance, align on goals, and plan the next quarter. Often with executives.</p>
-      </div>
-    </div>
-  </div>
-  <div class="page-counter">23 / 25</div>
-</section>
-
-<!-- ================= 18 · NEXT ROUND: RYAN ================= -->
 <section class="page page--warm" id="next">
   <div class="page-inner">
-    <div class="section-kicker">After Tomorrow</div>
+    <div class="section-kicker">After Today</div>
     <h2>Next round &mdash; Ryan, the COO.</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.75rem; max-width: 660px;">If you land Mary and Denika tomorrow, the only round left is Ryan. Plan the story sequencing now &mdash; don't burn your strategic material on Mary or your warm material on Denika.</p>
+    <p style="color: var(--text-muted); margin-bottom: 1.75rem; max-width: 660px;">If you land Mary and Denika today, the only round left is Ryan. Plan the story sequencing now &mdash; don't burn your strategic material on Mary or your warm material on Denika.</p>
 
     <div class="card">
       <div style="font-family: var(--font-serif); font-size: 2rem; font-weight: 600; color: var(--secondary);">05</div>
@@ -3092,285 +2143,19 @@
     <div class="card">
       <ul>
         <li><strong>Michael (round 2, done):</strong> disgruntled-client turnaround, AI transparency, creative/community moment.</li>
-        <li><strong>Mary (tomorrow, round 3):</strong> the best commercial story &mdash; renewal saved or expansion driven. Quantified.</li>
-        <li><strong>Denika (tomorrow, round 4):</strong> a team win, not a solo win. A &ldquo;this is what I'm like to work with&rdquo; story.</li>
+        <li><strong>Mary (today, round 3):</strong> the best commercial story &mdash; renewal saved or expansion driven. Quantified.</li>
+        <li><strong>Denika (today, round 4):</strong> a team win, not a solo win. A &ldquo;this is what I'm like to work with&rdquo; story.</li>
         <li><strong>Ryan (round 5):</strong> the strategic story. Zooming out. What you'd do differently. Where you see the market going.</li>
       </ul>
     </div>
 
     <div class="card card--quote" style="margin-top: 1.25rem;">
-      <p>Two rounds tomorrow. One on Tuesday at most. You are within reach.</p>
+      <p>Two rounds today. One on Tuesday at most. You are within reach.</p>
     </div>
   </div>
-  <div class="page-counter">24 / 25</div>
+  <div class="page-counter">11 / 11</div>
 </section>
 
-<!-- ================= 19 · APPENDIX · ROUND 2 RECAP ================= -->
-<section class="page page--navy" id="appendix">
-  <div class="page-inner">
-    <div class="section-kicker">Reference &middot; The Round Behind You</div>
-    <h2 style="color: #fff;">Appendix &mdash; Round 2 with Michael.</h2>
-    <p style="color: rgba(255,255,255,0.78); max-width: 660px; margin-bottom: 1.5rem;">Mary may probe areas Michael flagged. She may quote what you said. Skim this only if she references your earlier round &mdash; otherwise it's recall material, not preparation.</p>
-
-    <div class="card" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14);">
-      <p style="color: rgba(255,255,255,0.92); font-size: 0.92rem;">Below: who Michael is, the four-criteria scorecard he wrote on LinkedIn, the 90-second intro you delivered, the questions you fielded and asked. Untouched from the round-2 prep.</p>
-    </div>
-  </div>
-  <div class="page-counter">25 / 25</div>
-</section>
-
-<!-- ================= APPENDIX · MEET MICHAEL ================= -->
-<section class="page page--cream" id="michael">
-  <div class="page-inner">
-    <div class="section-kicker">Round 2 Recap</div>
-    <h2>Meet Michael Littig.</h2>
-    <p style="color: var(--text-muted); max-width: 640px; margin-bottom: 2rem;">Michael isn't a traditional CS leader. Reading him as just a Customer Success manager will cause you to misframe the entire conversation.</p>
-
-    <div style="margin-bottom: 1rem;">
-      <div class="profile-header">
-        <div class="profile-role">Manager, Mighty Pro Customer Success</div>
-        <div class="profile-name">Michael Littig</div>
-        <div class="profile-tag">&ldquo;Creative Technologist&rdquo; &middot; 15+ years at the intersection of arts, tech &amp; community</div>
-      </div>
-      <div class="profile-body">
-        <div class="profile-stats">
-          <div class="profile-stat"><strong>Tony</strong><span>Co-producer &middot; The Inheritance</span></div>
-          <div class="profile-stat"><strong>Fulbright</strong><span>Drama &middot; Mongolia</span></div>
-          <div class="profile-stat"><strong>NYU Tisch</strong><span>Professor</span></div>
-          <div class="profile-stat"><strong>100+</strong><span>Startups advised &middot; 180 countries</span></div>
-        </div>
-        <h4 style="margin-top: 0.5rem;">Also</h4>
-        <ul>
-          <li>Co-founded the Zuckerberg Institute. Director of Creator Programming at HUG (web3 creative accelerator). Obie Award.</li>
-          <li>Community work with the Office of the Dalai Lama, UNHCR, CZI, State Department, CARE, Save the Children, USAID.</li>
-          <li>Co-host of the Patrick Page Podcast. $10M+ revenue attributed across advisory work.</li>
-        </ul>
-      </div>
-    </div>
-
-    <h3 style="margin-top: 2rem;">How he reads candidates</h3>
-    <div class="grid-2">
-      <div class="card">
-        <h4>Community design, not ticket queues</h4>
-        <p style="color: var(--text); font-size: 0.92rem;">Customer Success = Host transformation, not SLA management.</p>
-      </div>
-      <div class="card">
-        <h4>Stories over metrics</h4>
-        <p style="color: var(--text); font-size: 0.92rem;">Dutchie examples landed as stories with human stakes, not numbers first.</p>
-      </div>
-      <div class="card">
-        <h4>Grace with high-ego clients</h4>
-        <p style="color: var(--text); font-size: 0.92rem;">Executive presence with difficult personalities. No flinching.</p>
-      </div>
-      <div class="card">
-        <h4>Curiosity about AI &amp; tools</h4>
-        <p style="color: var(--text); font-size: 0.92rem;">Creative-technologist identity = respect for AI fluency, not just ops.</p>
-      </div>
-    </div>
-
-    <div class="card card--quote" style="margin-top: 1.5rem;">
-      <p>&ldquo;Communities are the next generation of digital business.&rdquo;</p>
-      <p style="font-style: normal; font-family: var(--font-sans); font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">&mdash; Mighty's core pitch. The frame Michael uses.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ================= APPENDIX · MICHAEL FOUR CRITERIA ================= -->
-<section class="page page--warm" id="criteria">
-  <div class="page-inner">
-    <div class="section-kicker">Round 2 Recap &middot; His Own Words</div>
-    <h2>Michael's four-criteria scorecard.</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.75rem; max-width: 640px;">The four bullets Michael wrote on LinkedIn about this exact role. The rubric you mirrored back in round 2.</p>
-
-    <div class="criteria">
-      <div class="criteria-row criteria-row--head">
-        <div>What he said</div>
-        <div>Your proof</div>
-        <div>The story you told</div>
-      </div>
-      <div class="criteria-row">
-        <div class="criteria-criterion">&ldquo;Genuinely loves helping people win.&rdquo;</div>
-        <div class="criteria-proof">200+ coaching clients, 98% satisfaction, $5K&ndash;$30K salary gains.</div>
-        <div class="criteria-story">Led with what the client got, not what you got credit for.</div>
-      </div>
-      <div class="criteria-row">
-        <div class="criteria-criterion">&ldquo;Willing to have hard conversations, curious enough to keep learning.&rdquo;</div>
-        <div class="criteria-proof">Dutchie disgruntled-client work. Hard conversations as the work itself.</div>
-        <div class="criteria-story">Hard conversation as the win, not a thing you worked around.</div>
-      </div>
-      <div class="criteria-row">
-        <div class="criteria-criterion">&ldquo;Comfortable owning outcomes, not just tasks.&rdquo;</div>
-        <div class="criteria-proof">Founder. ClearCareer, JSIS, Monetize Your Magic.</div>
-        <div class="criteria-story">Outcome language: &ldquo;owned her renewal,&rdquo; &ldquo;got him to 90-day activation.&rdquo;</div>
-      </div>
-      <div class="criteria-row">
-        <div class="criteria-criterion">&ldquo;Excitement to adopt AI-driven solutions and how they can make your work sharper.&rdquo;</div>
-        <div class="criteria-proof">19 of 21 deliverables on Claude. 3,500-reg AI webinar.</div>
-        <div class="criteria-story">AI as a scalpel, not a crutch. Echoed his &ldquo;sharper&rdquo; line.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= APPENDIX · MICHAEL 90-SEC INTRO ================= -->
-<section class="page page--cream" id="intro">
-  <div class="page-inner page-inner--narrow">
-    <div class="section-kicker">Round 2 Recap &middot; The Opener You Used</div>
-    <h2>The 90-second intro you delivered to Michael.</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Preserved verbatim. If Mary asks &ldquo;what did you tell Michael when he asked about your background,&rdquo; this is the answer.</p>
-
-    <div class="intro-story" id="intro-script">
-      <p>I've spent the last ten-plus years at the intersection of community, coaching, and technology.</p>
-      <p>Most recently I built ClearCareer, where I coached over 200 professionals through career transitions. Structured eight-week programs, 21 custom deliverables per client, 98% satisfaction rate. Clients walked away with $5K to $30K salary increases.</p>
-      <p>Before that, Dutchie &mdash; where I was the person they pulled in for the hardest clients during the Canadian expansion. Thirty-plus retail locations, regulatory complexity, a lot of disgruntled operators who'd been bounced around. Before Dutchie, Lighthouse Labs, Canada's largest coding bootcamp, where I scaled community events from 150 to 650-plus people a month across six cities and built 30-plus partnerships with companies like McKinsey and Microsoft.</p>
-      <p>What draws me to Mighty Pro is the intersection. I've built communities on Skool, Facebook, and custom platforms. I've been a Host. And I've been building AI-powered tools for the last two years &mdash; 19 of 21 client deliverables now run through a system I built on Claude.</p>
-      <p>This role jumped out because it's exactly the kind of work where hard conversations and owning outcomes are the job, not the exception. That's where I do my best work.</p>
-    </div>
-
-    <div class="copy-row">
-      <button class="btn btn--gold" data-copy="intro-script">Copy intro</button>
-    </div>
-  </div>
-</section>
-
-<!-- ================= APPENDIX · MICHAEL LIKELY QUESTIONS ================= -->
-<section class="page page--warm" id="questions">
-  <div class="page-inner">
-    <div class="section-kicker">Round 2 Recap</div>
-    <h2>Questions Michael likely asked.</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.75rem; max-width: 640px;">The 15 questions and answer frames that prepped you for round 2. Reference if Mary references something specific Michael said.</p>
-
-    <div class="q-group">A &middot; Your story &amp; fit</div>
-    <details>
-      <summary>Walk me through your background. What brought you to CS, and why Mighty Pro?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body"><p>Used the 90-second intro above. Tied into Michael's four criteria.</p></div>
-    </details>
-    <details>
-      <summary>What about Mighty Networks attracted you?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body"><p>Three points: Community Design&trade; as a real framework; CSM as consultative, not check-in; the Host roster (Tony Robbins Arena, Mark Hyman).</p></div>
-    </details>
-    <details>
-      <summary>Why leave ClearCareer?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body"><p>Forward-looking, not complaining. Applying what you learned at greater leverage.</p></div>
-    </details>
-    <details>
-      <summary>Tell me about a Host or customer you turned around.<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body"><p>Dutchie disgruntled-client story. Situation, diagnosis, the move, outcome, lesson.</p></div>
-    </details>
-
-    <div class="q-group">B &middot; Role mechanics</div>
-    <details>
-      <summary>How do you approach renewal at 6 / 3 / 1 months?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body"><p>6 mo: value audit. 3 mo: alignment with stakeholder. 1 mo: no surprises &mdash; execution, not negotiation.</p></div>
-    </details>
-    <details>
-      <summary>How do you build a success plan for a new Host?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body"><p>Start with their goals, not your template. Build with them, not for them.</p></div>
-    </details>
-    <details>
-      <summary>How do you spot at-risk before it's obvious?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body"><p>Champion goes quiet, engagement drops, Host stops investing on their side, conversations shift from &ldquo;grow this&rdquo; to &ldquo;justify this.&rdquo;</p></div>
-    </details>
-    <details>
-      <summary>How do you handle a difficult-personality, high-value Host?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body"><p>Separate style from substance. Not personal. Calm professional in the room.</p></div>
-    </details>
-
-    <div class="q-group">C &middot; Product &amp; strategy</div>
-    <details>
-      <summary>Your take on Mighty after spending time on it?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body"><p>Loved Community Design + People Magic. Friction on tagline help and $319/mo Growth plan. Curious about Tony Robbins Skool vs. Mighty.</p></div>
-    </details>
-    <details>
-      <summary>Ideal Mighty Pro Host vs. wrong fit?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body"><p>Ideal: existing audience, clear purpose, capacity to lead. Wrong: outsourcing the work or treating community as marketing.</p></div>
-    </details>
-    <details>
-      <summary>Differentiate Mighty Pro vs. Circle / Kajabi / Skool / custom?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body"><p>Branded native apps in weeks, Community Design baked in, CSM partnership.</p></div>
-    </details>
-    <details>
-      <summary>How do you use AI in CS day-to-day?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body"><p>Otter &rarr; Claude workflow. AI buys time on high-judgement work. See AI Transparency section.</p></div>
-    </details>
-
-    <div class="q-group">D &middot; Self-awareness</div>
-    <details>
-      <summary>Area you're actively working on?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body"><p>Pushing back with execs more directly. Sharper commercial instincts. Going deeper vs. broad.</p></div>
-    </details>
-    <details>
-      <summary>What manager gets the best out of you?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body"><p>Context + trust. Direct feedback. Available when stuck.</p></div>
-    </details>
-    <details>
-      <summary>Where in 2&ndash;3 years?<svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
-      <div class="details-body"><p>The CSM others come to for hard accounts. On a path toward shaping CS at portfolio level.</p></div>
-    </details>
-  </div>
-</section>
-
-<!-- ================= APPENDIX · QUESTIONS YOU ASKED MICHAEL ================= -->
-<section class="page page--cream" id="ask">
-  <div class="page-inner">
-    <div class="section-kicker">Round 2 Recap</div>
-    <h2>Questions you asked Michael.</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.75rem; max-width: 640px;">Don't repeat these to Mary. Listen for whether her answers contradict or extend his.</p>
-
-    <div class="q-group">About the role &amp; team</div>
-    <div class="ask-list">
-      <div class="ask">
-        <div class="ask-kicker">Portfolio</div>
-        <div class="ask-q">What does the portfolio look like for a CSM on your team? How many Hosts, what mix of segments, what ACV range?</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">Trajectory</div>
-        <div class="ask-q">Where is the CS team today, and where are you trying to take it over the next year?</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">Day 90</div>
-        <div class="ask-q">What does a great first 90 days look like? What would tell you, three months in, that you made a great hire?</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">Hand-offs</div>
-        <div class="ask-q">How does CS partner with product and the community/education team?</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">Hardest Host</div>
-        <div class="ask-q">What's the hardest type of Host to work with? Where do CSMs on your team tend to struggle?</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">Community Health</div>
-        <div class="ask-q">How do you measure whether a Host's community is healthy? Is there a defined framework?</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">Weekly Cadence</div>
-        <div class="ask-q">What does the weekly rhythm look like for a CSM on your team?</div>
-      </div>
-    </div>
-
-    <div class="q-group">About Mighty's strategy</div>
-    <div class="ask-list">
-      <div class="ask">
-        <div class="ask-kicker">Growth profile</div>
-        <div class="ask-q">Mighty Pro has 450+ Hosts now. What's the growth profile &mdash; deeper in the segment or new verticals?</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">AI roadmap</div>
-        <div class="ask-q">Where does AI fit into the Host experience and the CSM workflow over the next year?</div>
-      </div>
-      <div class="ask">
-        <div class="ask-kicker">Expansion</div>
-        <div class="ask-q">What does the expansion motion look like today?</div>
-      </div>
-    </div>
-
-    <div class="q-group">Closing question</div>
-    <div class="card card--dark" style="margin-top: 0.25rem;">
-      <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.05rem; color: #fff; line-height: 1.6;" id="closer-script">&ldquo;Based on what you've heard so far, is there anything about my background where you'd want more detail, or any concern I can address before we wrap?&rdquo;</p>
-    </div>
-  </div>
-</section>
 
 <script>
   // Countdown to April 24, 2026 @ 2:00 PM EDT (18:00 UTC)
