@@ -641,6 +641,88 @@
     h1, h2, h3, h4 { break-after: avoid; }
     .cover { page-break-after: always; }
   }
+
+  /* Page-set switcher (sidebar, desktop) */
+  .page-switcher {
+    padding: 0.65rem 0.85rem 0.4rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .page-switcher-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    padding: 0 0.5rem;
+  }
+  .ps-item {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 0.5rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: all 0.15s ease;
+  }
+  .ps-item:hover { background: var(--cream); color: var(--primary); text-decoration: none; }
+  .ps-item.active {
+    background: var(--primary);
+    color: #fff;
+    font-weight: 600;
+  }
+  .ps-item.active:hover { background: var(--primary); color: #fff; }
+  .ps-tag {
+    font-size: 0.62rem;
+    color: var(--text-muted);
+    margin-left: auto;
+    letter-spacing: 0.04em;
+  }
+  .ps-item.active .ps-tag { color: rgba(255,255,255,0.7); }
+
+  /* Page-set switcher (mobile, top of viewport) */
+  .mobile-page-switcher {
+    display: none;
+    position: fixed;
+    top: 3.25rem;
+    left: 0; right: 0;
+    z-index: 99;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.5rem 0.5rem;
+    gap: 0.25rem;
+    justify-content: space-between;
+  }
+  .mps-item {
+    flex: 1;
+    text-align: center;
+    padding: 0.45rem 0.4rem;
+    border-radius: 0.4rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 500;
+    background: transparent;
+    border: 1px solid transparent;
+  }
+  .mps-item:hover { text-decoration: none; }
+  .mps-item.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+  @media (max-width: 1023px) {
+    .mobile-page-switcher { display: flex; }
+    .page { padding-top: 7rem !important; }
+  }
+
 </style>
 </head>
 <body>
@@ -714,7 +796,7 @@
     </div>
     <div class="cover-meta">Prepared for Izzy &middot; April 2026 &middot; Round 3</div>
   </div>
-  <div class="page-counter">01 / 25</div>
+  <div class="page-counter">01 / 32</div>
 </section>
 
 <!-- ================= 02 · TODAY AT A GLANCE ================= -->
@@ -766,7 +848,7 @@
       <p style="font-style: normal; font-family: var(--font-sans); font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">She wound down a coaching-platform startup 12 months ago and joined Mighty. You are mid-stride on yours. She'll respect that you know what that decision feels like.</p>
     </div>
   </div>
-  <div class="page-counter">02 / 25</div>
+  <div class="page-counter">02 / 32</div>
 </section>
 
 <!-- ================= 03 · FUNNEL MAP ================= -->
@@ -828,7 +910,7 @@
       </div>
     </div>
   </div>
-  <div class="page-counter">03 / 25</div>
+  <div class="page-counter">03 / 32</div>
 </section>
 
 <!-- ================= 04 · MEET MARY ================= -->
@@ -924,10 +1006,130 @@
       </div>
     </div>
   </div>
-  <div class="page-counter">04 / 25</div>
+  <div class="page-counter">04 / 32</div>
 </section>
 
-<!-- ================= 05 · MARY LIKELY QUESTIONS ================= -->
+<!-- ================= 05 · YOUR CURIOSITIES FOR MARY ================= -->
+<section class="page page--cream" id="mary-curiosities">
+  <div class="page-inner">
+    <div class="section-kicker">In Your Own Voice</div>
+    <h2>Your curiosities for Mary.</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1.75rem; max-width: 680px;">Fifteen questions, your own words. Not the polished CSM-candidate asks &mdash; the ones you actually want answers to. Pick 3-4 you genuinely care about and bring them in addition to the structured asks. Real curiosity beats prepared smarts every time.</p>
+
+    <div class="q-group">Her metrics &amp; her North Star</div>
+    <div class="ask-list">
+      <div class="ask">
+        <div class="ask-kicker">Core metrics</div>
+        <div class="ask-q">&ldquo;What are the core metrics that you're measuring?&rdquo;</div>
+        <div class="ask-why">Asks her to articulate her dashboard out loud. Whatever she names first is the leading indicator she actually watches.</div>
+      </div>
+      <div class="ask">
+        <div class="ask-kicker">What she's improving</div>
+        <div class="ask-q">&ldquo;What are you constantly striving to improve right now?&rdquo;</div>
+        <div class="ask-why">A coach question, in her language. Invites her to talk about an open problem &mdash; that's where the seat could matter.</div>
+      </div>
+    </div>
+
+    <div class="q-group">Her biggest problems &mdash; and where you fit</div>
+    <div class="ask-list">
+      <div class="ask">
+        <div class="ask-kicker">How you help</div>
+        <div class="ask-q">&ldquo;What are the things I could do to help you get there &mdash; and help the rest of the team get there too?&rdquo;</div>
+        <div class="ask-why">Direct, two-axis (you AND the team). Frames you as a contributor to her objectives, not someone shopping for a comp band.</div>
+      </div>
+      <div class="ask">
+        <div class="ask-kicker">Wave the wand</div>
+        <div class="ask-q">&ldquo;If you could think hard about the biggest problems you're dealing with right now &mdash; and imagine what things would look like if those problems were completely gone &mdash; what would those be?&rdquo;</div>
+        <div class="ask-why">A coaching move. The wave-the-wand framing surfaces whatever is keeping her up at night without making her admit it's keeping her up at night.</div>
+      </div>
+    </div>
+
+    <div class="q-group">The vision &amp; product strategy</div>
+    <div class="ask-list">
+      <div class="ask">
+        <div class="ask-kicker">The big vision</div>
+        <div class="ask-q">&ldquo;What's the big vision?&rdquo;</div>
+        <div class="ask-why">The simplest version of the question, on purpose. Forces her to give the most distilled answer. Whatever she lands on is where the company's energy actually goes.</div>
+      </div>
+      <div class="ask">
+        <div class="ask-kicker">AI direction</div>
+        <div class="ask-q">&ldquo;Mighty is working on innovative ways to integrate AI to help users have a better experience and achieve their goals faster. What's the broad vision there?&rdquo;</div>
+        <div class="ask-why">Sets up your AI-transparency story if she leans into it. Invites her to talk about AI Cohost without you having to bring it up.</div>
+      </div>
+      <div class="ask">
+        <div class="ask-kicker">Pro vs. Hosts mix</div>
+        <div class="ask-q">&ldquo;Is Mighty placing a heavier focus on Pro Hosts or on the broader Host base? Equally both?&rdquo;</div>
+        <div class="ask-why">Tests for strategic clarity. The honest answer is that Pro is the leverage tier ($14.4K avg Launch vs. $240K avg Pro) but you want to hear how she frames it in her own words.</div>
+      </div>
+    </div>
+
+    <div class="q-group">Experiments &amp; what's moving the bottom line</div>
+    <div class="ask-list">
+      <div class="ask">
+        <div class="ask-kicker">Experiments running</div>
+        <div class="ask-q">&ldquo;What are the experiments you've run and are running right now?&rdquo;</div>
+        <div class="ask-why">Reveals whether her CSM team is in test-and-learn mode or execution mode. Either is fine; the answer tells you what kind of seat this is.</div>
+      </div>
+      <div class="ask">
+        <div class="ask-kicker">What's actually moving the numbers</div>
+        <div class="ask-q">&ldquo;What's had the most direct impact on those bottom-line numbers?&rdquo;</div>
+        <div class="ask-why">Forces her to attribute. Whatever she names is the thing the team needs more of. That's the thing you'd be hired to do more of.</div>
+      </div>
+    </div>
+
+    <div class="q-group">Deal structure &amp; partnerships</div>
+    <div class="ask-list">
+      <div class="ask">
+        <div class="ask-kicker">Big-platform agreements</div>
+        <div class="ask-q">&ldquo;What does an agreement with a big platform with a huge audience look like?&rdquo;</div>
+        <div class="ask-why">You're naming the question most candidates won't dare ask. Mighty's flagship deals (Tony Robbins, Mark Hyman, Marie Forleo) work differently than the $33K Essential package &mdash; you want to understand the spread.</div>
+      </div>
+      <div class="ask">
+        <div class="ask-kicker">Tony Robbins two-way</div>
+        <div class="ask-q">&ldquo;There's obviously a two-way advantage when Tony Robbins comes onto your platform. What does that look like from where you sit?&rdquo;</div>
+        <div class="ask-why">Shows you see the partnership flywheel, not just the line item. Logo &middot; case study &middot; product feedback at scale &middot; network effects through the Pro Hosts community. She'll warm to this.</div>
+      </div>
+      <div class="ask">
+        <div class="ask-kicker">Big-creator funnel effect</div>
+        <div class="ask-q">&ldquo;When Tony says he's switching to Mighty Pro, that puts a ton of new eyes and traffic on the platform. Same with any big creator. How does that show up in how the CS team works?&rdquo;</div>
+        <div class="ask-why">Reframes top-of-funnel as a CSM concern, not just marketing's. Mary will tell you whether the team gets pulled into deal structuring or stays purely post-sale.</div>
+      </div>
+      <div class="ask">
+        <div class="ask-kicker">Mega vs. small Pro</div>
+        <div class="ask-q">&ldquo;What does the deal look like for a Tony-tier Pro Host versus a Pro Host with a much smaller audience who still wants the custom branded offer? Two very different things.&rdquo;</div>
+        <div class="ask-why">You're naming the spectrum out loud. The mega-creator deal is partnership-flavored; the $33K Essential is a SaaS account. Two playbooks, one team. Asking proves you see it.</div>
+      </div>
+    </div>
+
+    <div class="q-group">The upgrade journey</div>
+    <div class="ask-list">
+      <div class="ask">
+        <div class="ask-kicker">Business &rarr; Pro trigger</div>
+        <div class="ask-q">&ldquo;At what point does the team go from a really successful Business-plan Host to discussing options &mdash; getting them into a custom branded app and becoming a Pro Host?&rdquo;</div>
+        <div class="ask-why">The implicit revenue trigger is roughly $200&ndash;250K/year in Host earnings (where the $33K subscription + 1% transaction fee starts paying back the engagement lift). You want to hear her version.</div>
+      </div>
+      <div class="ask">
+        <div class="ask-kicker">Pro without the app</div>
+        <div class="ask-q">&ldquo;Are there Hosts who want everything Pro offers except the custom branded app?&rdquo;</div>
+        <div class="ask-why"><strong>This is the edge-case question.</strong> Mighty built Path-to-Pro for exactly this segment. The marketing language even says &ldquo;without having to upgrade to your own branded apps (yet).&rdquo; Naming the edge case proves you've read the product line at a level most candidates haven't.</div>
+      </div>
+    </div>
+
+    <div class="card card--dark" style="margin-top: 1.75rem;">
+      <h4 style="color: var(--accent);">What's strong about your questions &mdash; lean into the pattern</h4>
+      <ul>
+        <li style="margin-bottom: 0.5rem;"><strong style="color: var(--accent);">You're asking strategy, not tactics.</strong> Vision, metrics, experiments, deal structure, product line philosophy. This is what hiring managers at this level want to hear from a candidate.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color: var(--accent);">You're asking about both sides of the table.</strong> Mary's metrics AND how you can help her hit them. Mighty's deals AND what the Host gets. The upgrade trigger AND who doesn't fit it. Two-sided value is the lens this seat needs.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color: var(--accent);">You're probing the edges.</strong> &ldquo;Are there people who want everything except the branded app&rdquo; is an edge-case question, and edge cases are where product strategy and CSM segmentation actually live.</li>
+        <li><strong style="color: var(--accent);">You're curious about people, not just process.</strong> Your Denika questions go to <em>what it feels like</em> to do this work. The Mary questions go to <em>what she cares about</em>. That instinct serves you in both rounds.</li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="page-counter">05 / 32</div>
+</section>
+
+<!-- ================= 06 · MARY LIKELY QUESTIONS ================= -->
 <section class="page page--warm" id="mary-questions">
   <div class="page-inner">
     <div class="section-kicker">15 Questions, Four Categories</div>
@@ -1080,7 +1282,7 @@
       </div>
     </details>
   </div>
-  <div class="page-counter">05 / 25</div>
+  <div class="page-counter">06 / 32</div>
 </section>
 
 <!-- ================= 06 · MARY FOUR CRITERIA ================= -->
@@ -1127,7 +1329,7 @@
       <p style="font-style: normal; font-family: var(--font-sans); font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">&mdash; Mary's stated lesson from LSE. Her core operating principle. Bias to ship is her tonal read.</p>
     </div>
   </div>
-  <div class="page-counter">06 / 25</div>
+  <div class="page-counter">07 / 32</div>
 </section>
 
 <!-- ================= 07 · MARY 90-SECOND INTRO ================= -->
@@ -1161,7 +1363,7 @@
       </ul>
     </div>
   </div>
-  <div class="page-counter">07 / 25</div>
+  <div class="page-counter">08 / 32</div>
 </section>
 
 <!-- ================= 08 · QUESTIONS TO ASK MARY ================= -->
@@ -1243,7 +1445,7 @@
       </div>
     </div>
   </div>
-  <div class="page-counter">08 / 25</div>
+  <div class="page-counter">09 / 32</div>
 </section>
 
 <!-- ================= 09 · MARY STORY BANK ================= -->
@@ -1405,7 +1607,7 @@
     </details>
 
   </div>
-  <div class="page-counter">09 / 25</div>
+  <div class="page-counter">10 / 32</div>
 </section>
 
 <!-- ================= 10 · QUESTION DECODER ================= -->
@@ -1499,7 +1701,7 @@
     </div>
 
   </div>
-  <div class="page-counter">10 / 25</div>
+  <div class="page-counter">11 / 32</div>
 </section>
 
 <!-- ================= 11 · MARY ROLEPLAYS ================= -->
@@ -1549,7 +1751,7 @@
     </div>
 
   </div>
-  <div class="page-counter">11 / 25</div>
+  <div class="page-counter">12 / 32</div>
 </section>
 
 <!-- ================= 12 · WHAT MARY FEARS ================= -->
@@ -1586,7 +1788,7 @@
     </div>
 
   </div>
-  <div class="page-counter">12 / 25</div>
+  <div class="page-counter">13 / 32</div>
 </section>
 
 <!-- ================= 13 · ERICKSON CHEAT-SHEET ================= -->
@@ -1634,7 +1836,7 @@
     </div>
 
   </div>
-  <div class="page-counter">13 / 25</div>
+  <div class="page-counter">14 / 32</div>
 </section>
 
 <!-- ================= 14 · STRATEGIC ASKS ================= -->
@@ -1684,7 +1886,7 @@
     </div>
 
   </div>
-  <div class="page-counter">14 / 25</div>
+  <div class="page-counter">15 / 32</div>
 </section>
 
 <!-- ================= 15 · MEET DENIKA ================= -->
@@ -1773,7 +1975,7 @@
       </div>
     </div>
   </div>
-  <div class="page-counter">15 / 25</div>
+  <div class="page-counter">16 / 32</div>
 </section>
 
 <!-- ================= 10 · DENIKA ROUND PREP ================= -->
@@ -1860,7 +2062,7 @@
       <p style="color: #fff;">Tone reminder: Denika's brand is alignment, daily rhythms, calling. If &ldquo;why this work&rdquo; comes up, your answer should sound like it comes from the same family of language. Don't perform it &mdash; just don't talk like a sales rep.</p>
     </div>
   </div>
-  <div class="page-counter">16 / 25</div>
+  <div class="page-counter">17 / 32</div>
 </section>
 
 <!-- ================= 11 · ROLEPLAY FRAMEWORKS ================= -->
@@ -1919,7 +2121,7 @@
       </ul>
     </div>
   </div>
-  <div class="page-counter">17 / 25</div>
+  <div class="page-counter">18 / 32</div>
 </section>
 
 <!-- ================= 12 · AI TRANSPARENCY ================= -->
@@ -1965,7 +2167,7 @@
     </div>
     <div id="ai-script" style="position: absolute; left: -9999px;">What excites me about AI in CS isn't the speed &mdash; it's that it lets me spend more time on the parts of the job only a human can do. Reading the room on a renewal call. Sitting with a Host who's frustrated and figuring out what's really going on. Deciding when to push back and when to meet someone halfway. AI handles the note-taking, the drafting, the first pass at a success plan. I spend that reclaimed time on judgement.</div>
   </div>
-  <div class="page-counter">18 / 25</div>
+  <div class="page-counter">19 / 32</div>
 </section>
 
 <!-- ================= 13 · COMPANY INTEL ================= -->
@@ -2071,10 +2273,157 @@
       <p style="font-style: normal; font-family: var(--font-sans); font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">&mdash; Keep these in your back pocket. Drop one if Michael asks what stood out.</p>
     </div>
   </div>
-  <div class="page-counter">19 / 25</div>
+  <div class="page-counter">20 / 32</div>
 </section>
 
-<!-- ================= 14 · CUSTOMER REVIEWS ================= -->
+<!-- ================= 21 · STRATEGIC INTEL ================= -->
+<section class="page page--navy" id="strategic-intel">
+  <div class="page-inner">
+    <div class="section-kicker" style="color: var(--accent);">The Numbers That Run Mighty</div>
+    <h2 style="color: #fff;">Strategic intel.</h2>
+    <p style="color: rgba(255,255,255,0.82); margin-bottom: 2rem; max-width: 680px;">Everything you need to answer any pricing, economics, or product-strategy question Mary throws at you. Don't recite this; understand it. The playbook at the bottom tells you which intel to lead with for which question.</p>
+
+    <h3 style="color: #fff;">The North Star</h3>
+    <div class="card card--dark" style="background: rgba(212,168,83,0.08); border: 1px solid rgba(212,168,83,0.35); padding: 1.75rem; margin-bottom: 1.5rem;">
+      <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.3rem; color: #fff; line-height: 1.5; margin-bottom: 0.85rem;">&ldquo;$500M in Host earnings in 2025. $50B in 5 years. Driven by one person, less than one hour a day.&rdquo;</p>
+      <p style="color: rgba(255,255,255,0.78); font-size: 0.92rem;">The public framing Mighty repeats. Every CSM metric ladders up to this: Mary isn't measured on traditional CS vanity numbers, she's measured on whether Pro Hosts are making real money. Tony Robbins Arena scaled to 30,000+ members; virtual event attendance went from 150 to 1,000+ live viewers after moving to Pro. Those are the kind of outcomes the seat is on the hook for.</p>
+    </div>
+
+    <h3 style="color: #fff; margin-top: 2rem;">Community Design&trade; &mdash; the metrics</h3>
+    <div class="grid-3" style="margin-top: 1rem;">
+      <div class="card card--dark" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); text-align: center;">
+        <div style="font-family: var(--font-serif); font-size: 2.4rem; color: var(--accent); font-weight: 600; line-height: 1;">84%</div>
+        <p style="color: rgba(255,255,255,0.85); font-size: 0.9rem; margin-top: 0.5rem;">Of content on Mighty is created by members, not Hosts.</p>
+      </div>
+      <div class="card card--dark" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); text-align: center;">
+        <div style="font-family: var(--font-serif); font-size: 2.4rem; color: var(--accent); font-weight: 600; line-height: 1;">59%</div>
+        <p style="color: rgba(255,255,255,0.85); font-size: 0.9rem; margin-top: 0.5rem;">Of active members return weekly.</p>
+      </div>
+      <div class="card card--dark" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); text-align: center;">
+        <div style="font-family: var(--font-serif); font-size: 2.4rem; color: var(--accent); font-weight: 600; line-height: 1;">80%+</div>
+        <p style="color: rgba(255,255,255,0.85); font-size: 0.9rem; margin-top: 0.5rem;">Revenue retention without email marketing.</p>
+      </div>
+    </div>
+    <p style="color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-top: 0.85rem;">The origin: Gina found a 93%-accurate prediction model for community success/failure. The single variable that mattered wasn't content velocity or marketing &mdash; it was how often members connected with each other. Community Design&trade; is the framework that operationalizes that finding.</p>
+
+    <h3 style="color: #fff; margin-top: 2.25rem;">The pricing ladder</h3>
+    <div class="criteria" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); margin-top: 1rem;">
+      <div class="criteria-row criteria-row--head" style="grid-template-columns: 1fr 1fr 1.4fr;">
+        <div>Tier</div>
+        <div>Price / threshold</div>
+        <div>Who fits</div>
+      </div>
+      <div class="criteria-row" style="grid-template-columns: 1fr 1fr 1.4fr; border-top-color: rgba(255,255,255,0.08);">
+        <div class="criteria-criterion" style="color: #fff;">Launch &middot; Growth &middot; Scale</div>
+        <div class="criteria-proof" style="color: rgba(255,255,255,0.78);">$14,400/year average for Launch Plan Hosts</div>
+        <div class="criteria-story" style="color: rgba(255,255,255,0.6);">The base Mighty product. Self-serve. Most Hosts.</div>
+      </div>
+      <div class="criteria-row" style="grid-template-columns: 1fr 1fr 1.4fr; border-top-color: rgba(255,255,255,0.08);">
+        <div class="criteria-criterion" style="color: #fff;">Path-to-Pro / Growth Plan</div>
+        <div class="criteria-proof" style="color: rgba(255,255,255,0.78);">Designed for $250K+ Host businesses. 1% transaction fee.</div>
+        <div class="criteria-story" style="color: rgba(255,255,255,0.6);">Everything Pro <em>except</em> branded apps. Hosts who want premium service but aren't ready for or don't want the app.</div>
+      </div>
+      <div class="criteria-row" style="grid-template-columns: 1fr 1fr 1.4fr; border-top-color: rgba(255,255,255,0.08);">
+        <div class="criteria-criterion" style="color: #fff;">Mighty Pro &middot; Essential</div>
+        <div class="criteria-proof" style="color: rgba(255,255,255,0.78);">~$33K/year. 2-year minimum. 1% transaction fee.</div>
+        <div class="criteria-story" style="color: rgba(255,255,255,0.6);">Branded iOS/Android apps, Design Studio, dedicated CSM, white-glove migration. The bulk of the 450+ Pro book.</div>
+      </div>
+      <div class="criteria-row" style="grid-template-columns: 1fr 1fr 1.4fr; border-top-color: rgba(255,255,255,0.08);">
+        <div class="criteria-criterion" style="color: #fff;">Mighty Pro &middot; Custom</div>
+        <div class="criteria-proof" style="color: rgba(255,255,255,0.78);">Mid: $1M&ndash;$10M creators. Mega: 6+ figures, custom enterprise.</div>
+        <div class="criteria-story" style="color: rgba(255,255,255,0.6);">Marie Forleo tier. Tony Robbins / Deepak Chopra / Mark Hyman tier. Mighty Pro Plans average $240K/year.</div>
+      </div>
+    </div>
+
+    <h3 style="color: #fff; margin-top: 2.25rem;">Deal economics by Host size</h3>
+    <div class="grid-3" style="margin-top: 1rem;">
+      <div class="card card--dark" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
+        <div style="font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 0.4rem;">Small Pro Host</div>
+        <h4 style="color: #fff; font-family: var(--font-serif);">$33K Essential package</h4>
+        <p style="color: rgba(255,255,255,0.82); font-size: 0.88rem;">Coach, course creator, niche brand doing $200K&ndash;$1M/year. Upgrading to lock in audience, justify a price increase, look legit to enterprise B2B buyers, get the home-screen-icon engagement bump. Solo founder or 2-3 person team. <strong style="color: var(--accent);">90% of your 60-Host book lands here.</strong> CSM = fractional Chief Community Officer.</p>
+      </div>
+      <div class="card card--dark" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
+        <div style="font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 0.4rem;">Mid-tier</div>
+        <h4 style="color: #fff; font-family: var(--font-serif);">$1M&ndash;$10M creators</h4>
+        <p style="color: rgba(255,255,255,0.82); font-size: 0.88rem;">Established brands. The parenting community at $5M ARR, the German parenting community at $2.15M ARR. Small team: community manager, marketing, tech. Custom-quoted, almost certainly higher than $33K. Premium migration packages, additional Design Studio engagements, higher caps, custom exports. <strong style="color: var(--accent);">CSM = business strategist.</strong></p>
+      </div>
+      <div class="card card--dark" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
+        <div style="font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 0.4rem;">Mega-creator</div>
+        <h4 style="color: #fff; font-family: var(--font-serif);">Tony &middot; Deepak &middot; Mark Hyman</h4>
+        <p style="color: rgba(255,255,255,0.82); font-size: 0.88rem;">Six figures+ on subscription, plus 1% of GMV. Discounted or waived subscription in exchange for case study + co-marketing rights. Senior leadership involved (Gina herself meets with the Pro leadership). Custom feature requests prioritized. <strong style="color: var(--accent);">CSM = orchestrator</strong> &mdash; bridge between the Host's internal team and Mighty product/eng/design.</p>
+      </div>
+    </div>
+
+    <div class="card card--dark" style="background: rgba(212,168,83,0.06); border: 1px solid rgba(212,168,83,0.2); margin-top: 1.25rem; padding: 1.5rem;">
+      <h4 style="color: var(--accent);">The two-way flywheel on mega-deals</h4>
+      <p style="color: rgba(255,255,255,0.85); font-size: 0.92rem;"><strong style="color: #fff;">What Mighty gets:</strong> direct revenue (subscription + 1% GMV on a 30K+ member community), social proof, funnel leverage (Tony's audience of 50M+ becomes a passive marketing channel), talent magnet, investor narrative, product validation at scale.</p>
+      <p style="color: rgba(255,255,255,0.85); font-size: 0.92rem; margin-top: 0.6rem;"><strong style="color: #fff;">What the Host gets:</strong> branded app on members' home screens without spending $300K&ndash;$500K on custom dev, ~30-day launch vs. 12+ months, expert team running migration/design/strategy, engagement infrastructure they don't have to build, reduced platform risk, direct line to leadership, possibly favorable economics.</p>
+    </div>
+
+    <h3 style="color: #fff; margin-top: 2.25rem;">Proof points &mdash; AI Cohost &amp; paid challenges</h3>
+    <div class="grid-2" style="margin-top: 1rem;">
+      <div class="flag-card flag-card--green" style="background: rgba(22,163,74,0.06); border: 1px solid rgba(22,163,74,0.25); border-left: 4px solid #16a34a;">
+        <h4 style="color: #fff; font-family: var(--font-serif);">AI Cohost &mdash; the active bet</h4>
+        <p style="color: rgba(255,255,255,0.85); font-size: 0.9rem;">Trained on Community Design&trade; and 8 years of what works. Tells Hosts when they're underpricing, when their offer is too complicated, which growth funnels are working.</p>
+        <ul style="color: rgba(255,255,255,0.85); font-size: 0.88rem; margin-top: 0.6rem;">
+          <li>Midlife professionals: <strong style="color: var(--accent);">73.7% contribution growth in 30 days</strong> with offers from $25/mo</li>
+          <li>Young women's faith community: 100% active member rate, <strong style="color: var(--accent);">$48.9K ARR</strong></li>
+          <li>Deaf news community: <strong style="color: var(--accent);">2,567 members &amp; $34K ARR in under a month</strong></li>
+          <li>German parenting: <strong style="color: var(--accent);">$2.15M ARR within 2 years</strong></li>
+        </ul>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.82rem; margin-top: 0.6rem;">Features: Infinite Question Engine &middot; AI re-engagement &middot; People Explorer &middot; Big Purpose Generator.</p>
+      </div>
+      <div class="flag-card flag-card--green" style="background: rgba(22,163,74,0.06); border: 1px solid rgba(22,163,74,0.25); border-left: 4px solid #16a34a;">
+        <h4 style="color: #fff; font-family: var(--font-serif);">Paid challenges as the entry</h4>
+        <p style="color: rgba(255,255,255,0.85); font-size: 0.9rem;"><strong style="color: var(--accent); font-size: 1.1rem;">91% of Mighty's top earners started with a paid challenge.</strong></p>
+        <p style="color: rgba(255,255,255,0.82); font-size: 0.88rem; margin-top: 0.5rem;">$19&ndash;$49 for a 7 or 30-day challenge with one goal members can hit. The funnel pattern Mighty discovered. New Pro Host onboarding is being shaped around this.</p>
+      </div>
+    </div>
+
+    <h3 style="color: #fff; margin-top: 2.25rem;">Migration case studies</h3>
+    <p style="color: rgba(255,255,255,0.78); font-size: 0.92rem;">Migrated communities have <strong style="color: var(--accent);">81&ndash;100% retention rates</strong> in their first year on Mighty. The flagship cases:</p>
+    <div class="grid-3" style="margin-top: 1rem;">
+      <div class="card card--dark" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
+        <h4 style="color: var(--accent); font-family: var(--font-serif);">Parenting community</h4>
+        <p style="color: rgba(255,255,255,0.85); font-size: 0.88rem;"><strong style="color: #fff;">0 &rarr; 102,000 members in 2 years. $5M+ revenue.</strong> The Community Design&trade; flagship proof point.</p>
+      </div>
+      <div class="card card--dark" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
+        <h4 style="color: var(--accent); font-family: var(--font-serif);">German parenting</h4>
+        <p style="color: rgba(255,255,255,0.85); font-size: 0.88rem;"><strong style="color: #fff;">$2.15M ARR within 2 years.</strong> AI Cohost case study, non-English market.</p>
+      </div>
+      <div class="card card--dark" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);">
+        <h4 style="color: var(--accent); font-family: var(--font-serif);">Deaf news</h4>
+        <p style="color: rgba(255,255,255,0.85); font-size: 0.88rem;"><strong style="color: #fff;">2,567 members and $34K ARR in under a month.</strong> Speed of go-to-market on Mighty Pro.</p>
+      </div>
+    </div>
+    <p style="color: rgba(255,255,255,0.78); font-size: 0.88rem; margin-top: 1rem;">Pro Host upgrades cited publicly: 6-figure revenue increase, 92% active monthly members &middot; 47% member growth within 90 days of upgrading from Business &middot; 272% new member growth in year-1 post-upgrade &middot; Pro Hosts seeing churn cut in half with 90% of members engaged.</p>
+
+    <h3 style="color: #fff; margin-top: 2.25rem;">Deal mechanics &mdash; the under-discussed levers</h3>
+    <div class="card card--dark" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); margin-top: 1rem;">
+      <ul style="color: rgba(255,255,255,0.85); font-size: 0.92rem;">
+        <li style="margin-bottom: 0.45rem;"><strong style="color: var(--accent);">1% transaction fee on GMV.</strong> Ongoing platform revenue regardless of subscription. Pro economics = subscription + transaction fees + expansion services. The CSM influences all three.</li>
+        <li style="margin-bottom: 0.45rem;"><strong style="color: var(--accent);">2-year minimum on Essential Pro.</strong> Multi-year contracts make a Tony-Robbins-tier renewal a 6- or 7-figure event.</li>
+        <li style="margin-bottom: 0.45rem;"><strong style="color: var(--accent);">App on the home screen.</strong> 60% more activity happens on mobile than web when Hosts have the branded app. The branded-app upgrade is a 4x engagement multiplier.</li>
+        <li><strong style="color: var(--accent);">&ldquo;Without having to upgrade to your own branded apps (yet).&rdquo;</strong> The Path-to-Pro marketing language. The word &ldquo;yet&rdquo; is doing strategic work &mdash; Mighty has identified Hosts who want premium service but not the app, and built a SKU for them. One-third of Pro customers tried custom app dev first.</li>
+      </ul>
+    </div>
+
+    <div class="card card--dark" style="background: rgba(212,168,83,0.12); border: 1px solid rgba(212,168,83,0.4); margin-top: 1.75rem; padding: 1.75rem;">
+      <h4 style="color: var(--accent);">If she asks X, lead with Y &mdash; the playbook</h4>
+      <ul style="color: rgba(255,255,255,0.92); font-size: 0.95rem;">
+        <li style="margin-bottom: 0.5rem;"><strong style="color: #fff;">If she asks pricing:</strong> Essential ($33K) is the floor; Path-to-Pro ($250K Host threshold) is the on-ramp; mega-creator deals are partnership-flavored, not SaaS.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color: #fff;">If she asks expansion:</strong> Path-to-Pro is the conviction-without-commitment tier &mdash; it's where you grow Hosts toward Pro without forcing the app step.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color: #fff;">If she asks AI:</strong> AI Cohost is the proof point. Trained on Community Design&trade;, 8 years of what works. The midlife-professionals community at 73.7% contribution growth is the easiest stat to remember.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color: #fff;">If she asks vision:</strong> $500M (2025) &rarr; $50B (5 years), &ldquo;1 person, less than 1 hour a day&rdquo; is the framing. The CSM seat is on the hook for Pro Hosts making real money, not for vanity satisfaction metrics.</li>
+        <li><strong style="color: #fff;">If she asks the upgrade trigger:</strong> $200&ndash;$250K/year in Host earnings is where the math on $33K subscription + 1% fee starts paying back. Engagement plateau on Business tier is the soft signal; &ldquo;looks legit&rdquo; pressure for B2B sales is the hard one.</li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="page-counter">21 / 32</div>
+</section>
+
+<!-- ================= 22 · CUSTOMER REVIEWS ================= -->
 <section class="page page--warm" id="customer-reviews">
   <div class="page-inner">
     <div class="section-kicker">Voice of the Customer</div>
@@ -2506,7 +2855,7 @@
       </ul>
     </div>
   </div>
-  <div class="page-counter">20 / 25</div>
+  <div class="page-counter">22 / 32</div>
 </section>
 
 <!-- ================= 15 · EMPLOYEE REVIEWS ================= -->
@@ -2943,7 +3292,7 @@
       <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.75rem;">Scraped directly from Glassdoor (logged in) on 2026-04-24 using <code>data/interview-prep/glassdoor-scraper.js</code>. All dates and quotes are verbatim from those reviews. Where full quotes are trimmed for space, the ellipsis (&hellip;) is used and the source link preserves the full text.</p>
     </div>
   </div>
-  <div class="page-counter">21 / 25</div>
+  <div class="page-counter">23 / 32</div>
 </section>
 
 <!-- ================= 16 · RED FLAGS ================= -->
@@ -3007,7 +3356,7 @@
       </div>
     </div>
   </div>
-  <div class="page-counter">22 / 25</div>
+  <div class="page-counter">24 / 32</div>
 </section>
 
 <!-- ================= 17 · CSM GLOSSARY ================= -->
@@ -3068,7 +3417,7 @@
       </div>
     </div>
   </div>
-  <div class="page-counter">23 / 25</div>
+  <div class="page-counter">25 / 32</div>
 </section>
 
 <!-- ================= 18 · NEXT ROUND: RYAN ================= -->
@@ -3102,7 +3451,7 @@
       <p>Two rounds today. One on Tuesday at most. You are within reach.</p>
     </div>
   </div>
-  <div class="page-counter">24 / 25</div>
+  <div class="page-counter">26 / 32</div>
 </section>
 
 <!-- ================= 19 · APPENDIX · ROUND 2 RECAP ================= -->
@@ -3116,7 +3465,7 @@
       <p style="color: rgba(255,255,255,0.92); font-size: 0.92rem;">Below: who Michael is, the four-criteria scorecard he wrote on LinkedIn, the 90-second intro you delivered, the questions you fielded and asked. Untouched from the round-2 prep.</p>
     </div>
   </div>
-  <div class="page-counter">25 / 25</div>
+  <div class="page-counter">27 / 32</div>
 </section>
 
 <!-- ================= APPENDIX · MEET MICHAEL ================= -->
